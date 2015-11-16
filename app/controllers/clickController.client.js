@@ -36,5 +36,27 @@
       clickNbr.innerHTML = clicksObject.clicks;
    }   
    
+   // when DOM loads, go ahead and get click count from server
+   ready(ajaxRequest('GET', apiUrl, updateClickCount));
+   
+   // when user hits add button, post it to server, then call get,
+   // and when get completes, go ahad and update the click count
+   addButton.addEventListener('click', function () {
+
+      ajaxRequest('POST', apiUrl, function () {
+         ajaxRequest('GET', apiUrl, updateClickCount)
+      });
+
+   }, false);   
+   
+   // when user hits reset button, send delete to server, ten call get,
+   // and when get completes, go ahead and update the click count
+   deleteButton.addEventListener('click', function () {
+
+      ajaxRequest('DELETE', apiUrl, function () {
+         ajaxRequest('GET', apiUrl, updateClickCount);
+      });
+
+   }, false);   
    
 })();
