@@ -5,7 +5,7 @@ var express = require('express');
 var app = express();
 
 app.get('/', function (req, res) {
-    res.send('Hello world!');
+    res.sendFile(process.cwd() + '/index.html');
 });
 
 app.listen(8080, function () {
