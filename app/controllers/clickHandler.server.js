@@ -6,6 +6,7 @@ var Clicks = require('../models/clicks.js');
 function ClickHandler () {
 
   this.getClicks = function (req, res) {
+    console.log("server: getClicks invoked")
     Clicks
         .findOne({}, { '_id': false })
         .exec(function (err, result) {
@@ -27,6 +28,7 @@ function ClickHandler () {
   
   
   this.addClick = function (req, res) {
+    console.log("server: addClick invoked")
     Clicks
         .findOneAndUpdate({}, { $inc: { 'clicks': 1 } })
         .exec(function (err, result) {
@@ -38,6 +40,7 @@ function ClickHandler () {
   };
 
   this.resetClicks = function (req, res) {
+    console.log("server: resetClicks invoked")
     Clicks
         .findOneAndUpdate({}, { 'clicks': 0 })
         .exec(function (err, result) {
