@@ -4,7 +4,7 @@
    var addButton = document.querySelector('.btn-add');
    var deleteButton = document.querySelector('.btn-delete');
    var clickNbr = document.querySelector('#click-nbr');
-   var apiUrl = 'https://clementine-beginner-git-cornjacket.c9users.io/api/clicks';
+   var apiUrl = 'https://clementine-fcc-cornjacket.c9users.io/api/clicks';
    
    function ready (fn) {
       if (typeof fn !== 'function') {
