@@ -2,9 +2,9 @@
 
 var ClickHandler = require(process.cwd() + '/app/controllers/clickHandler.server.js');
 
-module.exports = function (app, db) {
+module.exports = function (app) {
     
-    var clickHandler = new ClickHandler(db);
+    var clickHandler = new ClickHandler();
     
     app.route('/')
         .get(function (req, res) {
