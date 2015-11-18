@@ -2,51 +2,38 @@
 
 function ClickHandler () {
 
-  var Clicks = require('../models/clicks.js');
-
+  var Users = require('../models/users.js');
 
   this.getClicks = function (req, res) {
-      Clicks
-          .findOne({}, { '_id': false })
-          .exec(function (err, result) {
-                  if (err) { throw err; }
-  
-                  if (result) {
-                      res.json(result);
-                  } else {
-                      var newDoc = new Clicks({ 'clicks': 0 });
-                      newDoc.save(function (err, doc) {
-                          if (err) { throw err; }
-  
-                          res.json(doc);
-                      });
-  
-                  }
-              });
+        Users
+            .findOne({ 'github.id': req.user.github.id }, { '_id': false })
+            .exec(function (err, result) {
+                if (err) { throw err; }
+
+                res.json(result.nbrClicks);
+            });
   };
   
   this.addClick = function (req, res) {
-      Clicks
-          .findOneAndUpdate({}, { $inc: { 'clicks': 1 } })
-          .exec(function (err, result) {
-                  if (err) { throw err; }
-  
-                  res.json(result);
-              }
-          );
-  };  
-  
-  
+        Users
+            .findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'nbrClicks.clicks': 1 } })
+            .exec(function (err, result) {
+                    if (err) { throw err; }
+
+                    res.json(result.nbrClicks);
+                }
+            );
+  };
 
   this.resetClicks = function (req, res) {
-      Clicks
-          .findOneAndUpdate({}, { 'clicks': 0 })
-          .exec(function (err, result) {
-                  if (err) { throw err; }
-  
-                  res.json(result);
-              }
-          );
+        Users
+            .findOneAndUpdate({ 'github.id': req.user.github.id }, { 'nbrClicks.clicks': 0 })
+            .exec(function (err, result) {
+                    if (err) { throw err; }
+
+                    res.json(result.nbrClicks);
+                }
+            );
   };
   
 }
