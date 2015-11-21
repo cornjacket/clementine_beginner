@@ -38,7 +38,7 @@ module.exports = function (app, passport) {
     })
       .post(isLoggedIn, function(req, res) {    // i think i need to have a response else the browser errors out - research this
         console.log("index.js: post /poll received")
-        console.log(res)
+        //console.log(res)
         //res.json({ result: "result"})
       })
 
