@@ -32,6 +32,16 @@ module.exports = function (app, passport) {
         res.redirect('/login');
     });
 
+    app.route('/poll/new')
+      .get(isLoggedIn, function (req, res) {
+        res.sendFile(path + '/public/new_poll.html');
+    })
+      .post(isLoggedIn, function(req, res) {    // i think i need to have a response else the browser errors out - research this
+        console.log("index.js: post /poll received")
+        console.log(res)
+        //res.json({ result: "result"})
+      })
+
     app.route('/profile')
       .get(isLoggedIn, function (req, res) {
         res.sendFile(path + '/public/profile.html');
@@ -50,6 +60,8 @@ module.exports = function (app, passport) {
         successRedirect: '/',
         failureRedirect: '/login'
     }));    
+    
+    
     
     app.route('/api/:id/clicks')
       .get(isLoggedIn, clickHandler.getClicks)
