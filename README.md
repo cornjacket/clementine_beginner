@@ -1,4 +1,6 @@
 # clementine_beginner
+Now the tutorial has been re-targeted as the voting poll basejump for fcc.
+
 Running through the clementine beginner tutorial
 http://www.clementinejs.com/tutorials/tutorial-beginner.html
 
