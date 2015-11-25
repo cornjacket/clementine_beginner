@@ -20,6 +20,7 @@ function ClickHandler () {
             .exec(function (err, result) {
                     if (err) { throw err; }
 
+                    console.log("clickHandler.server: addClick()")
                     res.json(result.nbrClicks);
                 }
             );
