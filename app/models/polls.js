@@ -10,7 +10,8 @@ var Schema = mongoose.Schema;
 var Poll = new Schema({
     github: {
         id: String,
-        displayName: String
+        name: String,
+        username: String
     },
    poll: {
       question: String,

@@ -53,13 +53,13 @@ module.exports = function (app, passport) {
     app.route('/poll/list')
       .get( function (req, res) {
         console.log("index.js: get /poll/list received")
-        pollHandler.listPolls(req,res)
+        pollHandler.listPolls({},req,res)
       })
       
     app.route('/poll/list/:id')
       .get( function (req, res) {
         console.log("index.js: get /poll/list:id received")
-        pollHandler.listPolls(req,res) // need to change this later to pollHandler.listPollByUserId(req,res) -- id is in the req
+        pollHandler.listPolls({ 'github.username': req.user.github.username },req,res) // need to change this later to pollHandler.listPollByUserId(req,res) -- id is in the req
       })    
       
     app.route('/profile')

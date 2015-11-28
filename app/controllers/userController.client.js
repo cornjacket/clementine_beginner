@@ -16,6 +16,7 @@
       var userObject = JSON.parse(data);
       console.log("userController: "+data)
 
+      userObject.displayName = (userObject.displayName !== null) ? userObject.displayName : userObject.username
       updateHtmlElement(userObject, displayName, 'displayName');
       //console.log(data)
       if (profileId !== null) {

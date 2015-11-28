@@ -8,6 +8,7 @@
    var question = document.querySelector('#question');
    var option1 = document.querySelector('#option1');
    var option2 = document.querySelector('#option2');
+   
    var apiUrl = appUrl + '/poll/new';
 
    var numOptions = 0;
@@ -58,5 +59,8 @@
       //});
 
    }, false);   
+   
+   
+   
    
 })();

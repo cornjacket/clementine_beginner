@@ -23,7 +23,7 @@ var ajaxFunctions = {
       xmlhttp.open(method, url, true);
       xmlhttp.send();
    },
-   put: function put (url, object, callback) { // should be called POST - not put
+   put: function put (url, object, callback) { // should be called POST - not put // either way this is not working yet, using form instead
       var xmlhttp = new XMLHttpRequest();
 
       xmlhttp.onreadystatechange = function () {
