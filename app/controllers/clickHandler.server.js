@@ -6,6 +6,7 @@ var Users = require('../models/users.js');
 function ClickHandler () {
 
   this.getClicks = function (req, res) {
+        console.log("clickHandler.server: "+ req.user.github.com.id)
         Users
             .findOne({ 'github.id': req.user.github.id }, { '_id': false })
             .exec(function (err, result) {
