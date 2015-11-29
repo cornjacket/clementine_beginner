@@ -1,5 +1,4 @@
 (function () {
-
 angular
    .module('clementineApp', ['ngResource'])
    .controller('clickController', ['$scope', '$resource', function ($scope, $resource) {
