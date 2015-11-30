@@ -50,12 +50,11 @@ module.exports = function (app, passport) {
     
     
     // gets accessed from userController.client
-    app.route('/api/:id')
+    app.route('/api/user')
       .get(isLoggedIn, function (req, res) {
-        console.log("GET /api/:id is being routed")
+        console.log("GET /api/user is being routed")
         res.json(req.user.github);
     });
-    
     
     app.route('/auth/github')
       .get(passport.authenticate('github'));
