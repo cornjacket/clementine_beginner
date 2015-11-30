@@ -13,3 +13,6 @@ There is no styling applied to this version, just base functionality.
 
 I am leaving this version as-is for the time being to re-implement it in Angular. Angular should allow me to progress much faster than with
 VanillaJs.
+
+This version is deprecated so an Angular version can be done. This will allows for much faster development.
+
