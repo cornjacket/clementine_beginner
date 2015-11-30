@@ -6,11 +6,14 @@
       .module('clementineApp', ['ngResource'])
       .controller('clickController', ['$scope', '$resource', function ($scope, $resource) {
          
-        var Click = $resource('/api/:id/clicks');
+        var Click = $resource('/api/clicks'); // instead of /api/:id/clicks since $resource ignores the :id in the middle
 
 
         $scope.getClicks = function () {
+          console.log("clickController.client: getClicks() invoked")
           Click.get(function (results) {
+           
+           console.log(results.clicks)
            $scope.clicks = results.clicks;
           });
         };

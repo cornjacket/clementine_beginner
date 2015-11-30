@@ -36,11 +36,26 @@ module.exports = function (app, passport) {
       .get(isLoggedIn, function (req, res) {
         res.sendFile(path + '/public/profile.html');
     });
+
+    // gets accessed from clickController.client
+    app.route('/api/clicks')    // this doesnt appear to be working
+        .get(clickHandler.getClicks)
+       /* function(req, res) {
+          console.log('GET /api/clicks is being routed')
+          console.log(req)
+          res.json({clicks: 5})
+        })*/
+        .post(clickHandler.addClick)
+        .delete(clickHandler.resetClicks);  
     
+    
+    // gets accessed from userController.client
     app.route('/api/:id')
       .get(isLoggedIn, function (req, res) {
+        console.log("GET /api/:id is being routed")
         res.json(req.user.github);
     });
+    
     
     app.route('/auth/github')
       .get(passport.authenticate('github'));
@@ -51,15 +66,12 @@ module.exports = function (app, passport) {
         failureRedirect: '/login'
     }));
     
-    app.route('/api/:id/clicks')
+  /*  app.route('/api/:id/clicks')
       .get(isLoggedIn, clickHandler.getClicks)
       .post(isLoggedIn, clickHandler.addClick)
       .delete(isLoggedIn, clickHandler.resetClicks);
+    */
     
-    
-    /*app.route('/api/clicks')
-        .get(clickHandler.getClicks)
-        .post(clickHandler.addClick)
-        .delete(clickHandler.resetClicks);        
-      */  
+      
+        
 };
