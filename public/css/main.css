@@ -1,5 +1,12 @@
-/****** Main Styling ******/
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 100px; /* should be 50px after fixing navbar issue */
+  padding-bottom: 20px;
+}
 
+
+/****** Main Styling ******/
+/*
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
@@ -23,8 +30,12 @@ p {
     padding: 0;
 }
 
+*/
+
 /****** Header Styling ******/
 
+
+/*
 header p {
     margin: 16px 0 5px 0;
 }
@@ -58,9 +69,11 @@ header a ~ p {
 #display-name {
     font-weight: 400;
 }
+*/
 
 /****** Login Styling ******/
 
+/*
 .login {
     margin: 86px auto 0 auto;
     text-align: center;
@@ -81,29 +94,34 @@ header a ~ p {
     margin-left: 10px
 }
 
-/****** Logo Div Styling ******/
+*/
 
+
+/****** Logo Div Styling ******/
+/*
 img {
     margin: 0 auto;
     display: block;
 }
 
-.clementine-text { /* Styling for the Clementine.js text */
+.clementine-text { 
     padding: 0;
     margin: -25px 0 0 0;
     font-weight: 500;
     font-size: 60px;
     color: #FFA000;
 }
+*/
+
 
 /****** Click Styling ******/
-
-.btn-container {    /* Styling for the div that contains the buttons */
+/*
+.btn-container {    
     margin: -10px auto 0 auto;
     text-align: center;
 }
 
-.btn {  /* Styling for buttons */
+.btn {  
     margin: 0 8px;
     color: white;
     background-color: #00BCD4;
@@ -116,17 +134,17 @@ img {
     font-weight: 500;
 }
 
-.btn:focus {    /* Remove outline when hovering over button */
+.btn:focus {    
     outline: none;
 }
 
-.btn:active {   /* Scale the button down by 10% when clicking on button */
+.btn:active {   /* Scale the button down by 10% when clicking on button */ /*
     transform: scale(0.9, 0.9);
     -webkit-transform: scale(0.9, 0.9);
     -moz-transform: scale(0.9, 0.9);
 }
 
-.btn-delete {   /* Styling for delete button */
+.btn-delete {   
     background-color: #ECEFF1;
     color: #212121;
 }
@@ -134,9 +152,10 @@ img {
 #click-nbr {
     font-weight: 400;
 }
+*/
 
 /****** Profile Styling ******/
-
+/*
 .github-profile {
     width: 350px;
     height: 200px;
@@ -186,3 +205,5 @@ span {
     display: inline;
     margin: 0;
 }
+
+*/

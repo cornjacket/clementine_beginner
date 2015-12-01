@@ -10,6 +10,12 @@ var app = express();
 require('dotenv').load();
 require('./app/config/passport')(passport);
 
+var bodyParser = require('body-parser')
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
+
 mongoose.connect(process.env.MONGO_URI);
 
 app.use('/public', express.static(process.cwd() + '/public'));

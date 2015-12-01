@@ -12,11 +12,15 @@
         /*angular.module('clementineApp.services').factory('User', function($resource) {
         return $resource('/api/:id'); // Note the full endpoint address
         });*/
+     
+        var Poll = $resource('/api/polls');
+     
+
         
         $scope.getUser = function () {
            console.log("clickController.client: getUser() invoked")
-           User.get({ id: $scope.id }, function (results) {
-              console.log("results")
+           User.get({ id: $scope.id }, function (results) {  // dont think scope.id is really necessary here. Remove and see what happens
+              console.log("User results")
               console.log(results)
               $scope.name = (results.displayName !== null) ? results.displayName : results.username
               $scope.displayName = (results.displayName !== null) ? results.displayName : "none"
@@ -41,6 +45,21 @@
         };
 
         $scope.getClicks();
+
+ 
+        $scope.getPolls = function() {
+          console.log("clickController.client: getPolls() invoked")
+          //Poll.get({ id: $scope.id }, function(results) { // there is no need for any idea when grabbing all the polls
+          Poll.get( {}, function(results) {
+              console.log("Poll results")
+              console.log(results)
+              $scope.polls = results.data
+          })
+        }
+ 
+        // does this have to be invoked after getUser() ??       
+        $scope.getPolls()
+
 
          $scope.addClick = function () {
             Click.save(function () {
