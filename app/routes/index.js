@@ -19,7 +19,7 @@ module.exports = function (app, passport) {
     var pollHandler = new PollHandler();
     
     app.route('/')
-      .get(isLoggedIn, function (req, res) {
+      .get(function (req, res) {
         res.sendFile(path + '/public/index.html');
     });
 
@@ -31,7 +31,7 @@ module.exports = function (app, passport) {
     app.route('/logout')
       .get(function (req, res) {
         req.logout();
-        res.redirect('/login');
+        res.redirect('/');
     });
     
 
@@ -88,7 +88,7 @@ module.exports = function (app, passport) {
     app.route('/auth/github/callback')
       .get(passport.authenticate('github', {
         successRedirect: '/',
-        failureRedirect: '/login'
+        failureRedirect: '/login' // authentication redirects but I want to have same page for logged in/out just different behavior
     }));
     
   /*  app.route('/api/:id/clicks')
