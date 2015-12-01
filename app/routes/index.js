@@ -1,7 +1,6 @@
 'use strict';
 
 var path = process.cwd();
-var ClickHandler = require(process.cwd() + '/app/controllers/clickHandler.server.js');
 var PollHandler = require(process.cwd() + '/app/controllers/pollHandler.server.js');
 
 module.exports = function (app, passport) {
@@ -15,7 +14,6 @@ module.exports = function (app, passport) {
         }
     }    
     
-    var clickHandler = new ClickHandler();
     var pollHandler = new PollHandler();
     
     app.route('/')
@@ -46,9 +44,6 @@ module.exports = function (app, passport) {
         pollHandler.createPoll(req, res) // not sure about how this is being invoked. is this node way
         // THE FOLLOWING SHOULD BE A CALLBACK TO MAKE SURE THAT THE POLL HAS FIRST BEEN CREATED BEFORE REDIRECTING
         res.redirect('/')
-        //res.sendFile(path + '/public/new_poll.html'); // testing for now so the display doesn't explode on me
-        //console.log(res)
-        //res.json({ result: "result"})
       })
       
     app.route('/api/polls')
@@ -63,18 +58,6 @@ module.exports = function (app, passport) {
         res.sendFile(path + '/public/profile.html');
     });
 
-    // gets accessed from clickController.client
-    app.route('/api/clicks')    // this doesnt appear to be working
-        .get(clickHandler.getClicks)
-       /* function(req, res) {
-          console.log('GET /api/clicks is being routed')
-          console.log(req)
-          res.json({clicks: 5})
-        })*/
-        .post(clickHandler.addClick)
-        .delete(clickHandler.resetClicks);  
-    
-    
     // gets accessed from userController.client
     app.route('/api/user')
       .get(isLoggedIn, function (req, res) {
@@ -91,12 +74,7 @@ module.exports = function (app, passport) {
         failureRedirect: '/login' // authentication redirects but I want to have same page for logged in/out just different behavior
     }));
     
-  /*  app.route('/api/:id/clicks')
-      .get(isLoggedIn, clickHandler.getClicks)
-      .post(isLoggedIn, clickHandler.addClick)
-      .delete(isLoggedIn, clickHandler.resetClicks);
-    */
-    
+
       
         
 };

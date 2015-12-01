@@ -38,22 +38,9 @@
         
         $scope.getUser();
 
-/*
-        $scope.getClicks = function () {
-          console.log("clickController.client: getClicks() invoked")
-          Click.get(function (results) {
-           
-           console.log(results.clicks)
-           $scope.clicks = results.clicks;
-          });
-        };
-
-        $scope.getClicks();
-*/
- 
         $scope.getPolls = function() {
           console.log("clickController.client: getPolls() invoked")
-          //Poll.get({ id: $scope.id }, function(results) { // there is no need for any idea when grabbing all the polls
+          //Poll.get({ id: $scope.id }, function(results) { // there is no need for any id when grabbing all the polls
           Poll.get( {}, function(results) {
               console.log("Poll results")
               console.log(results)
@@ -64,23 +51,9 @@
         // does this have to be invoked after getUser() ??       
         $scope.getPolls()
 
-/*
-         $scope.addClick = function () {
-            Click.save(function () {
-               $scope.getClicks();
-            });
-         };
-         
-         $scope.resetClicks = function () {
-            Click.remove(function () {
-               $scope.getClicks();
-            });
-         };   
-*/   
-
-         $scope.vote = function() {
-             console.log("You just voted")
-         }
+        $scope.vote = function() {
+          console.log("You just voted")
+        }
 
       }]);
 
