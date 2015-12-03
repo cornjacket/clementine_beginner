@@ -46,12 +46,20 @@ module.exports = function (app, passport) {
         res.redirect('/')
       })
       
+      
+    app.route('/api/polls/:id')
+      .put( function (req, res) {
+        console.log("index.js: put /api/polls/:"+req.body._id+" received")
+        //console.log(req)
+        res.json("ok") //req.user.github); // what should this be? DRT
+      })      
+      
     app.route('/api/polls')
       .get( function (req, res) {
         console.log("index.js: get /api/polls received")
         pollHandler.listPolls({},req,res)
-      })    
-    
+      })
+
     
     app.route('/profile')
       .get(isLoggedIn, function (req, res) {

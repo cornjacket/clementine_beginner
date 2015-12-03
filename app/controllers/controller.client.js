@@ -94,6 +94,34 @@
           console.log("You just voted for poll "+poll_number+" option "+option_number)
           $scope.hasVotedForPoll[poll_number] = true
           ////////////// BUT IT NEEDS TO PERSIST TO THE DATABASE
+          console.log("scope.polls")
+          console.log($scope.polls)
+          console.log("scope.polls[poll_number]")
+          console.log($scope.polls[poll_number])
+          
+          console.log($scope.polls[poll_number]._id)
+          
+//var note = Notes.get({ id:$routeParams.id });
+//$id = note.id;
+
+// Now call update passing in the ID first then the object you are updating
+Poll.update({ id:$scope.polls[poll_number]._id }, $scope.polls[poll_number]);          
+          // console.log("vote() has persisted") can i add a function to update, see docs DRT
+/*          
+$scope.entry = Poll.update({ id: $scope.polls[poll_number]._id }, function() {
+  // $scope.entry is fetched from server and is an instance of Entry
+  $scope.entry.data = 'something else';
+  $scope.entry.$update(function() {
+    //updated in the backend
+  });
+});          
+*/          
+          
+  //          $scope.entry.data = 'something else';
+  //$scope.entry.$update(function() {
+  //     //updated in the backend
+  //}); 
+          console.log("vote(): hasVotedForPoll[]")
           console.log($scope.hasVotedForPoll)
         }
 
