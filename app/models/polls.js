@@ -8,16 +8,15 @@ var Schema = mongoose.Schema;
 // we are storing the displayName for each poll which is not needed.
 
 var Poll = new Schema({
-    github: {
-        id: String,
+    author: {
+        github_id: String,
         name: String,
         username: String
     },
    poll: {
       question: String,
       options:  [String], // each string is a separate option to vote on
-      votes: [Number]  // for now this will be an array of 2 numbers indicating the pros and cons, later it should be an array of vote arrays
-      // containing the id's of the users who voted for each option
+      votes: []  //an array of vote arrays containing the id's of the users who voted for each option
    }
 });
 

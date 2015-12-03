@@ -62,18 +62,18 @@
             </div>
           </div>
 
-          <div ng-repeat ="poll in polls">
+          <div ng-repeat ="item in polls">
     
               <div class="row">
                 <div class="col-md-8">
-                  <p class='h4'>{{ poll.poll.question }}</p>
-                  <div ng-repeat="option in poll.poll.options">
+                  <p class='h4'>{{ item.poll.question }}</p>
+                  <div ng-repeat="option in item.poll.options">
                     <div class"row"> 
                       <div class="col-md-1">
-                        <a ng-click="vote()" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" href="#" role="button">Vote</a>
+                        <a ng-hide="hasVotedForPoll[$parent.$index]" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" href="#" role="button">Vote</a>
                       </div>
                       <div class="col-md-11"> 
-                        <p>{{ option }}</p>
+                        <p>{{$parent.$index}} {{$index}} {{ option }}</p>
                       </div>      
                     </div>                  
                   </div>

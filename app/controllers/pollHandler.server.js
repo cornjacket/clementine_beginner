@@ -17,14 +17,21 @@ function PollHandler () {
     var newPoll = new Polls();
 
     // we are kinda being redundant with the id and name and username but for now, it makes things easier. optimize later
-    newPoll.github.id = req.user._id; //github.id; // not sure what i am doing here. what is the logic?
-    newPoll.github.name = (req.user.github.displayName !== null) ? req.user.github.displayName : req.user.github.username;
-    newPoll.github.username = req.user.github.username; // useful when wanting to look up poll by username
+    newPoll.author.github_id = req.user.github.id; // just simpler to use github_id
+    newPoll.author.name = (req.user.github.displayName !== null) ? req.user.github.displayName : req.user.github.username;
+    newPoll.author.username = req.user.github.username; // useful when wanting to look up poll by username
     newPoll.poll.question = req.body.question;
     newPoll.poll.options = []
     newPoll.poll.options.push(req.body.option1)
     newPoll.poll.options.push(req.body.option2)
-    newPoll.poll.votes = [0, 0]
+    newPoll.poll.votes = []
+    // each subarray in votes contains the user_id's for the respective options subarray
+    console.log("DRT")
+    console.log(newPoll.poll.options)
+    console.log(newPoll.poll.options.length)
+    newPoll.poll.options.forEach(function() {
+        newPoll.poll.votes.push([]) // add an empty array inside votes array for each option,
+    })
     newPoll.save(function (err) {
         if (err) {
             throw err;
