@@ -9,6 +9,12 @@
         $scope.isLoggedIn      = false
         $scope.hasVotedForPoll = []  // ary of boolean indicating whether user has voted for the i'th poll
         $scope.aggregate_votes = []  // ary of aggregate votes for the i'th poll
+        $scope.isPollAuthoredByUser = [] // ary of boolean indicating whether user is the author of the poll
+        
+        // A list of indices so that I can use ng-repeat to reference each option
+        $scope.new_poll_indices = [0, 1] // by default new polls will start out with 2 options
+        $scope.next_poll_option = 2 // adding
+        $scope.new_poll_options = [ "", ""]
 console.log("CLIENT HAS STARTED")
 
         var countVotes = function() {
@@ -59,6 +65,19 @@ console.log("CLIENT HAS STARTED")
             
         }
 
+        // Becareful, user has to be defined to run this function
+        // fill $scope.pollAuthoredByUser which is used in view
+        var determinePollsAuthoredByUser = function(){
+          console.log("determinePollsAuthoredByUser() invoked")
+          $scope.polls.forEach(function(item,poll_index,ary) {
+            console.log(item.author.github_id+" vs "+$scope.id)
+              $scope.isPollAuthoredByUser[poll_index] = $scope.isLoggedIn  ? (item.author.github_id === $scope.id) : false
+            })
+          console.log("$scope.id = "+$scope.id)
+          console.log($scope.isPollAuthoredByUser)
+        }
+
+
         var User = $resource('/api/user/:id');
 
         var Poll = $resource('/api/polls/:id', { id: '@_id' }, {
@@ -67,6 +86,13 @@ console.log("CLIENT HAS STARTED")
                      }
                    })
 
+        $scope.addOption = function () {
+           console.log("$scope.addOption() invoked")
+           console.log($scope.new_poll_indices)
+           $scope.new_poll_indices.push($scope.next_poll_option++) 
+           //$scope.new_poll_options = [ "", ""] not sure how to use this. is this an ng-model thing
+           
+        }
      
         $scope.getUser = function (callback) {
            console.log("getUser() invoked")
@@ -101,7 +127,8 @@ console.log("CLIENT HAS STARTED")
               $scope.polls = results.data
               // lets go through all the polls and see if the user has already voted by inspecting the votes
               updateHasAlreadyVoted()
-              countVotes() //DRT testing for now
+              countVotes() 
+              determinePollsAuthoredByUser()
               //console.log("Poll results")
               //console.log($scope.polls)
           })

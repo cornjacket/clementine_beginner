@@ -8,6 +8,11 @@ hr{
    border: 1px solid #ccc;
 }
 
+/* following used for preventing browser default behavior. */
+a[ng-click]{
+    cursor: pointer;
+}
+
 /****** Main Styling ******/
 /*
 body {

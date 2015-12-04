@@ -59,21 +59,19 @@
                     Question:<br>
                     <input type="text" name="question">
                     <br>
-                    option1:<br>
-                    <input type="text" name="option1">
+                    <div ng-repeat="optionIndex in new_poll_indices">
+                      option{{optionIndex+1}}
+                      <input type="text" name="option[{{optionIndex+1}}]" value="option{{optionIndex+1}}">
+                      <br>
+                    </div>
                     <br>
-                    option1:<br>
-                    <input type="text" name="option2">
-                    <br><br>
                     <input type="submit" value="Submit">
+                    <div ng-click="addOption()" class="btn btn-default" role="button">Add Option</div>
                   </form>
                 </div>
             </div>
             <hr />
         </div>
-
-
-
 
         <div class="container">
         
@@ -91,21 +89,24 @@
           <div ng-repeat ="item in polls">
     
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-7">
                   <p class='h4'>{{ item.poll.question }}</p>
-                  <div ng-repeat="option in item.poll.options">
+                  <div ng-repeat="option in item.poll.options track by $index"><!-- https://docs.angularjs.org/error/ngRepeat/dupes?p0=option%20in%20item.poll.options&p1=object:null&p2=null-->
                     <div class"row"> 
                       <div class="col-md-2">
-                        <a ng-hide="hasVotedForPoll[$parent.$index]" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" href="#" role="button">Vote</a>
+                        <a ng-hide="hasVotedForPoll[$parent.$index]" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
                         <p ng-show="hasVotedForPoll[$parent.$index]">{{ aggregate_votes[$parent.$index][$index]}} votes</p>
                       </div>
                       <div class="col-md-10"> 
-                        <p>({{$parent.$index}},{{$index}}) {{ option }}</p>
+                        <p>{{$index+1}}. {{ option }}</p>
                       </div>      
                     </div>                  
                   </div>
         
                 </div> <!-- md-col-8 abovw -->
+                <div class="col-md-1">
+                  <a class="btn btn-default btn-xs" ng-show="isLoggedIn && isPollAuthoredByUser[$index]" role="button">X</a>
+                </div>        
         
                 <!-- this is where the column-md-4 was previously -->      
               </div>

@@ -11,9 +11,10 @@ function PollHandler () {
     
     console.log(req.user._id)
     console.log(req.user.github.id)
+    console.log(req.body)
     console.log(req.body.question)
-    console.log(req.body.option1)
-    console.log(req.body.option2)
+    console.log(req.body.option1) // these should fail now 
+    console.log(req.body.option2) // these should fail now
     var newPoll = new Polls();
 
     // we are kinda being redundant with the id and name and username but for now, it makes things easier. optimize later
@@ -22,8 +23,8 @@ function PollHandler () {
     newPoll.author.username = req.user.github.username; // useful when wanting to look up poll by username
     newPoll.poll.question = req.body.question;
     newPoll.poll.options = []
-    newPoll.poll.options.push(req.body.option1)
-    newPoll.poll.options.push(req.body.option2)
+    newPoll.poll.options = req.body.option //.push(req.body.option1)
+    //newPoll.poll.options.push(req.body.option2)
     newPoll.poll.votes = []
     // each subarray in votes contains the user_id's for the respective options subarray
     console.log("DRT")
