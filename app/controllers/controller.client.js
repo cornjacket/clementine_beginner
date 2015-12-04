@@ -7,24 +7,48 @@
       .controller('clickController', ['$scope', '$resource', function ($scope, $resource) {
          
         $scope.isLoggedIn      = false
-        $scope.hasVotedForPoll = []
-        
-        //var Click = $resource('/api/clicks'); // instead of /api/:id/clicks since $resource ignores the :id in the middle
+        $scope.hasVotedForPoll = []  // ary of boolean indicating whether user has voted for the i'th poll
+        $scope.aggregate_votes = []  // ary of aggregate votes for the i'th poll
+console.log("CLIENT HAS STARTED")
 
-
-        var updateHasAlreadyVoted = function() {
+        var countVotes = function() {
             
-            console.log("updateHasAlreadyVoted() invoked")
+           // iterate through each poll and then iterate through each votes subarray and sum and store
+           // note that each votes[] subarray contains the id's for users that have voted for that respected
+           // option. Therefore determining the vote count equates to taking the length of the array.
+           $scope.aggregate_votes = []
+           console.log("countVotes() invoked")
               $scope.polls.forEach(function(item,poll_index,ary) {
+                //$scope.aggregate_votes.push([])
                 console.log(item.poll.question)
-                console.log(ary[poll_index].poll.question)
-                var alreadyVoted = false
-                
+                var new_poll_votes = new Array()
                 console.log("Voting list")
                 item.poll.votes.forEach(function(vote_ary, vote_index, parent_ary) {
                     console.log(vote_index+" "+vote_ary)
+                    new_poll_votes.push(vote_ary.length)
+                })
+                $scope.aggregate_votes.push(new_poll_votes)
+                console.log("countVotes(): ")
+                console.log($scope.aggregate_votes)
+              })
+
+        }
+
+        // this checks the hasAlreadyVoted[] array
+        var updateHasAlreadyVoted = function() {
+            
+            console.log("updateHasAlreadyVoted() invoked")
+            console.log("SCOPE.ID = "+$scope.id)
+              $scope.polls.forEach(function(item,poll_index,ary) {
+                //console.log(item.poll.question)
+                //console.log(ary[poll_index].poll.question)
+                var alreadyVoted = false
+                
+                //console.log("Voting list")
+                item.poll.votes.forEach(function(vote_ary, vote_index, parent_ary) {
+                    //console.log(vote_index+" "+vote_ary)
                     if (vote_ary.indexOf($scope.id) != -1) {
-                        console.log("Found a vote. This has been already voted on.")
+                        //console.log("Found a vote. This has been already voted on.")
                         alreadyVoted = true
                     }
                 })
@@ -36,11 +60,6 @@
         }
 
         var User = $resource('/api/user/:id');
-        /*angular.module('clementineApp.services').factory('User', function($resource) {
-        return $resource('/api/:id'); // Note the full endpoint address
-        });*/
-     
-        //var Poll = $resource('/api/polls'); // Note the NOT full endpoint address - working code for GET
 
         var Poll = $resource('/api/polls/:id', { id: '@_id' }, {
                      update: {
@@ -49,8 +68,9 @@
                    })
 
      
-        $scope.getUser = function () {
-           console.log("clickController.client: getUser() invoked")
+        $scope.getUser = function (callback) {
+           console.log("getUser() invoked")
+           console.log("GETUSER() $scope.id = "+$scope.id)
            User.get({ id: $scope.id }, function (results) {  // dont think scope.id is really necessary here. Remove and see what happens
               console.log("User results")
               console.log(results)
@@ -64,66 +84,64 @@
               console.log("username = "+results.username)
               console.log("name")
               console.log($scope.name)
+              callback()
               
            })
         }
         
-        $scope.getUser();
+        
 
 // Technically I should be using Poll.query() since I am getting all the polls, though my implementation does work.
 // Something to refactor later. - but to make this change I believe that the Poll url should include :id
         $scope.getPolls = function() {
-          console.log("clickController.client: getPolls() invoked")
+          console.log("getPolls() invoked")
           //Poll.get({ id: $scope.id }, function(results) { // there is no need for any id when grabbing all the polls
           Poll.get( {}, function(results) {
           //$scope.polls = Poll.query( function() { //(results) {
               $scope.polls = results.data
               // lets go through all the polls and see if the user has already voted by inspecting the votes
               updateHasAlreadyVoted()
+              countVotes() //DRT testing for now
               //console.log("Poll results")
               //console.log($scope.polls)
           })
         }
  
-        // does this have to be invoked after getUser() ??       
-        $scope.getPolls()
-
+        // Currently there is a bug in vote() that I only see when I stop/re-start the server
+        // Now vote() explicitly checks to see whether or not the user has voted on a poll instead of
+        // assuming the gui will not display the vote button. We should assume there will be bugs in the code
+        // and that we will need multiple safeguards to prevent voter fraud. :)
         $scope.vote = function(poll_number, option_number) {
-          console.log("You just voted")
-          $scope.polls[poll_number].poll.votes[option_number].push($scope.id)
-          console.log("You just voted for poll "+poll_number+" option "+option_number)
-          $scope.hasVotedForPoll[poll_number] = true
-          ////////////// BUT IT NEEDS TO PERSIST TO THE DATABASE
-          console.log("scope.polls")
-          console.log($scope.polls)
-          console.log("scope.polls[poll_number]")
-          console.log($scope.polls[poll_number])
-          
-          console.log($scope.polls[poll_number]._id)
-          
-//var note = Notes.get({ id:$routeParams.id });
-//$id = note.id;
+          console.log("vote(): invoked") 
+          if ($scope.hasVotedForPoll[poll_number] === false) {
+            if ($scope.polls[poll_number].poll.votes[option_number].indexOf($scope.id) === -1) {
+              $scope.polls[poll_number].poll.votes[option_number].push($scope.id)
+              console.log("You just voted for poll "+poll_number+" option "+option_number)
+              $scope.hasVotedForPoll[poll_number] = true
+              // update the count - for now lets just call count, later I can forcibly increment aggregate_count ary
+              $scope.aggregate_votes[poll_number][option_number]++  // maybe this should be a function
+              //countVotes()
+              console.log("scope.polls")
+              console.log($scope.polls)
+              console.log("scope.polls[poll_number]")
+              console.log($scope.polls[poll_number])
+              console.log($scope.polls[poll_number]._id)
 
-// Now call update passing in the ID first then the object you are updating
-Poll.update({ id:$scope.polls[poll_number]._id }, $scope.polls[poll_number]);          
-          // console.log("vote() has persisted") can i add a function to update, see docs DRT
-/*          
-$scope.entry = Poll.update({ id: $scope.polls[poll_number]._id }, function() {
-  // $scope.entry is fetched from server and is an instance of Entry
-  $scope.entry.data = 'something else';
-  $scope.entry.$update(function() {
-    //updated in the backend
-  });
-});          
-*/          
-          
-  //          $scope.entry.data = 'something else';
-  //$scope.entry.$update(function() {
-  //     //updated in the backend
-  //}); 
-          console.log("vote(): hasVotedForPoll[]")
-          console.log($scope.hasVotedForPoll)
+              // Now call update passing in the ID first then the object you are updating
+              Poll.update({ id:$scope.polls[poll_number]._id }, $scope.polls[poll_number]);          
+              // currently no callback for update. hasVotedForPoll get updated in client prior to the Poll.update call
+              console.log("vote(): hasVotedForPoll[]")
+              console.log($scope.hasVotedForPoll)
+            } else {
+                console.log("ERROR: vote(): trying to vote when votes array already contains user.id")
+                console.log("ERROR: "+$scope.polls[poll_number].poll.votes[option_number]+" "+$scope.id)
+            }
+          } else {
+              console.log("ERROR: vote(): trying to vote when hasVotedForPoll["+poll_number+"] === "+$scope.hasVotedForPoll[poll_number])
+          }
         }
+
+        $scope.getUser($scope.getPolls); // logic inside of getPolls depends on getUser completing
 
       }]);
    

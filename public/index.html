@@ -21,7 +21,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">PollPosition</a>
+              <a class="navbar-brand" href="/">PollPosition</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <!--<form class="navbar-form navbar-right">
@@ -49,6 +49,32 @@
           </div>
         </nav>
 
+
+         <div ng-show="isLoggedIn" class="container">
+            
+            <div class="row">
+                <div class="col-md-12">
+                  <h3>Create a new poll</h3>
+                  <form action="/api/polls/new" method="post">
+                    Question:<br>
+                    <input type="text" name="question">
+                    <br>
+                    option1:<br>
+                    <input type="text" name="option1">
+                    <br>
+                    option1:<br>
+                    <input type="text" name="option2">
+                    <br><br>
+                    <input type="submit" value="Submit">
+                  </form>
+                </div>
+            </div>
+            <hr />
+        </div>
+
+
+
+
         <div class="container">
         
           <div class="row">
@@ -69,11 +95,12 @@
                   <p class='h4'>{{ item.poll.question }}</p>
                   <div ng-repeat="option in item.poll.options">
                     <div class"row"> 
-                      <div class="col-md-1">
+                      <div class="col-md-2">
                         <a ng-hide="hasVotedForPoll[$parent.$index]" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" href="#" role="button">Vote</a>
+                        <p ng-show="hasVotedForPoll[$parent.$index]">{{ aggregate_votes[$parent.$index][$index]}} votes</p>
                       </div>
-                      <div class="col-md-11"> 
-                        <p>{{$parent.$index}} {{$index}} {{ option }}</p>
+                      <div class="col-md-10"> 
+                        <p>({{$parent.$index}},{{$index}}) {{ option }}</p>
                       </div>      
                     </div>                  
                   </div>

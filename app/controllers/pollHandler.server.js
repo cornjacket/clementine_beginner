@@ -54,19 +54,29 @@ function PollHandler () {
             });
   };
   
-/*  
-  this.addClick = function (req, res) {
-        Users
-            .findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'nbrClicks.clicks': 1 } })
+  
+  this.updateVotes = function (req, res) {
+        console.log("DRT")
+        console.log(req.body._id)
+        Polls
+            .findOneAndUpdate({ '_id': req.body._id}, //"565e9c0e71c8197f6deed728" }, //req._id }, 
+              { $set: 
+                { 
+                  'poll.votes': req.body.poll.votes 
+                }
+              },
+              { new: true }
+             ) // need to replace with  req.poll.votes
             .exec(function (err, result) {
                     if (err) { throw err; }
-
-                    console.log("clickHandler.server: addClick()")
-                    res.json(result.nbrClicks);
+                    console.log("pollHander.updateVotes()")
+                    console.log(result)
+                    res.json("ok")
+                    //res.json(result.poll.votes); // not sure what to return here
                 }
             );
   };
-*/
+
 /*
   this.resetClicks = function (req, res) {
         Users
