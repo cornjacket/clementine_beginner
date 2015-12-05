@@ -3,8 +3,8 @@
 (function () {
 
    angular
-      .module('clementineApp', ['ngResource', 'ngAnimate', 'ui.bootstrap'])
-      .controller('clickController', ['$scope', '$resource', function ($scope, $resource) {
+      .module('pollPosition', ['ngResource', 'ngAnimate', 'ui.bootstrap'])
+      .controller('clientController', ['$scope', '$resource', function ($scope, $resource) {
          
         $scope.pollHeader = "All Polls"
         $scope.displayAllPolls = true
