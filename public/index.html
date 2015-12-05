@@ -2,147 +2,116 @@
 
 <html ng-app="clementineApp">
 
-    <head>
-        <title>PollPosition</title>
+  <head>
+    <title>PollPosition</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+  </head>
 
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css">
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
-        <link href="/public/css/main.css" rel="stylesheet" type="text/css">
-    </head>
-
-    <body ng-controller="clickController">
-        
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="/">PollPosition</a>
+  <body ng-controller="clickController">
+      
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">PollPosition</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <!--<form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
-              <!--<form class="navbar-form navbar-right">
-                <div class="form-group">
-                  <input type="text" placeholder="Email" class="form-control">
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+          -->
+          <a href="/auth/github" ng-hide="isLoggedIn">
+                <div class="btn pull-right" id="login-btn">
+                    <img src="public/img/github_32px.png" alt="github logo" />
+                    <!--<img src="/public/img/github_32px.png" alt="github logo" />-->
+                    <p>Login with Github</p>
                 </div>
-                <div class="form-group">
-                  <input type="password" placeholder="Password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-success">Sign in</button>
-              </form>
-              -->
-              <a href="/auth/github" ng-hide="isLoggedIn">
-                    <div class="btn pull-right" id="login-btn">
-                        <img src="public/img/github_32px.png" alt="github logo" />
-                        <!--<img src="/public/img/github_32px.png" alt="github logo" />-->
-                        <p>Login with Github</p>
-                    </div>
-              </a>
-              
-              <a ng-show="isLoggedIn" class="menu pull-right" href="/logout">Logout</a>
-              <a ng-show="isLoggedIn" class="menu pull-right" href="/profile">Profile </a>
-              <a ng-show="isLoggedIn" class="menu pull-right" href="/profile">Welcome, <span>{{ name }}</span>! </a>
-            </div><!--/.navbar-collapse -->
-          </div>
-        </nav>
+          </a>
+          
+          <a ng-show="isLoggedIn" class="menu pull-right" href="/logout">Logout</a>
+          <a ng-show="isLoggedIn" class="menu pull-right" href="/profile">Profile </a>
+          <a ng-show="isLoggedIn" class="menu pull-right" href="/profile">Welcome, <span>{{ name }}</span>! </a>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
 
-        <div ng-hide="isLoggedIn" class="container text-center">
-          <h4>Welcome to PollPosition. A place to make polls...</h4>
-        </div>
-
-         <div ng-show="isLoggedIn" class="container">
-
-  <uib-accordion close-others="oneAtATime"> <!-- dont think oneAtATime is needed -->
-    <uib-accordion-group class="text-center" heading="Messages">
-      
-            <div class="row">
-                <div class="col-md-12">
-                  <!--<h3>Create a new poll</h3>-->
-                  <form action="/api/polls/new" method="post">
-                    Question:
-                    <input width='100%' type="text" name="question">
-                    <br>
-                    <div ng-repeat="optionIndex in new_poll_indices">
-                      option{{optionIndex+1}}
-                      <input type="text" name="option[{{optionIndex+1}}]" value="option{{optionIndex+1}}">
-                      <br>
-                    </div>
-                    <br>
-                    <input class="btn btn-default" type="submit" value="Submit">
-                    <div ng-click="addOption()" class="btn btn-default" role="button">Add Option</div>
-                  </form>
-                </div>
-            </div>      
-      
-      <!--<p>The body of the uib-accordion group grows to fit the contents</p>
-      <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
-      <div ng-repeat="item in items">{{item}}</div>-->
-    </uib-accordion-group>
-  </uib-accordion>
-            
-            <!--<div class="row">
-                <div class="col-md-12">
-                  <h3>Create a new poll</h3>
-                  <form action="/api/polls/new" method="post">
-                    Question:<br>
-                    <input type="text" name="question">
-                    <br>
-                    <div ng-repeat="optionIndex in new_poll_indices">
-                      option{{optionIndex+1}}
-                      <input type="text" name="option[{{optionIndex+1}}]" value="option{{optionIndex+1}}">
-                      <br>
-                    </div>
-                    <br>
-                    <input type="submit" value="Submit">
-                    <div ng-click="addOption()" class="btn btn-default" role="button">Add Option</div>
-                  </form>
-                </div>
-            </div>-->
-            <hr />
-        </div>
-
-        <div class="container">
-        
-          <div class="row">
-            <div class="col-md-8">
-              <h3>{{pollHeader}} <small ng-hide="isLoggedIn">- You must be logged in to vote.</small></h3>
-
-
-    <!-- Single button -->
-    <div ng-show="isLoggedIn" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
-      <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
-        View <span class="caret"></span>
-      </button>
-      <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
-        <li role="menuitem"><a ng-click="setAllPolls(true)" href="">All Polls</a></li>
-        <li role="menuitem"><a ng-click="setAllPolls(false)" href="">My Polls</a></li>
-        <li class="divider"></li>
-        <li role="menuitem"><a href="">Later</a></li>
-      </ul>
+    <div ng-hide="isLoggedIn" class="container text-center">
+      <h4>Welcome to PollPosition. A place to make polls...</h4>
     </div>
 
-              <hr />      
+    <div ng-show="isLoggedIn" class="container">
+      <uib-accordion close-others="oneAtATime"> <!-- dont think oneAtATime is needed -->
+        <uib-accordion-group class="text-center" heading="Messages">
+          <div class="row">
+            <div class="col-md-12">
+              <!--<h3>Create a new poll</h3>-->
+              <form action="/api/polls/new" method="post">
+                Question:
+                <input width='100%' type="text" name="question">
+                <br>
+                <div ng-repeat="optionIndex in new_poll_indices">
+                  option{{optionIndex+1}}
+                  <input type="text" name="option[{{optionIndex+1}}]" value="option{{optionIndex+1}}">
+                  <br>
+                </div>
+                <br>
+                <input class="btn btn-default" type="submit" value="Submit">
+                <div ng-click="addOption()" class="btn btn-default" role="button">Add Option</div>
+              </form>
             </div>
-            
-            <div class="col-md-4">
-              <h3>{{polls_length}} Polls</h3>
-              <button ng-show="isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
-              <hr /> 
-              
-  
-	
-	<div uib-collapse="isCollapsed">
-		<div class="well well-lg">
-		        <div class="row">
-		          <div class="col-md-offset-10 col-md-1">
+          </div>      
+          <!--<p>The body of the uib-accordion group grows to fit the contents</p>
+          <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
+          <div ng-repeat="item in items">{{item}}</div>-->
+        </uib-accordion-group>
+      </uib-accordion>
+      <hr />
+    </div>
+
+    <div class="container">
+    
+      <div class="row">
+        <div class="col-md-8">
+          <h3>{{pollHeader}} <small ng-hide="isLoggedIn">- You must be logged in to vote.</small></h3>
+          <!-- Single button -->
+          <div ng-show="isLoggedIn" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
+            <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+              View <span class="caret"></span>
+            </button>
+            <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+              <li role="menuitem"><a ng-click="setAllPolls(true)" href="">All Polls</a></li>
+              <li role="menuitem"><a ng-click="setAllPolls(false)" href="">My Polls</a></li>
+              <li class="divider"></li>
+              <li role="menuitem"><a href="">Later</a></li>
+            </ul>
+          </div>
+          <hr />      
+        </div>
+        <div class="col-md-4">
+          <h3>{{polls_length}} Polls</h3>
+          <button ng-show="isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
+          <hr /> 
+        	<div uib-collapse="isCollapsed">
+        		<div class="well well-lg">
+  		        <div class="row">
+  		          <div class="col-md-offset-10 col-md-1">
                   <a ng-click="isCollapsed = true" class="btn btn-default btn-xs" role="button">X</a>
                 </div>
-		        </div>
-            <div class="row">
+  		        </div>
+              <div class="row">
                 <div class="col-md-11">
                   <h3>Create a new poll</h3>
 		              <br><br>
@@ -160,66 +129,51 @@
                     <div ng-click="addOption()" class="btn btn-default" role="button">Add Option</div>
                   </form>
                 </div>
-                
-            </div>
-            
-		
-		</div>
-		<hr />
-	</div>              
-              
-              
-              
-            </div>
-          </div>
+              </div>
+    		    </div>
+    		    <hr />
+    	   </div>              
+        </div>
+      </div>
 
-          <div ng-repeat ="item in polls">
-            <div ng-show="!isPollDeleted[$index] && (displayAllPolls || (!displayAllPolls && isPollAuthoredByUser[$index]))">
-              <div class="row">
-                <div class="col-md-7">
-                  <p class='h4'>{{ item.poll.question }}</p>
-                  <div ng-repeat="option in item.poll.options track by $index"><!-- https://docs.angularjs.org/error/ngRepeat/dupes?p0=option%20in%20item.poll.options&p1=object:null&p2=null-->
-                    <div class"row"> 
-                      <div class="col-md-2">
-                        <a ng-hide="hasVotedForPoll[$parent.$index]" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
-                        <p ng-show="hasVotedForPoll[$parent.$index]">{{ aggregate_votes[$parent.$index][$index]}} votes</p>
-                      </div>
-                      <div class="col-md-10"> 
-                        <p>{{$index+1}}. {{ option }}</p>
-                      </div>      
-                    </div>                  
+      <div ng-repeat ="item in polls">
+        <div ng-show="!isPollDeleted[$index] && (displayAllPolls || (!displayAllPolls && isPollAuthoredByUser[$index]))">
+          <div class="row">
+            <div class="col-md-7">
+              <p class='h4'>{{ item.poll.question }}</p>
+              <div ng-repeat="option in item.poll.options track by $index"><!-- https://docs.angularjs.org/error/ngRepeat/dupes?p0=option%20in%20item.poll.options&p1=object:null&p2=null-->
+                <div class"row"> 
+                  <div class="col-md-2">
+                    <a ng-hide="hasVotedForPoll[$parent.$index]" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
+                    <p ng-show="hasVotedForPoll[$parent.$index]">{{ aggregate_votes[$parent.$index][$index]}} votes</p>
                   </div>
-        
-                </div> <!-- md-col-8 abovw -->
-                <div class="col-md-1">
-                  <a ng-click="deletePoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && isPollAuthoredByUser[$index]" role="button">X</a>
-                </div>        
-        
-                <!-- this is where the column-md-4 was previously -->      
+                  <div class="col-md-10"> 
+                    <p>{{$index+1}}. {{ option }}</p>
+                  </div>      
+                </div>                  
               </div>
-              <div class="row">
-                <div class="col-md-8">
-                  <hr />
-                </div>
-              </div>
+            </div> <!-- md-col-8 abovw -->
+            <div class="col-md-1">
+              <a ng-click="deletePoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && isPollAuthoredByUser[$index]" role="button">X</a>
+            </div>        
+            <!-- this is where the column-md-4 was previously -->      
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <hr />
             </div>
           </div>
-
-        </div>        
-
-
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
-        <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
-        
+        </div>
+      </div>
     
-<!--        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap.min.js"></script>
--->        
-        <script type="text/javascript" src="common/ajax-functions.js"></script>
-        <script type="text/javascript" src="controllers/controller.client.js"></script>
-    </body>
+    </div>        
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script type="text/javascript" src="controllers/controller.client.js"></script>
+  
+  </body>
 
 </html>
