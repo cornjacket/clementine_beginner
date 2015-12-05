@@ -45,7 +45,7 @@ module.exports = function (app, passport) {
         // THE FOLLOWING SHOULD BE A CALLBACK TO MAKE SURE THAT THE POLL HAS FIRST BEEN CREATED BEFORE REDIRECTING
         res.redirect('/')
       })
-      
+
       
     app.route('/api/polls/:id')
       .put( function (req, res) {
@@ -56,7 +56,14 @@ module.exports = function (app, passport) {
         //console.log(req)
         pollHandler.updateVotes(req, res)
         //res.json("ok") //req.user.github); // -- This is not being used. Can remove later
-      })      
+      })
+      .delete(isLoggedIn, function(req, res) {
+        console.log("index.js: delete /api/polls/:"+req.body._id+" received")
+        console.log(req.params)
+        pollHandler.deletePoll(req, res)
+        //res.json("ok")
+      })
+      
       
     app.route('/api/polls')
       .get( function (req, res) {

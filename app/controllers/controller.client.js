@@ -3,9 +3,12 @@
 (function () {
 
    angular
-      .module('clementineApp', ['ngResource'])
+      .module('clementineApp', ['ngResource', 'ngAnimate', 'ui.bootstrap'])
       .controller('clickController', ['$scope', '$resource', function ($scope, $resource) {
          
+        $scope.pollHeader = "All Polls"
+        $scope.displayAllPolls = true
+        $scope.polls_length    = 0 
         $scope.isLoggedIn      = false
         $scope.hasVotedForPoll = []  // ary of boolean indicating whether user has voted for the i'th poll
         $scope.aggregate_votes = []  // ary of aggregate votes for the i'th poll
@@ -15,6 +18,9 @@
         $scope.new_poll_indices = [0, 1] // by default new polls will start out with 2 options
         $scope.next_poll_option = 2 // adding
         $scope.new_poll_options = [ "", ""]
+        
+        $scope.isPollDeleted = [] // locally keep track if author deletes the poll
+        
 console.log("CLIENT HAS STARTED")
 
         var countVotes = function() {
@@ -63,6 +69,13 @@ console.log("CLIENT HAS STARTED")
               console.log("$scope.hasVotedForPoll")
               console.log($scope.hasVotedForPoll)
             
+        }
+
+        var initIsPollDeleted = function() {
+          console.log("initIsPollDeleted() invoked")
+          $scope.polls.forEach(function(item,poll_index,ary) {
+              $scope.isPollDeleted[poll_index] = false
+            })
         }
 
         // Becareful, user has to be defined to run this function
@@ -125,16 +138,17 @@ console.log("CLIENT HAS STARTED")
           Poll.get( {}, function(results) {
           //$scope.polls = Poll.query( function() { //(results) {
               $scope.polls = results.data
+              $scope.polls_length = $scope.polls.length
               // lets go through all the polls and see if the user has already voted by inspecting the votes
               updateHasAlreadyVoted()
               countVotes() 
               determinePollsAuthoredByUser()
+              initIsPollDeleted()
               //console.log("Poll results")
               //console.log($scope.polls)
           })
         }
  
-        // Currently there is a bug in vote() that I only see when I stop/re-start the server
         // Now vote() explicitly checks to see whether or not the user has voted on a poll instead of
         // assuming the gui will not display the vote button. We should assume there will be bugs in the code
         // and that we will need multiple safeguards to prevent voter fraud. :)
@@ -167,6 +181,63 @@ console.log("CLIENT HAS STARTED")
               console.log("ERROR: vote(): trying to vote when hasVotedForPoll["+poll_number+"] === "+$scope.hasVotedForPoll[poll_number])
           }
         }
+
+        $scope.deletePoll = function(poll_index) {
+            // need a safety precaution to check if user is author of poll to delete
+            if ($scope.id === $scope.polls[poll_index].author.github_id) {
+            // i could also put up a pop up confirming the deletion - not sure
+            console.log("deletePoll() invoked")
+            $scope.isPollDeleted[poll_index] = true
+            $scope.polls_length--
+            Poll.delete({ id:$scope.polls[poll_index]._id });   
+            // persist deletion to database
+            //console.log($scope.isPollDeleted)
+            } else {
+                // I can envision this happening while using $index
+                console.log("ERROR: deletePoll("+poll_index+"). Trying to delete a poll by non-author")
+                console.log($scope.id)
+                console.log($scope.polls[poll_index].author.github_id)
+            }
+        }
+
+
+/////////////////////////////
+
+  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+
+  $scope.addItem = function() {
+    var newItemNo = $scope.items.length + 1;
+    $scope.items.push('Item ' + newItemNo);
+  };
+
+  $scope.oneAtATime = true;
+
+
+  $scope.status = {
+    isopen: false
+  };
+
+  $scope.isCollapsed = false;
+
+  /*$scope.toggled = function(open) {
+    $log.log('Dropdown is now: ', open);
+  };*/
+
+  $scope.toggleDropdown = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.status.isopen = !$scope.status.isopen;
+  };
+  
+  $scope.setAllPolls = function(displayAllPolls) {
+      // either display All Polls or My Polls
+      console.log("setAllPolls() invoked")
+      $scope.pollHeader = (displayAllPolls) ? "All Polls" : "My Polls"
+      $scope.displayAllPolls = displayAllPolls
+  }
+
+/////////////////////////////
+
 
         $scope.getUser($scope.getPolls); // logic inside of getPolls depends on getUser completing
 

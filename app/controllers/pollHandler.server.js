@@ -57,7 +57,7 @@ function PollHandler () {
   
   
   this.updateVotes = function (req, res) {
-        console.log("DRT")
+        console.log("pollHandler.updateVotes() invoked")
         console.log(req.body._id)
         Polls
             .findOneAndUpdate({ '_id': req.body._id}, //"565e9c0e71c8197f6deed728" }, //req._id }, 
@@ -77,6 +77,15 @@ function PollHandler () {
                 }
             );
   };
+
+  this.deletePoll = function(req, res) {
+    console.log("pollHandler.deletePoll() invoked")
+      Polls.remove({ '_id': req.params.id}, function deletePoll(err) {
+       console.log("poll deleted from database")
+       if (err) { throw err; }
+         res.json("ok"); 
+      });
+  }
 
 /*
   this.resetClicks = function (req, res) {

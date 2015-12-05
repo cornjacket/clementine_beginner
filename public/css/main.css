@@ -13,6 +13,15 @@ a[ng-click]{
     cursor: pointer;
 }
 
+h3 {
+    display: inline-block;
+}
+
+/* ui-bootstrap */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+
+
 /****** Main Styling ******/
 /*
 body {
