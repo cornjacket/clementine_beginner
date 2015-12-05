@@ -36,25 +36,28 @@
               </form>
               -->
               <a href="/auth/github" ng-hide="isLoggedIn">
-                    <div class="btn" id="login-btn">
+                    <div class="btn pull-right" id="login-btn">
                         <img src="public/img/github_32px.png" alt="github logo" />
                         <!--<img src="/public/img/github_32px.png" alt="github logo" />-->
                         <p>Login with Github</p>
                     </div>
               </a>
-              <a ng-show="isLoggedIn" class="menu" href="/profile">Welcome, <span>{{ name }}</span>!</a>
-              <a ng-show="isLoggedIn" class="menu" href="/profile">Profile</a>
-              <a ng-show="isLoggedIn" class="menu" href="/api/polls/new">New Poll</a>
-              <a ng-show="isLoggedIn" class="menu" href="/logout">Logout</a>
+              
+              <a ng-show="isLoggedIn" class="menu pull-right" href="/logout">Logout</a>
+              <a ng-show="isLoggedIn" class="menu pull-right" href="/profile">Profile </a>
+              <a ng-show="isLoggedIn" class="menu pull-right" href="/profile">Welcome, <span>{{ name }}</span>! </a>
             </div><!--/.navbar-collapse -->
           </div>
         </nav>
 
+        <div ng-hide="isLoggedIn" class="container text-center">
+          <h4>Welcome to PollPosition. A place to make polls...</h4>
+        </div>
 
          <div ng-show="isLoggedIn" class="container">
 
-  <uib-accordion close-others="oneAtATime">
-    <uib-accordion-group heading="Create a new poll">
+  <uib-accordion close-others="oneAtATime"> <!-- dont think oneAtATime is needed -->
+    <uib-accordion-group class="text-center" heading="Messages">
       
             <div class="row">
                 <div class="col-md-12">
@@ -74,8 +77,6 @@
                   </form>
                 </div>
             </div>      
-      
-      
       
       <!--<p>The body of the uib-accordion group grows to fit the contents</p>
       <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
@@ -128,13 +129,43 @@
             </div>
             
             <div class="col-md-4">
-              <h3>{{polls_length}} Polls</h3>          
+              <h3>{{polls_length}} Polls</h3>
+              <button ng-show="isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
               <hr /> 
               
-  <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
-	<hr>
+  
+	
 	<div uib-collapse="isCollapsed">
-		<div class="well well-lg">Some content</div>
+		<div class="well well-lg">
+		        <div class="row">
+		          <div class="col-md-offset-10 col-md-1">
+                  <a ng-click="isCollapsed = true" class="btn btn-default btn-xs" role="button">X</a>
+                </div>
+		        </div>
+            <div class="row">
+                <div class="col-md-11">
+                  <h3>Create a new poll</h3>
+		              <br><br>
+                  <form action="/api/polls/new" method="post">
+                    Question:
+                    <input width='100%' type="text" name="question">
+                    <br><br>
+                    <div ng-repeat="optionIndex in new_poll_indices">
+                      option{{optionIndex+1}}
+                      <input type="text" name="option[{{optionIndex+1}}]" value="option{{optionIndex+1}}">
+                      <br><br>
+                    </div>
+                    <br>
+                    <input class="btn btn-default" type="submit" value="Submit">
+                    <div ng-click="addOption()" class="btn btn-default" role="button">Add Option</div>
+                  </form>
+                </div>
+                
+            </div>
+            
+		
+		</div>
+		<hr />
 	</div>              
               
               

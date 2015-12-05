@@ -55,11 +55,11 @@ p {
 /*
 header p {
     margin: 16px 0 5px 0;
-}
+}*/
 
 .menu {
     text-decoration: none;
-    padding: 6px;
+    padding: 12px;
     margin: 0;
     color: #727272;
 }
@@ -69,13 +69,14 @@ header p {
 }
 
 .menu:hover {
-    color: #FFA000;
+    text-decoration: none;
+    color: white;
 }
 
 .menu:active {
     color: #FF630D;
 }
-
+/*
 header a ~ p {
     margin: 0;
     padding: 0;

@@ -217,7 +217,7 @@ console.log("CLIENT HAS STARTED")
     isopen: false
   };
 
-  $scope.isCollapsed = false;
+  $scope.isCollapsed = true;
 
   /*$scope.toggled = function(open) {
     $log.log('Dropdown is now: ', open);
