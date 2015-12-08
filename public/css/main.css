@@ -20,6 +20,7 @@ h3 {
 /* ui-bootstrap */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
+.ng-cloak { display:none; }
 
 
 /****** Main Styling ******/

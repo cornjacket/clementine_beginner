@@ -15,9 +15,9 @@
         $scope.isPollAuthoredByUser = [] // ary of boolean indicating whether user is the author of the poll
         
         // A list of indices so that I can use ng-repeat to reference each option
-        $scope.new_poll_indices = [0, 1] // by default new polls will start out with 2 options
-        $scope.next_poll_option = 2 // adding
-        $scope.new_poll_options = [ "", ""]
+        //$scope.new_poll_indices = [0, 1] // by default new polls will start out with 2 options
+        //$scope.next_poll_option = 2 // adding
+        //$scope.new_poll_options = [ "", ""] // dont think I need this
         
         $scope.isPollDeleted = [] // locally keep track if author deletes the poll
         
@@ -103,8 +103,23 @@ console.log("CLIENT HAS STARTED")
            console.log("$scope.addOption() invoked")
            console.log($scope.new_poll_indices)
            $scope.new_poll_indices.push($scope.next_poll_option++) 
-           //$scope.new_poll_options = [ "", ""] not sure how to use this. is this an ng-model thing
-           
+        }
+        
+        $scope.initOptions = function() {
+          console.log("$scope.initOptions() invoked")
+          $scope.new_poll_indices = [ 0, 1 ]
+          $scope.next_poll_option = 2
+          $scope.question         = "here is the question"
+          //$scope.option = []
+          
+        }
+     
+        $scope.cancelNewPoll = function() {
+          console.log("$scope.cancelNewPoll() invoked")
+          $scope.initOptions()
+          $scope.isCollapsed = true
+          console.log($scope.new_poll_indices)
+          console.log($scope.option)
         }
      
         $scope.getUser = function (callback) {
@@ -203,7 +218,7 @@ console.log("CLIENT HAS STARTED")
 
 /////////////////////////////
 
-  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+  $scope.items = ['Item 1', 'Item 2', 'Item 3']; // this can be removed
 
   $scope.addItem = function() {
     var newItemNo = $scope.items.length + 1;
@@ -239,6 +254,7 @@ console.log("CLIENT HAS STARTED")
 /////////////////////////////
 
 
+        $scope.initOptions()
         $scope.getUser($scope.getPolls); // logic inside of getPolls depends on getUser completing
 
       }]);

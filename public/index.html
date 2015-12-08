@@ -43,7 +43,7 @@
           
           <a ng-show="isLoggedIn" class="menu pull-right" href="/logout">Logout</a>
           <a ng-show="isLoggedIn" class="menu pull-right" href="/profile">Profile </a>
-          <a ng-show="isLoggedIn" class="menu pull-right" href="/profile">Welcome, <span>{{ name }}</span>! </a>
+          <a ng-show="isLoggedIn" class="menu pull-right" href="/profile">Welcome, <span class="ng-cloak">{{ name }}</span>! </a>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
@@ -52,7 +52,7 @@
       <h4>Welcome to PollPosition. A place to make polls...</h4>
     </div>
 
-    <div ng-show="isLoggedIn" class="container">
+    <div ng-show="isLoggedIn" class="container ng-cloak">
       <uib-accordion close-others="oneAtATime"> <!-- dont think oneAtATime is needed -->
         <uib-accordion-group class="text-center" heading="Messages">
           <div class="row">
@@ -85,7 +85,8 @@
 <!---------------------------------------------------------------------------------------->  
     <div class="row">
         <!--Main Content -->
-          <div class="wrapper col-md-8">
+          <div class="wrapper col-md-8 ng-cloak">
+            
             <div class="col-md-offset-2 col-md-9"> 
               <h3>{{pollHeader}} <small ng-hide="isLoggedIn">- You must be logged in to vote.</small></h3>
               <!-- Single button -->
@@ -102,6 +103,7 @@
               </div>
               <hr />  
             </div>
+            
             <div ng-repeat ="item in polls">
               <div ng-show="!isPollDeleted[$index] && (displayAllPolls || (!displayAllPolls && isPollAuthoredByUser[$index]))">
                 <!--<div class="row">-->
@@ -120,9 +122,9 @@
                     </div>
                   </div> <!-- md-col-8 abovw -->
                   <div class="col-md-2">
-                    <a ng-click="downVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
+                    <!--<a ng-click="downVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
                     <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
-                    <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
+                    <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>-->
                     
                     <div class="col-md-offset-8 col-md-1">
                       <a ng-click="deletePoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && isPollAuthoredByUser[$index]" role="button">X</a>
@@ -143,15 +145,16 @@
         <nav class="wrapper col-md-3">
           
           
-
-          <h3>{{polls_length}} Polls</h3>
-          <button ng-show="isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
-          <hr /> 
-        	<div uib-collapse="isCollapsed">
+          <div class="ng-cloak">
+            <h3>{{polls_length}} Polls</h3>
+            <button ng-show="isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
+            <hr /> 
+          </div>
+        	<div uib-collapse="isCollapsed" class="ng-cloak">
         		<div class="well well-lg">
   		        <div class="row">
   		          <div class="col-md-offset-10 col-md-1">
-                  <a ng-click="isCollapsed = true" class="btn btn-default btn-xs" role="button">X</a>
+                  <a ng-click="cancelNewPoll()" class="btn btn-default btn-xs" role="button">X</a>
                 </div>
   		        </div>
               <div class="row">
@@ -160,11 +163,11 @@
 		              <br><br>
                   <form action="/api/polls/new" method="post">
                     Question:
-                    <input width='100%' type="text" name="question">
+                    <input width='100%' type="text" name="question" value="{{question}}">
                     <br><br>
                     <div ng-repeat="optionIndex in new_poll_indices">
                       option{{optionIndex+1}}
-                      <input type="text" name="option[{{optionIndex+1}}]" value="option{{optionIndex+1}}">
+                      <input type="text" name="option[{{optionIndex+1}}]">
                       <br><br>
                     </div>
                     <br>
