@@ -10,7 +10,8 @@
         $scope.displayAllPolls = true
         $scope.polls_length    = 0 
         $scope.isLoggedIn      = false
-        $scope.hasVotedForPoll = []  // ary of boolean indicating whether user has voted for the i'th poll
+        $scope.pollDetails     = []  // the previous hasVotedForPoll array is deprecated
+        //$scope.hasVotedForPoll = []  // ary of boolean indicating whether user has voted for the i'th poll
         $scope.aggregate_votes = []  // ary of aggregate votes for the i'th poll
         $scope.isPollAuthoredByUser = [] // ary of boolean indicating whether user is the author of the poll
         
@@ -46,6 +47,20 @@ console.log("CLIENT HAS STARTED")
 
         }
 
+
+
+        var initPollDetails = function() {
+            
+            console.log("initPollDetails() invoked")
+              $scope.polls.forEach(function(item,poll_index,ary) {
+                $scope.pollDetails[poll_index] = {}
+                // has_voted_for_option[] is an array of boolean - one2one with options[] field
+                $scope.pollDetails[poll_index].has_voted_for_option = [] 
+              })
+        }
+
+
+
         // this checks the hasAlreadyVoted[] array
         var updateHasAlreadyVoted = function() {
             
@@ -61,13 +76,14 @@ console.log("CLIENT HAS STARTED")
                     //console.log(vote_index+" "+vote_ary)
                     if (vote_ary.indexOf($scope.id) != -1) {
                         //console.log("Found a vote. This has been already voted on.")
+                        $scope.pollDetails[poll_index].has_voted_for_option[vote_index] = true
                         alreadyVoted = true
+                    } else {
+                        $scope.pollDetails[poll_index].has_voted_for_option[vote_index] = false
                     }
                 })
-                $scope.hasVotedForPoll[poll_index] = alreadyVoted // this should work out of the box
+                $scope.pollDetails[poll_index].hasVotedForPoll = alreadyVoted // this should work out of the box
               })
-              console.log("$scope.hasVotedForPoll")
-              console.log($scope.hasVotedForPoll)
             
         }
 
@@ -155,6 +171,7 @@ console.log("CLIENT HAS STARTED")
               $scope.polls = results.data
               $scope.polls_length = $scope.polls.length
               // lets go through all the polls and see if the user has already voted by inspecting the votes
+              initPollDetails()
               updateHasAlreadyVoted()
               countVotes() 
               determinePollsAuthoredByUser()
@@ -169,11 +186,12 @@ console.log("CLIENT HAS STARTED")
         // and that we will need multiple safeguards to prevent voter fraud. :)
         $scope.vote = function(poll_number, option_number) {
           console.log("vote(): invoked") 
-          if ($scope.hasVotedForPoll[poll_number] === false) {
+          if ($scope.pollDetails[poll_number].hasVotedForPoll === false) {
             if ($scope.polls[poll_number].poll.votes[option_number].indexOf($scope.id) === -1) {
               $scope.polls[poll_number].poll.votes[option_number].push($scope.id)
               console.log("You just voted for poll "+poll_number+" option "+option_number)
-              $scope.hasVotedForPoll[poll_number] = true
+              $scope.pollDetails[poll_number].hasVotedForPoll = true
+              $scope.pollDetails[poll_number].has_voted_for_option[option_number] = true
               // update the count - for now lets just call count, later I can forcibly increment aggregate_count ary
               $scope.aggregate_votes[poll_number][option_number]++  // maybe this should be a function
               //countVotes()
@@ -184,16 +202,17 @@ console.log("CLIENT HAS STARTED")
               console.log($scope.polls[poll_number]._id)
 
               // Now call update passing in the ID first then the object you are updating
+              // implementing update in this manner is dangerous. there is a contention between 2 different users
               Poll.update({ id:$scope.polls[poll_number]._id }, $scope.polls[poll_number]);          
               // currently no callback for update. hasVotedForPoll get updated in client prior to the Poll.update call
-              console.log("vote(): hasVotedForPoll[]")
-              console.log($scope.hasVotedForPoll)
+              //console.log("vote(): hasVotedForPoll[]")
+              //console.log($scope.hasVotedForPoll)
             } else {
                 console.log("ERROR: vote(): trying to vote when votes array already contains user.id")
                 console.log("ERROR: "+$scope.polls[poll_number].poll.votes[option_number]+" "+$scope.id)
             }
           } else {
-              console.log("ERROR: vote(): trying to vote when hasVotedForPoll["+poll_number+"] === "+$scope.hasVotedForPoll[poll_number])
+              console.log("ERROR: vote(): trying to vote when hasVotedForPoll["+poll_number+"] === "+$scope.pollDetails[poll_number].hasVotedForPoll)
           }
         }
 
