@@ -106,38 +106,50 @@
             
             <div ng-repeat ="item in polls">
               <div ng-show="!isPollDeleted[$index] && (displayAllPolls || (!displayAllPolls && isPollAuthoredByUser[$index]))">
-                <!--<div class="row">-->
-                  <div class="col-md-offset-2 col-md-7">
-                    <p class='h4'>{{ item.poll.question }}</p>
-                    <div ng-repeat="option in item.poll.options track by $index"><!-- https://docs.angularjs.org/error/ngRepeat/dupes?p0=option%20in%20item.poll.options&p1=object:null&p2=null-->
-                      <div class"row"> 
-                        <div class="col-md-2">
-                          <a ng-hide="pollDetails[$parent.$index].hasVotedForPoll" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
-                          <p ng-show="pollDetails[$parent.$index].hasVotedForPoll" ng-class="{ 'user_vote': pollDetails[$parent.$index].has_voted_for_option[$index] }">{{ aggregate_votes[$parent.$index][$index]}} votes</p>
-                        </div>
-                        <div class="col-md-10"> 
-                          <p ng-class="{ 'user_vote': pollDetails[$parent.$index].has_voted_for_option[$index] }">{{ option }}</p>
-                        </div>      
-                      </div>                  
-                    </div>
-                  </div> <!-- md-col-8 abovw -->
-                  <div class="col-md-2">
-                    <!--<a ng-click="downVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
-                    <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
-                    <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>-->
-                    
-                    <div class="col-md-offset-8 col-md-1">
-                      <a ng-click="deletePoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && isPollAuthoredByUser[$index]" role="button">X</a>
-                    </div>
-                  </div>       
-                  
-                  <!-- this is where the column-md-4 was previously -->      
-                <!--</div>-->
-                <!--<div class="row">-->
-                  <div class="col-md-offset-2 col-md-9">
-                    <hr />
+                <div class="col-md-offset-2 col-md-7">
+                  <p class='h4'>{{ item.poll.question }}</p>
+                  <div ng-repeat="option in item.poll.options track by $index"><!-- https://docs.angularjs.org/error/ngRepeat/dupes?p0=option%20in%20item.poll.options&p1=object:null&p2=null-->
+                    <div> 
+                      <div class="col-md-2">
+                        <a ng-hide="pollDetails[$parent.$index].hasVotedForPoll" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
+                        <p ng-show="pollDetails[$parent.$index].hasVotedForPoll" ng-class="{ 'user_vote': pollDetails[$parent.$index].has_voted_for_option[$index] }">{{ aggregate_votes[$parent.$index][$index]}} votes</p>
+                      </div>
+                      <div class="col-md-10"> 
+                        <p ng-class="{ 'user_vote': pollDetails[$parent.$index].has_voted_for_option[$index] }">{{ option }}</p>
+                      </div>      
+                    </div>                  
                   </div>
-                <!--</div>-->
+                  <div class="row">  <!-- below need to be separated into separate divs somehow -->
+                    <div class="col-md-offset-2 col-md-7">
+                      <span>javascript python rails plus plus plus</span> <!-- change to spans with class later -->
+                    </div>
+                    <div class="col-md-3">
+                      asked by John Do at 12:34
+                    </div>
+                    <div class="col-md-offset-9 col-md-3">
+                      <img src="http://isigned.org/images/anonymous.png" alt="poll creator" height="30" width="30">
+                    </div>
+                  </div>
+                </div>
+                <div id="_upDownFlagX" class="col-md-2">
+                  <!--<a ng-click="downVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
+                  <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
+                  <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>-->
+                  <div class="col-md-offset-8 col-md-1">
+                    <a ng-click="deletePoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && isPollAuthoredByUser[$index]" role="button">X</a>
+                  </div>
+                </div>
+              
+              <!--  
+                <div id="_byLine" class="row">
+                  <div class="col-md-offset-4 col-md-4">Javascript node programming</div>
+                  <div class="col-md-4">
+                  asked Nov 27 at 12:20
+                  </div>
+                </div>  -->
+                <div class="col-md-offset-2 col-md-9">
+                  <hr />
+                </div>
               </div>
             </div>
           </div>
