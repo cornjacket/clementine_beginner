@@ -13,11 +13,30 @@ var Poll = new Schema({
         name: String,
         username: String
     },
-   poll: {
+   poll: { // maybe change this to detail
       question: String,
       options:  [String], // each string is a separate option to vote on
       votes: []  //an array of vote arrays containing the id's of the users who voted for each option
-   }
+   },
+   created_at: Date,
+   updated_at: Date
 });
+
+// modified from https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications
+// on every save, add the date
+Poll.pre('save', function(next) {
+  // get the current date
+  var currentDate = new Date();
+  
+  // change the updated_at field to current date
+  this.updated_at = currentDate;
+
+  // if created_at doesn't exist, add to that field
+  if (!this.created_at)
+    this.created_at = currentDate;
+
+  next();
+});
+
 
 module.exports = mongoose.model('Poll', Poll);
