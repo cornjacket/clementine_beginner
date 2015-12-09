@@ -8,7 +8,7 @@ function PollHandler () {
       
     console.log("PollHandler:createPoll() invoked")
     //console.log(req)
-    
+
     console.log(req.user._id)
     console.log(req.user.github.id)
     console.log(req.body)
@@ -23,16 +23,21 @@ function PollHandler () {
     newPoll.author.username = req.user.github.username; // useful when wanting to look up poll by username
     newPoll.poll.question = req.body.question;
     newPoll.poll.options = []
-    newPoll.poll.options = req.body.option //.push(req.body.option1)
-    //newPoll.poll.options.push(req.body.option2)
+    newPoll.poll.options = req.body.option 
     newPoll.poll.votes = []
     // each subarray in votes contains the user_id's for the respective options subarray
-    console.log("DRT")
-    console.log(newPoll.poll.options)
-    console.log(newPoll.poll.options.length)
+    //console.log(newPoll.poll.options)
+    //console.log(newPoll.poll.options.length)
     newPoll.poll.options.forEach(function() {
         newPoll.poll.votes.push([]) // add an empty array inside votes array for each option,
     })
+    newPoll.upVotes = 100 //bias the upvote by +100 and dec by 100 prior for display
+    newPoll.upVoter_id = [] //whoever up or down voted
+    newPoll.vote_count = 0 // vote_count for easier search (otherwise we have to count)
+    newPoll.isFlagged = false; 
+    newPoll.flagger_ids = [] // use this to make a count
+    newPoll.tags = []  // todo
+
     newPoll.save(function (err) {
         if (err) {
             throw err;

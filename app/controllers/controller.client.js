@@ -4,22 +4,15 @@
 
    angular
       .module('pollPosition', ['ngResource', 'ngAnimate', 'ui.bootstrap'])
-      .controller('clientController', ['$scope', '$resource', function ($scope, $resource) {
+      .controller('clientController', ['$scope', '$resource', '$http', function ($scope, $resource, $http) {
          
         $scope.pollHeader = "All Polls"
         $scope.displayAllPolls = true
         $scope.polls_length    = 0 
         $scope.isLoggedIn      = false
         $scope.pollDetails     = []  // the previous hasVotedForPoll array is deprecated
-        //$scope.hasVotedForPoll = []  // ary of boolean indicating whether user has voted for the i'th poll
         $scope.aggregate_votes = []  // ary of aggregate votes for the i'th poll
         $scope.isPollAuthoredByUser = [] // ary of boolean indicating whether user is the author of the poll
-        
-        // A list of indices so that I can use ng-repeat to reference each option
-        //$scope.new_poll_indices = [0, 1] // by default new polls will start out with 2 options
-        //$scope.next_poll_option = 2 // adding
-        //$scope.new_poll_options = [ "", ""] // dont think I need this
-        
         $scope.isPollDeleted = [] // locally keep track if author deletes the poll
         
 console.log("CLIENT HAS STARTED")
@@ -47,6 +40,14 @@ console.log("CLIENT HAS STARTED")
 
         }
 
+        var setGithubUserImage = function(username, poll_index) { // dont like the index method, change later
+          return $http.get("https://api.github.com/users/" + username)
+                  .then(function(response){
+                     console.log(response.data.avatar_url)
+                     $scope.pollDetails[poll_index].img = response.data.avatar_url
+                  });
+        };
+    
 
 
         var initPollDetails = function() {
@@ -56,6 +57,8 @@ console.log("CLIENT HAS STARTED")
                 $scope.pollDetails[poll_index] = {}
                 // has_voted_for_option[] is an array of boolean - one2one with options[] field
                 $scope.pollDetails[poll_index].has_voted_for_option = [] 
+                $scope.pollDetails[poll_index].img = "http://isigned.org/images/anonymous.png"
+                setGithubUserImage(item.author.username,poll_index)
               })
         }
 

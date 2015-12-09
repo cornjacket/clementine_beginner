@@ -16,11 +16,19 @@ var Poll = new Schema({
    poll: { // maybe change this to detail
       question: String,
       options:  [String], // each string is a separate option to vote on
-      votes: []  //an array of vote arrays containing the id's of the users who voted for each option
+      votes: [],  //an array of vote arrays containing the id's of the users who voted for each option
+      upVotes: Number, // bias to 100 to indicate 0 upvotes
+      upVoter_id: [],
+      vote_count: Number, // make searching easier for highest votes
+      isFlagged: Boolean,
+      flagger_id: [], // id's of users that flagged this poll
+      tags: [String] // list of tags
    },
    created_at: Date,
    updated_at: Date
 });
+
+
 
 // modified from https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications
 // on every save, add the date

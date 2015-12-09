@@ -32,11 +32,15 @@ module.exports = function (passport) {
                 } else {
                     var newUser = new User();
 
-                    newUser.github.id = profile.id;
-                    newUser.github.username = profile.username;
+                    newUser.github.id          = profile.id;
+                    newUser.isAdmin            = false
+                    newUser.github.username    = profile.username;
                     newUser.github.displayName = profile.displayName;
                     newUser.github.publicRepos = profile._json.public_repos;
-                    newUser.nbrClicks.clicks = 0;
+                    newUser.messageList        = ["Welcome, _github.displayName_!! Thank you for joining us."]
+                    newUser.polls.num_created  = 0
+                    newUser.polls.num_voted    = 0
+                    //newUser.nbrClicks.clicks = 0;
 
                     newUser.save(function (err) {
                         if (err) {
