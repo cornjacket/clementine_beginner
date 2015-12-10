@@ -67,6 +67,10 @@ font-weight: bold;}
     margin-top: 5px;
 }
 
+.inline {
+    display: inline-block;
+}
+
 /****** Main Styling ******/
 /*
 body {

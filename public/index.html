@@ -4,7 +4,6 @@
 
   <head>
     <title>PollPosition</title>
-    <!--<link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css">-->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="/public/css/main.css" rel="stylesheet" type="text/css">
   </head>
@@ -36,12 +35,10 @@
           <a href="/auth/github" ng-hide="isLoggedIn"  title='Log in with GitHub'>
             <div class="btn pull-right" id="login-btn">
               <img src="public/img/github_32px.png" alt="github logo" />
-              <!--<img src="/public/img/github_32px.png" alt="github logo" />-->
             </div>
           </a>
           
           <a ng-show="isLoggedIn" class="menu pull-right" href="/logout">Logout</a>
-          <a ng-show="isLoggedIn" class="menu pull-right" href="/profile">Profile </a>
           <a ng-show="isLoggedIn" class="menu pull-right" href="/profile">Welcome, <span class="ng-cloak">{{ name }}</span>! </a>
         </div><!--/.navbar-collapse -->
       </div>
@@ -110,7 +107,7 @@
                 <div class="row">
                 
                 
-                  <div class="col-md-offset-2 col-md-7">
+                  <div class="col-md-offset-4 col-md-7">
                     <p class='h4'>{{ item.poll.question }}</p>
 
                   </div>
@@ -118,45 +115,47 @@
                     <!--<a ng-click="downVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
                     <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
                     <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>-->
-                    <div class="col-md-offset-8 col-md-4">
+                    <div class="col-md-1">
                       <a ng-click="deletePoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && isPollAuthoredByUser[$index]" role="button">X</a>
                     </div>
                   </div>
+                  
+</div><!-- row -->                  
                 
                     <div ng-repeat="option in item.poll.options track by $index">
                       <div class="row"> 
-                        <div class="col-md-offset-2 col-md-1">
+                        <div class="col-md-offset-4 col-md-1">
                           <a ng-hide="pollDetails[$parent.$index].hasVotedForPoll" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
                           <p class="poll-option" ng-show="pollDetails[$parent.$index].hasVotedForPoll" ng-class="{ 'user_voted': pollDetails[$parent.$index].has_voted_for_option[$index] }">{{ aggregate_votes[$parent.$index][$index]}} votes</p>
                         </div>
-                        <div class="col-md-9"> 
+                        <div class="col-md-7"> 
                           <p class="poll-option" ng-class="{ 'user_voted': pollDetails[$parent.$index].has_voted_for_option[$index] }">{{ option }}</p>
                         </div>      
                       </div>                  
                     </div>      
                   
                   <div class="row tag-group">
-                    <div class="col-md-offset-3 col-md-4">
+                    <div class="col-md-offset-5 col-md-3">
                       <span class="tag">general</span>
-                      <span class="tag">programming</span>
+                      <span class="tag">programming with my friends</span>
                       <span class="tag">food</span>
                     </div>
                     <div class="signature-top col-md-3">
                       asked by {{item.author.name}} on {{item.created_at | date }}
                     </div>
-                    <div class="signature-bottom col-md-offset-7 col-md-3">
+                    <div class="signature-bottom col-md-offset-8 col-md-3">
                       <img ng-src={{pollDetails[$index].img}} alt="poll creator" height="30" width="30">
                       <span>5 </span><span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
                       <span>2 </span><span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
                     </div>
     
                   </div>                  
-                  <div class="col-md-offset-2 col-md-9">
+                  <div class="col-md-offset-4 col-md-8">
                     <hr />
                   </div>
                   
                   
-                </div>
+                <!--</div> comment row -->
                   
                   
               </div>
