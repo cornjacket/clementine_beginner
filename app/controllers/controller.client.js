@@ -153,6 +153,13 @@ console.log("CLIENT HAS STARTED")
               $scope.username = results.username
               $scope.publicRepos = results.publicRepos
               $scope.isLoggedIn = results.username !== undefined // testing - why is a html page being sent to client
+              
+              // This is getting unwieldy. Need to refactor code. I should just attach the results
+              // object to $scope.user and then change the html references.
+              // I can also attach pollDetails to a more_details field of $scope.user
+              // I should be able to do this soon. And massage around the problem I have with
+              // my database update mechanism.
+              
               console.log("isLoggedIn = "+$scope.isLoggedIn)
               console.log("username = "+results.username)
               console.log("name")

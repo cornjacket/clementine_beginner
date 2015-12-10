@@ -53,6 +53,7 @@ module.exports = function (app, passport) {
         console.log(req.body)
         console.log(req.body.poll.votes[0])
         console.log(req.body.poll.votes[1])
+        console.log(req.body.tags)
         //console.log(req)
         pollHandler.updateVotes(req, res)
         //res.json("ok") //req.user.github); // -- This is not being used. Can remove later

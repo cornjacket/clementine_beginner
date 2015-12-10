@@ -22,9 +22,50 @@ h3 {
 
 .ng-cloak { display:none; }
 
-.user_vote {
+.user_voted {
 font-weight: bold;}
 
+.created_polls {
+  color: blue;
+}
+
+.voted_polls {
+  color: red;
+}
+
+.signature-top {
+    background-color: beige;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.signature-bottom {
+    background-color: beige;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.well {
+    background-color: beige;
+}
+
+.tag {
+    background-color: beige;
+    padding: 2px 4px;
+}
+
+.new-poll {
+    color: gray;
+}
+
+.poll-option {
+    margin-top: 0;
+    margin-bottom: 1px;
+}
+
+.tag-group {
+    margin-top: 5px;
+}
 
 /****** Main Styling ******/
 /*
