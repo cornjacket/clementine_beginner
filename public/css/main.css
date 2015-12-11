@@ -39,10 +39,18 @@ font-weight: bold;}
     padding-left: 10px;
 }
 
+   
+
+
 .signature-bottom {
     background-color: beige;
     padding-bottom: 10px;
     padding-left: 10px;
+    
+}
+
+.small-text {
+   font-size: 12px; 
 }
 
 .well {
@@ -51,7 +59,10 @@ font-weight: bold;}
 
 .tag {
     background-color: beige;
-    padding: 2px 4px;
+    padding: 2px 2px;
+    display: inline;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 .new-poll {

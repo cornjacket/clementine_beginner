@@ -146,14 +146,16 @@
                   
                   <div class="row tag-group">
                     <div class="col-md-offset-5 col-md-3">
-                      <span ng-repeat="tag in item.poll.tags" class="tag">{{tag}}</span>
+                      <div ng-repeat="tag in item.poll.tags" class="tag small-text">
+                        <span >{{tag}}</span>
+                      </div>
                       <!--<span class="tag">programming with my friends</span>
                       <span class="tag">food</span>-->
                     </div>
-                    <div class="signature-top col-md-3">
+                    <div class="signature-top col-md-3 small-text">
                       asked by {{item.author.name}} on {{item.created_at | date }}
                     </div>
-                    <div class="signature-bottom col-md-offset-8 col-md-3">
+                    <div class="signature-bottom col-md-offset-8 col-md-3 small-text">
                       <img ng-src={{pollDetails[$index].img}} alt="poll creator" height="30" width="30">
                       <span>5 </span><span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
                       <span>2 </span><span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>

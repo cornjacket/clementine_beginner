@@ -15,9 +15,6 @@ var User = new Schema({
        num_voted: Number
    },
    messageList: [],
-   nbrClicks: {
-      clicks: Number 
-   },
    isAdmin:    Boolean,
    created_at: Date,
    updated_at: Date
