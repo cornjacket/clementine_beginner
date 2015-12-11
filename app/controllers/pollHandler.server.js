@@ -13,8 +13,6 @@ function PollHandler () {
     console.log(req.user.github.id)
     console.log(req.body)
     console.log(req.body.question)
-    console.log(req.body.option1) // these should fail now 
-    console.log(req.body.option2) // these should fail now
     var newPoll = new Polls();
 
     // we are kinda being redundant with the id and name and username but for now, it makes things easier. optimize later
@@ -25,6 +23,7 @@ function PollHandler () {
     newPoll.poll.options = []
     newPoll.poll.options = req.body.option 
     newPoll.poll.votes = []
+    newPoll.poll.tags = req.body.tags.split(' ')
     // each subarray in votes contains the user_id's for the respective options subarray
     //console.log(newPoll.poll.options)
     //console.log(newPoll.poll.options.length)
@@ -36,7 +35,9 @@ function PollHandler () {
     newPoll.vote_count = 0 // vote_count for easier search (otherwise we have to count)
     newPoll.isFlagged = false; 
     newPoll.flagger_ids = [] // use this to make a count
-    newPoll.tags = []  // todo
+    
+    console.log("Tags")
+    console.log(newPoll.tags)
 
     newPoll.save(function (err) {
         if (err) {

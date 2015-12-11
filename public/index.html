@@ -48,6 +48,7 @@
       <h4>Welcome to PollPosition. A place to make polls...</h4>
     </div>
 
+
     <div ng-show="isLoggedIn" class="container ng-cloak">
       <uib-accordion close-others="oneAtATime"> <!-- dont think oneAtATime is needed -->
         <uib-accordion-group class="text-center" heading="Messages">
@@ -75,15 +76,18 @@
         </uib-accordion-group>
       </uib-accordion>
       <!--<hr />-->
-    </div>
 
+
+</div>
 
 <!---------------------------------------------------------------------------------------->  
     <div class="row">
         <!--Main Content -->
-          <div class="wrapper col-md-8 ng-cloak">
+          <div class="wrapper col-md-7 ng-cloak">
             
-            <div class="col-md-offset-2 col-md-9"> 
+<div class="row">
+            
+            <div class="col-md-offset-4 col-md-8"> 
               <h3>{{pollHeader}} <small ng-hide="isLoggedIn">- You must be logged in to vote.</small></h3>
               <!-- Single button -->
               <div ng-show="isLoggedIn" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
@@ -99,6 +103,7 @@
               </div>
               <hr />  
             </div>
+</div>
             
             <div ng-repeat ="item in polls">
               <div ng-show="!isPollDeleted[$index] && (displayAllPolls || (!displayAllPolls && isPollAuthoredByUser[$index]))">
@@ -126,7 +131,12 @@
                       <div class="row"> 
                         <div class="col-md-offset-4 col-md-1">
                           <a ng-hide="pollDetails[$parent.$index].hasVotedForPoll" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
-                          <p class="poll-option" ng-show="pollDetails[$parent.$index].hasVotedForPoll" ng-class="{ 'user_voted': pollDetails[$parent.$index].has_voted_for_option[$index] }">{{ aggregate_votes[$parent.$index][$index]}} votes</p>
+                          <p class="poll-option text-center" ng-show="pollDetails[$parent.$index].hasVotedForPoll" ng-class="{ 'user_voted': pollDetails[$parent.$index].has_voted_for_option[$index] }">
+                             <ng-pluralize count="aggregate_votes[$parent.$index][$index]" when="{ 
+                               '1': '1 vote', 
+                               'other': '{} votes'}">
+                             </ng-pluralize>
+                          </p>
                         </div>
                         <div class="col-md-7"> 
                           <p class="poll-option" ng-class="{ 'user_voted': pollDetails[$parent.$index].has_voted_for_option[$index] }">{{ option }}</p>
@@ -136,9 +146,9 @@
                   
                   <div class="row tag-group">
                     <div class="col-md-offset-5 col-md-3">
-                      <span class="tag">general</span>
-                      <span class="tag">programming with my friends</span>
-                      <span class="tag">food</span>
+                      <span ng-repeat="tag in item.poll.tags" class="tag">{{tag}}</span>
+                      <!--<span class="tag">programming with my friends</span>
+                      <span class="tag">food</span>-->
                     </div>
                     <div class="signature-top col-md-3">
                       asked by {{item.author.name}} on {{item.created_at | date }}
@@ -182,13 +192,13 @@
                 <div class="col-md-12">
 		              <br>
                   <form action="/api/polls/new" method="post">
-                    <input type="text" name="question" class="form-control" placeholder="Enter your poll question here" aria-describedby="basic-addon2">
+                    <input type="text" name="question" class="form-control" placeholder="Enter your poll question here" aria-describedby="basic-addon2" required>
                     <br>  
                     <div ng-repeat="optionIndex in new_poll_indices">
-                      <input type="text" name="option[{{optionIndex+1}}]" class="form-control" placeholder="Enter your poll option here" aria-describedby="basic-addon2">
+                      <input type="text" name="option[{{optionIndex+1}}]" class="form-control" placeholder="Enter your poll option here" aria-describedby="basic-addon2" required>
                     </div>
                     <br>
-                    <input type="text" name="tags" class="form-control" placeholder="Enter at least one tag. Separate tags with spaces." aria-describedby="basic-addon2">
+                    <input type="text" name="tags" class="form-control" placeholder="Enter at least one tag. Separate tags with spaces." aria-describedby="basic-addon2" required>
                     <br>
                     <input class="btn btn-default" type="submit" value="Submit">
                     <div ng-click="addOption()" class="btn btn-default" role="button">Add Option</div>
