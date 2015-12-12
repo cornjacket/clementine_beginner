@@ -11,7 +11,7 @@ var User = new Schema({
       publicRepos: Number
     },
    polls: {
-       num_creatd: Number,
+       num_created: Number,
        num_voted: Number
    },
    messageList: [],

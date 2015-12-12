@@ -3,6 +3,9 @@
 function PollHandler () {
 
   var Polls = require('../models/polls');
+  var UserHandler = require(process.cwd() + '/app/controllers/userHandler.server.js');
+
+var Users = require('../models/users'); // TESTING
 
   this.createPoll = function (req, res) {
       
@@ -30,19 +33,41 @@ function PollHandler () {
     newPoll.poll.options.forEach(function() {
         newPoll.poll.votes.push([]) // add an empty array inside votes array for each option,
     })
-    newPoll.upVotes = 100 //bias the upvote by +100 and dec by 100 prior for display
-    newPoll.upVoter_id = [] //whoever up or down voted
-    newPoll.vote_count = 0 // vote_count for easier search (otherwise we have to count)
-    newPoll.isFlagged = false; 
-    newPoll.flagger_ids = [] // use this to make a count
+    newPoll.poll.upVotes = 100 //bias the upvote by +100 and dec by 100 prior for display
+    newPoll.poll.upVoter_id = [] //whoever up or down voted
+    newPoll.poll.vote_count = 0 // vote_count for easier search (otherwise we have to count)
+    newPoll.poll.isFlagged = false; 
+    newPoll.poll.flagger_id = [] // use this to make a count
     
     console.log("Tags")
-    console.log(newPoll.tags)
+    console.log(newPoll.poll)
 
     newPoll.save(function (err) {
         if (err) {
             throw err;
         }
+        console.log("TEST")
+        console.log(UserHandler)
+        
+        
+        
+        
+//TESTING
+            Users
+            .findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'polls.num_created': 1 } })
+            .exec(function (err, result) {
+                    if (err) { throw err; }
+                    console.log("increment user's polls.num_created")
+                    //res.json(result.polls.num_created); -- redirect already sent
+                }
+            );
+        
+        
+        
+        
+        
+        //UserHandler.test()
+        //UserHandler.addToPollCount(req, res) -- generated an error
     });
     // the clickController code returned some json but right now i am not doing that. instead i am letting the route redirect
     
@@ -78,8 +103,37 @@ function PollHandler () {
                     if (err) { throw err; }
                     console.log("pollHander.updateVotes()")
                     console.log(result)
-                    res.json("ok")
-                    //res.json(result.poll.votes); // not sure what to return here
+                    
+                    // Indent in after this works. This is a poor way to implement but the quickest to code.
+                    // This needs to change at some point.
+                    Polls
+                        .findOneAndUpdate({ '_id': req.body._id}, { $inc: { 'poll.vote_count': 1 } })
+                        .exec(function (err, poll_result) {
+                                console.log("PollHandler: just inc'd vote_cote hopefully")
+                                if (err) { throw err; }
+
+
+/////// Inserting Users.method in here due to troubles with using UserController
+
+           Users
+            .findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'polls.num_voted': 1 } })
+            .exec(function (err, result) {
+                    if (err) { throw err; }
+                    console.log("increment user's polls.num_voted")
+                    res.json(poll_result.poll.vote_count);
+                    //res.json(result.polls.num_created); -- return vote_count instead
+                }
+            );   
+
+
+
+            
+                                //res.json(poll_result.poll.vote_count);
+                            }
+                        );                    
+                    
+                //    res.json("ok") COMMENTED OUT FOR TESTING SO THAT INC ABOVE CAN SEND RESPONSE
+                    
                 }
             );
   };
@@ -89,7 +143,21 @@ function PollHandler () {
       Polls.remove({ '_id': req.params.id}, function deletePoll(err) {
        console.log("poll deleted from database")
        if (err) { throw err; }
-         res.json("ok"); 
+       
+// DUE TO BUG WITH USERHANDLER, I AM INCLUDING OUR CODE HERE       
+       
+            Users
+            .findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'polls.num_created': -1 } })
+            .exec(function (err, result) {
+                    if (err) { throw err; }
+                    console.log("decrement user's polls.num_created")
+                    res.json(result.polls.num_created);
+                }
+            );       
+       
+       
+       
+       //res.json("ok"); -- removed because we are doing the response above in the callback
       });
   }
 
