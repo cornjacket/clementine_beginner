@@ -187,14 +187,10 @@ console.log("CLIENT HAS STARTED")
               results.data.forEach(function(user){
                 $scope.score_board[user.github.username] = {
                   'displayName':   user.github.displayName,
-                  'username':      user.github.username,
                   'polls_created': user.polls.num_created,
                   'polls_voted':  user.polls.num_voted
                 }
               })
-              
-              
-              
               console.log("score board")
               console.log($scope.score_board)
         
