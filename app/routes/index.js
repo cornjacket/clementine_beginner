@@ -2,6 +2,7 @@
 
 var path = process.cwd();
 var PollHandler = require(process.cwd() + '/app/controllers/pollHandler.server.js');
+var UserHandler = require(process.cwd() + '/app/controllers/userHandler.server.js');
 
 module.exports = function (app, passport) {
     
@@ -14,7 +15,10 @@ module.exports = function (app, passport) {
         }
     }    
     
-    var pollHandler = new PollHandler();
+    var pollHandler = new PollHandler()
+    var userHandler = new UserHandler()
+    // THIS IS WHY IT WAS NOT WORKING WITH UserHandler, because I needed a
+    // var userHandler = new UserHandler()
     
     app.route('/')
       .get(function (req, res) {
@@ -81,9 +85,18 @@ module.exports = function (app, passport) {
     // gets accessed from userController.client
     app.route('/api/user')
       .get(isLoggedIn, function (req, res) {
-        console.log("GET /api/user is being routed")
+        console.log("GET /api/user is being routed ***************************")
+        
         res.json(req.user.github);
     });
+    
+    // a separate path just for listing all the users
+    app.route('/api/users')
+      .get(function (req, res) {
+        console.log("GET /api/users is being routed ***************************")
+        userHandler.listUsers({},req,res)
+        //res.json({ data: ["Everything is ok", "Life is good"] });
+    });    
     
     app.route('/auth/github')
       .get(passport.authenticate('github'));

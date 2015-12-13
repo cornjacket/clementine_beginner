@@ -88,7 +88,7 @@
 <div class="row">
             
             <div class="col-md-offset-4 col-md-8"> 
-              <h3>{{pollHeader}} <small ng-hide="isLoggedIn">- You must be logged in to vote.</small></h3>
+              <h3>{{pollHeader}} <small ng-hide="isLoggedIn">- Please log in to vote.</small></h3>
               <!-- Single button -->
               <div ng-show="isLoggedIn" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
                 <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
@@ -149,16 +149,14 @@
                       <div ng-repeat="tag in item.poll.tags" class="tag small-text">
                         <span >{{tag}}</span>
                       </div>
-                      <!--<span class="tag">programming with my friends</span>
-                      <span class="tag">food</span>-->
                     </div>
                     <div class="signature-top col-md-3 small-text">
                       asked by {{item.author.username}} on {{item.created_at | date }}
                     </div>
                     <div class="signature-bottom col-md-offset-8 col-md-3 small-text">
                       <img ng-src={{pollDetails[$index].img}} alt="poll creator" height="30" width="30">
-                      <span>5 </span><span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
-                      <span>5 </span><span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
+                      <span>{{score_board[item.author.username].polls_created}} </span><span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
+                      <span>{{score_board[item.author.username].polls_voted}} </span><span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
                     </div>
     
                   </div>                  

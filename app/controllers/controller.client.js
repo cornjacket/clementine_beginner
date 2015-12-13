@@ -22,10 +22,12 @@ console.log("CLIENT HAS STARTED")
            // iterate through each poll and then iterate through each votes subarray and sum and store
            // note that each votes[] subarray contains the id's for users that have voted for that respected
            // option. Therefore determining the vote count equates to taking the length of the array.
+           
+           // Note that now I am storing the vote count so we dont need to count votes. ie. following code
+           // can be simplified. 
            $scope.aggregate_votes = []
            console.log("countVotes() invoked")
               $scope.polls.forEach(function(item,poll_index,ary) {
-                //$scope.aggregate_votes.push([])
                 console.log(item.poll.question)
                 var new_poll_votes = new Array()
                 console.log("Voting list")
@@ -61,8 +63,6 @@ console.log("CLIENT HAS STARTED")
                 setGithubUserImage(item.author.username,poll_index)
               })
         }
-
-
 
         // this checks the hasAlreadyVoted[] array
         var updateHasAlreadyVoted = function() {
@@ -112,6 +112,8 @@ console.log("CLIENT HAS STARTED")
 
         var User = $resource('/api/user/:id');
 
+        var Users = $resource('/api/users/:id'); // I need to revisit why this behavior is happening. Maybe inspect mean.js code
+
         var Poll = $resource('/api/polls/:id', { id: '@_id' }, {
                      update: {
                        method: 'PUT' // this method issues a PUT request
@@ -132,7 +134,7 @@ console.log("CLIENT HAS STARTED")
           //$scope.option = []
           
         }
-     
+
         $scope.cancelNewPoll = function() {
           console.log("$scope.cancelNewPoll() invoked")
           $scope.initOptions()
@@ -141,6 +143,9 @@ console.log("CLIENT HAS STARTED")
           console.log($scope.option)
         }
      
+        // first time getUser is called it returns nothing
+        // i see a strange response when id is undefined but i dont see a match
+        // in the server console to get user
         $scope.getUser = function (callback) {
            console.log("getUser() invoked")
            console.log("GETUSER() $scope.id = "+$scope.id)
@@ -169,6 +174,46 @@ console.log("CLIENT HAS STARTED")
            })
         }
         
+
+
+// Technically I should be using User.query() since I am getting all the users
+// but I had problems with that method when I tried with Poll.query
+        $scope.getUsers = function() {
+          console.log("getUsers() invoked")
+          Users.get( {}, function(results) {
+              console.log("getUsers() results")
+              console.log(results)
+              $scope.score_board = {}
+              results.data.forEach(function(user){
+                $scope.score_board[user.github.username] = {
+                  'displayName':   user.github.displayName,
+                  'username':      user.github.username,
+                  'polls_created': user.polls.num_created,
+                  'polls_voted':  user.polls.num_voted
+                }
+              })
+              
+              
+              
+              console.log("score board")
+              console.log($scope.score_board)
+        
+        //if ($scope.score_board !== undefined) {
+        //  $scope.score_board.forEach(function(user) {
+        //    console.log(user.name+' ('+user.username+'): '+user.polls_created+' polls created, '+user.polls_voted+' polls voted')
+        //  })
+        //} else {
+        //  console.log("score is empty")
+        //}
+        
+        
+              
+              
+          })
+        }
+
+
+
         
 
 // Technically I should be using Poll.query() since I am getting all the polls, though my implementation does work.
@@ -190,6 +235,13 @@ console.log("CLIENT HAS STARTED")
               //console.log($scope.polls)
           })
         }
+ 
+        var update_scoreboard = function() {
+          // this will update the polls_created, poll_voted stars. I could just 
+          // update the $scope.score_board directly inside vote and deletePoll which would be faster
+          $scope.getUsers()  
+        }
+
  
         // Now vote() explicitly checks to see whether or not the user has voted on a poll instead of
         // assuming the gui will not display the vote button. We should assume there will be bugs in the code
@@ -213,7 +265,7 @@ console.log("CLIENT HAS STARTED")
 
               // Now call update passing in the ID first then the object you are updating
               // implementing update in this manner is dangerous. there is a contention between 2 different users
-              Poll.update({ id:$scope.polls[poll_number]._id }, $scope.polls[poll_number]);          
+              Poll.update({ id:$scope.polls[poll_number]._id }, $scope.polls[poll_number], update_scoreboard);          
               // currently no callback for update. hasVotedForPoll get updated in client prior to the Poll.update call
               //console.log("vote(): hasVotedForPoll[]")
               //console.log($scope.hasVotedForPoll)
@@ -233,7 +285,7 @@ console.log("CLIENT HAS STARTED")
             console.log("deletePoll() invoked")
             $scope.isPollDeleted[poll_index] = true
             $scope.polls_length--
-            Poll.delete({ id:$scope.polls[poll_index]._id });   
+            Poll.delete({ id:$scope.polls[poll_index]._id }, update_scoreboard);   
             // persist deletion to database
             //console.log($scope.isPollDeleted)
             } else {
@@ -282,8 +334,12 @@ console.log("CLIENT HAS STARTED")
 
 /////////////////////////////
 
-
         $scope.initOptions()
+        $scope.getUsers() // this will give us all the users so we can build our create/vote hash
+        
+        
+
+
         $scope.getUser($scope.getPolls); // logic inside of getPolls depends on getUser completing
 
       }]);

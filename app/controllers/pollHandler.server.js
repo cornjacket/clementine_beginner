@@ -79,9 +79,9 @@ var Users = require('../models/users'); // TESTING
         Polls
             .find(search_param, function (err, result) {
                 if (err) { throw err; }
-                console.log("pollHandler.server: " + result)
-                //res.json({ message: "Polls end point"}) // testing
-                //res.json(result) -- returning result like this breaks Angular, though this did work with vanillaJS
+                //console.log("pollHandler.server: " + result) // uncomment to inspect poll
+                
+                ////res.json(result) -- returning result like this breaks Angular, though this did work with vanillaJS
                 res.json({ data: result}); // so encap'ing inside an object solves this problem
             });
   };
