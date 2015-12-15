@@ -15,7 +15,7 @@
         $scope.isPollAuthoredByUser = [] // ary of boolean indicating whether user is the author of the poll
         $scope.isPollDeleted = [] // locally keep track if author deletes the poll
         
-console.log("CLIENT HAS STARTED")
+        console.log("CLIENT HAS STARTED")
 
         var countVotes = function() {
             
@@ -183,27 +183,30 @@ console.log("CLIENT HAS STARTED")
           Users.get( {}, function(results) {
               console.log("getUsers() results")
               console.log(results)
-              $scope.score_board = {}
+              $scope.user_lookup = {}
+              $scope.score_board = []
               results.data.forEach(function(user){
-                $scope.score_board[user.github.username] = {
+                // user_lookup provides a convenient way to get polls created and voted
+                // when knowing the user's username. however there are problems using
+                // a hash with ng-repeat and filters
+                $scope.user_lookup[user.github.username] = {
                   'displayName':   user.github.displayName,
                   'polls_created': user.polls.num_created,
                   'polls_voted':  user.polls.num_voted
                 }
+                // a separate array having all this information is useful when using
+                // ng-repeat with filters
+                $scope.score_board.push({
+                  'username':      user.github.username,
+                  'displayName':   user.github.displayName,
+                  'polls_created': user.polls.num_created,
+                  'polls_voted':  user.polls.num_voted
+                  
+                })
               })
               console.log("score board")
-              console.log($scope.score_board)
+              console.log($scope.user_lookup)
         
-        //if ($scope.score_board !== undefined) {
-        //  $scope.score_board.forEach(function(user) {
-        //    console.log(user.name+' ('+user.username+'): '+user.polls_created+' polls created, '+user.polls_voted+' polls voted')
-        //  })
-        //} else {
-        //  console.log("score is empty")
-        //}
-        
-        
-              
               
           })
         }
@@ -232,9 +235,9 @@ console.log("CLIENT HAS STARTED")
           })
         }
  
-        var update_scoreboard = function() {
+        var update_user_lookup = function() {
           // this will update the polls_created, poll_voted stars. I could just 
-          // update the $scope.score_board directly inside vote and deletePoll which would be faster
+          // update the $scope.user_lookup directly inside vote and deletePoll which would be faster
           $scope.getUsers()  
         }
 
@@ -261,7 +264,7 @@ console.log("CLIENT HAS STARTED")
 
               // Now call update passing in the ID first then the object you are updating
               // implementing update in this manner is dangerous. there is a contention between 2 different users
-              Poll.update({ id:$scope.polls[poll_number]._id }, $scope.polls[poll_number], update_scoreboard);          
+              Poll.update({ id:$scope.polls[poll_number]._id }, $scope.polls[poll_number], update_user_lookup);          
               // currently no callback for update. hasVotedForPoll get updated in client prior to the Poll.update call
               //console.log("vote(): hasVotedForPoll[]")
               //console.log($scope.hasVotedForPoll)
@@ -281,7 +284,7 @@ console.log("CLIENT HAS STARTED")
             console.log("deletePoll() invoked")
             $scope.isPollDeleted[poll_index] = true
             $scope.polls_length--
-            Poll.delete({ id:$scope.polls[poll_index]._id }, update_scoreboard);   
+            Poll.delete({ id:$scope.polls[poll_index]._id }, update_user_lookup);   
             // persist deletion to database
             //console.log($scope.isPollDeleted)
             } else {
@@ -332,10 +335,6 @@ console.log("CLIENT HAS STARTED")
 
         $scope.initOptions()
         $scope.getUsers() // this will give us all the users so we can build our create/vote hash
-        
-        
-
-
         $scope.getUser($scope.getPolls); // logic inside of getPolls depends on getUser completing
 
       }]);

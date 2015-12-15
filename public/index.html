@@ -19,7 +19,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">PollPosition</a>
+          <a class="navbar-brand nav-bar-menu-item" href="/">PollPosition</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <!--<form class="navbar-form navbar-right">
@@ -38,8 +38,8 @@
             </div>
           </a>
           
-          <a ng-show="isLoggedIn" class="menu pull-right ng-cloak" href="/logout">Logout</a>
-          <a ng-show="isLoggedIn" class="menu pull-right ng-cloak" href="/profile">Welcome, <span class="ng-cloak">{{ name }}</span>! </a>
+          <a ng-show="isLoggedIn" class="menu pull-right ng-cloak" href="/logout">Logout</span></a>
+          <a ng-show="isLoggedIn" class="menu pull-right ng-cloak" href="">Welcome, <span>{{ name }}</span>! </a>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
@@ -97,8 +97,6 @@
                 <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
                   <li role="menuitem"><a ng-click="setAllPolls(true)" href="">All Polls</a></li>
                   <li role="menuitem"><a ng-click="setAllPolls(false)" href="">My Polls</a></li>
-                  <li class="divider"></li>
-                  <li role="menuitem"><a href="">Later</a></li>
                 </ul>
               </div>
               <hr />  
@@ -155,8 +153,8 @@
                     </div>
                     <div class="signature-bottom col-md-offset-8 col-md-3 small-text">
                       <img ng-src={{pollDetails[$index].img}} alt="poll creator" height="30" width="30">
-                      <span>{{score_board[item.author.username].polls_created}} </span><span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
-                      <span>{{score_board[item.author.username].polls_voted}} </span><span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
+                      <span>{{user_lookup[item.author.username].polls_created}} </span><span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
+                      <span>{{user_lookup[item.author.username].polls_voted}} </span><span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
                     </div>
     
                   </div>                  
@@ -172,17 +170,17 @@
             </div>
           </div>
         <!--Nav Bar -->
-        <nav class="wrapper col-md-3">
+        <nav class="wrapper col-md-3 ng-cloak">
           <div class="ng-cloak">
             <h3>{{polls_length}} Polls</h3>
             <button ng-show="isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
             <hr /> 
           </div>
         	<div uib-collapse="isCollapsed" class="ng-cloak">
-        		<div class="well well-lg">
+        		<div class="well well-lg new-poll">
   		        <div class="row">
   		          <div class="col-md-9">
-  		            <h4 class="new-poll">Create a new poll</h4>
+  		            <h4>Create a new poll</h4>
   		          </div>
   		          <div class="col-md-offset-1 col-md-1">
                   <a ng-click="cancelNewPoll()" class="btn btn-default btn-xs" role="button">X</a>
@@ -209,6 +207,76 @@
     		    <hr />
     	   </div>              
           
+      		<div class="well well-lg ng-cloak leader-board">
+		        <div class="row">
+		          <div class="col-md-12">
+		            <h4 class="text-center">Top Poll Voters</h4>
+		          </div>
+		        </div>
+            <div class="row">
+              <div class="col-md-12">
+	              <br>
+
+                  <table class="table table-condensed small-text">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th class="text-center">Votes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="user_details in score_board | orderBy:'-polls_voted'">
+                        <td>{{$index+1}}</td>
+                        <td>{{user_details.username}}</td>
+                        <td>{{user_details.displayName}}</td>
+                        <td class="text-center">{{user_details.polls_voted}}</td>
+                      </tr>
+                      <tr>
+                    </tbody>
+                  </table>
+
+              </div>
+            </div>
+  		    </div>
+          <br>
+      		<div class="well well-lg ng-cloak leader-board">
+		        <div class="row">
+		          <div class="col-md-12">
+		            <h4 class="text-center">Top Poll Posters</h4>
+		          </div>
+		        </div>
+            <div class="row">
+              <div class="col-md-12">
+	              <br>
+
+                  <table class="table table-condensed small-text">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th class="text-center">Polls</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="user_details in score_board | orderBy:'-polls_created'">
+                        <td>{{$index+1}}</td>
+                        <td>{{user_details.username}}</td>
+                        <td>{{user_details.displayName}}</td>
+                        <td class="text-center">{{user_details.polls_created}}</td>
+                      </tr>
+                      <tr>
+                    </tbody>
+                  </table>
+
+              </div>
+            </div>
+  		    </div>
+      		         
+          <hr />
+  
        </nav>
     </div>
 
