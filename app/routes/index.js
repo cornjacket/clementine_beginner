@@ -68,8 +68,7 @@ module.exports = function (app, passport) {
         pollHandler.deletePoll(req, res)
         //res.json("ok")
       })
-      
-      
+
     app.route('/api/polls')
       .get( function (req, res) {
         console.log("index.js: get /api/polls received")
