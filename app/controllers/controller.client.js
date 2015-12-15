@@ -8,7 +8,7 @@
          
         $scope.pollHeader = "All Polls"
         $scope.displayAllPolls = true
-        $scope.polls_length    = 0 
+        $scope.num_polls       = 0 
         $scope.isLoggedIn      = false
         $scope.pollDetails     = []  // the previous hasVotedForPoll array is deprecated
         $scope.aggregate_votes = []  // ary of aggregate votes for the i'th poll
@@ -185,6 +185,9 @@
               console.log(results)
               $scope.user_lookup = {}
               $scope.score_board = []
+              $scope.num_users   = 0
+              $scope.num_votes   = 0
+              $scope.num_users = results.data.length // note that with a lot of users, then this will no longer work
               results.data.forEach(function(user){
                 // user_lookup provides a convenient way to get polls created and voted
                 // when knowing the user's username. however there are problems using
@@ -201,8 +204,8 @@
                   'displayName':   user.github.displayName,
                   'polls_created': user.polls.num_created,
                   'polls_voted':  user.polls.num_voted
-                  
                 })
+                $scope.num_votes += user.polls.num_voted
               })
               console.log("score board")
               console.log($scope.user_lookup)
@@ -223,7 +226,7 @@
           Poll.get( {}, function(results) {
           //$scope.polls = Poll.query( function() { //(results) {
               $scope.polls = results.data
-              $scope.polls_length = $scope.polls.length
+              $scope.num_polls = $scope.polls.length
               // lets go through all the polls and see if the user has already voted by inspecting the votes
               initPollDetails()
               updateHasAlreadyVoted()
@@ -283,7 +286,7 @@
             // i could also put up a pop up confirming the deletion - not sure
             console.log("deletePoll() invoked")
             $scope.isPollDeleted[poll_index] = true
-            $scope.polls_length--
+            $scope.num_polls--
             Poll.delete({ id:$scope.polls[poll_index]._id }, update_user_lookup);   
             // persist deletion to database
             //console.log($scope.isPollDeleted)

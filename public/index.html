@@ -49,7 +49,7 @@
     </div>
 
 
-    <div ng-show="isLoggedIn" class="container ng-cloak">
+    <div ng-show="false" class="container ng-cloak">
       <uib-accordion close-others="oneAtATime"> <!-- dont think oneAtATime is needed -->
         <uib-accordion-group class="text-center" heading="Messages">
           <div class="row">
@@ -172,7 +172,8 @@
         <!--Nav Bar -->
         <nav class="wrapper col-md-3 ng-cloak">
           <div class="ng-cloak">
-            <h3>{{polls_length}} Polls</h3>
+            <!--<h4>{{num_polls}} Polls, {{num_users}} Users, and {{num_votes}} Votes</h4>-->
+            <h3>{{num_polls}} Polls, {{num_votes}} Votes</h3>
             <button ng-show="isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
             <hr /> 
           </div>
@@ -227,7 +228,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="user_details in score_board | orderBy:'-polls_voted'">
+                      <tr ng-repeat="user_details in score_board | orderBy:'-polls_voted' | limitTo:5">
                         <td>{{$index+1}}</td>
                         <td>{{user_details.username}}</td>
                         <td>{{user_details.displayName}}</td>
@@ -261,7 +262,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="user_details in score_board | orderBy:'-polls_created'">
+                      <tr ng-repeat="user_details in score_board | orderBy:'-polls_created' | limitTo:5">
                         <td>{{$index+1}}</td>
                         <td>{{user_details.username}}</td>
                         <td>{{user_details.displayName}}</td>
