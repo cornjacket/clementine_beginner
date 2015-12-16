@@ -30,6 +30,7 @@
       <h4>Welcome to PollPosition. A place to make polls...</h4>
     </div>    
 
+    <h1>Hello {{current_poll.id}}</h1>
 
 <!---------------------------------------------------------------------------------------->  
     <div class="row">
@@ -44,72 +45,72 @@
               <hr />  
             </div>
 </div>
+        
+        
+        
+        
             
             <div ng-repeat ="item in polls | limitTo:1">
-              <div ng-show="!isPollDeleted[$index] && (displayAllPolls || (!displayAllPolls && isPollAuthoredByUser[$index]))">
-                
+              <!--<div ng-show="!isPollDeleted[$index] && (displayAllPolls || (!displayAllPolls && isPollAuthoredByUser[$index]))">-->
                 
                 <div class="row">
                 
-                
                   <div class="col-md-offset-4 col-md-7">
-                    <p class='h4'>{{ item.poll.question }}</p>
-
+                    <p class='h4'>{{ current_poll.poll.question }}</p>
                   </div>
                   <div id="_upDownFlagX">
                     <!--<a ng-click="downVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
                     <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
                     <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>-->
                     <div class="col-md-1">
-                      <a ng-click="deletePoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && isPollAuthoredByUser[$index]" role="button">X</a>
+                      <!--<a ng-click="deletePoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && isPollAuthoredByUser[$index]" role="button">X</a>-->
                     </div>
                   </div>
                   
 </div><!-- row -->                  
-                
-                    <div ng-repeat="option in item.poll.options track by $index">
+                <div ng-repeat="option in current_poll.poll.options track by $index">
                       <div class="row"> 
                         <div class="col-md-offset-4 col-md-1">
-                          <a ng-hide="pollDetails[$parent.$index].hasVotedForPoll" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
-                          <p class="poll-option text-center" ng-show="pollDetails[$parent.$index].hasVotedForPoll" ng-class="{ 'user_voted': pollDetails[$parent.$index].has_voted_for_option[$index] }">
+                          <!--<a ng-hide="pollDetails[$parent.$index].hasVotedForPoll" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>-->
+                          <!--<p class="poll-option text-center" ng-show="pollDetails[$parent.$index].hasVotedForPoll" ng-class="{ 'user_voted': pollDetails[$parent.$index].has_voted_for_option[$index] }">
                              <ng-pluralize count="aggregate_votes[$parent.$index][$index]" when="{ 
                                '1': '1 vote', 
                                'other': '{} votes'}">
                              </ng-pluralize>
-                          </p>
+                          </p>-->
                         </div>
                         <div class="col-md-7"> 
-                          <p class="poll-option" ng-class="{ 'user_voted': pollDetails[$parent.$index].has_voted_for_option[$index] }">{{ option }}</p>
+                          <!--<p class="poll-option" ng-class="{ 'user_voted': pollDetails[$parent.$index].has_voted_for_option[$index] }">{{ option }}</p>-->
+                          <p class="poll-option">{{ option }}</p><!-- see above -->
                         </div>      
                       </div>                  
                     </div>      
-                  
-                  <div class="row tag-group">
+                <div class="row tag-group">
                     <div class="col-md-offset-5 col-md-3">
-                      <div ng-repeat="tag in item.poll.tags" class="tag small-text">
+                      <div ng-repeat="tag in current_poll.poll.tags" class="tag small-text">
                         <span >{{tag}}</span>
                       </div>
                     </div>
                     <div class="signature-top col-md-3 small-text">
-                      asked by {{item.author.username}} on {{item.created_at | date }}
+                      asked by {{current_poll.author.username}} on {{current_poll.created_at | date }}
                     </div>
                     <div class="signature-bottom col-md-offset-8 col-md-3 small-text">
-                      <img ng-src={{pollDetails[$index].img}} alt="poll creator" height="30" width="30">
-                      <span>{{user_lookup[item.author.username].polls_created}} </span><span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
-                      <span>{{user_lookup[item.author.username].polls_voted}} </span><span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
+                      <!--<img ng-src={{pollDetails[$index].img}} alt="poll creator" height="30" width="30">-->
+                      <span>{{user_lookup[current_poll.author.username].polls_created}} </span><span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
+                      <span>{{user_lookup[current_poll.author.username].polls_voted}} </span><span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
                     </div>
     
                   </div>                  
-                  <div class="col-md-offset-4 col-md-8">
+                <div class="col-md-offset-4 col-md-8">
                     <hr />
                   </div>
                   
-                  
-                <!--</div> comment row -->
-                  
-                  
-              </div>
+              <!--</div>-->
             </div>
+            
+            
+            
+            
           </div>
         <!--Nav Bar -->
         <nav class="wrapper col-md-3 ng-cloak">

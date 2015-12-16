@@ -10,7 +10,7 @@
              templateUrl: "public/main.html",
              controller: "clientController"
           })
-          .when("/poll/:id", {
+          .when("/poll/:poll_id", {
              templateUrl: "public/poll.html",
              controller: "pollController"
           })

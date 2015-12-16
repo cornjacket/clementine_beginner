@@ -79,6 +79,20 @@ font-weight: bold;}
     background-color: beige;
 }
 
+.poll-question {
+    text-decoration: none;
+}
+
+.poll-question:hover, .stars:hover {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.stars {
+    text-decoration: none;
+}
+
 .poll-option {
     margin-top: 0;
     margin-bottom: 1px;

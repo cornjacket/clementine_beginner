@@ -6,8 +6,10 @@
 
    angular
       .module('pollPosition')    // providers removed since now this is a reference
-      .controller('pollController', ['$scope', '$resource', '$http', function ($scope, $resource, $http) {
+      .controller('pollController', ['$scope', '$resource', '$http', '$routeParams', function ($scope, $resource, $http, $routeParams) {
          
+        //$scope.current_poll = {} // poll to be display // this can be removed
+        //$scope.current_poll.id = $routeParams.poll_id // this can be removed
         $scope.pollHeader = "Poll Detail"
         $scope.displayAllPolls = true
         $scope.num_polls       = 0 
@@ -118,7 +120,7 @@
 
         var Poll = $resource('/api/polls/:id', { id: '@_id' }, {
                      update: {
-                       method: 'PUT' // this method issues a PUT request
+                       method: 'PUT' 
                      }
                    })
 
@@ -132,8 +134,7 @@
           console.log("$scope.initOptions() invoked")
           $scope.new_poll_indices = [ 0, 1 ]
           $scope.next_poll_option = 2
-          $scope.question         = "here is the question"
-          //$scope.option = []
+          $scope.question         = "here is the question" // ???
           
         }
 
@@ -178,8 +179,8 @@
         
 
 
-// Technically I should be using User.query() since I am getting all the users
-// but I had problems with that method when I tried with Poll.query
+        // Technically I should be using User.query() since I am getting all the users
+        // but I had problems with that method when I tried with Poll.query
         $scope.getUsers = function() {
           console.log("getUsers() invoked")
           Users.get( {}, function(results) {
@@ -208,6 +209,8 @@
                   'polls_voted':  user.polls.num_voted
                 })
                 $scope.num_votes += user.polls.num_voted
+          
+                
               })
               console.log("score board")
               console.log($scope.user_lookup)
@@ -217,11 +220,22 @@
         }
 
 
+        var setCurrentPoll = function(){
+          console.log("findCurrentPoll() invoked")
+          $scope.polls.forEach(function(item,poll_index,ary) {
+            console.log("XXX "+$routeParams.poll_id+" vs "+item.poll.id)
+            console.log(item)
+            if (item._id === $routeParams.poll_id) { 
+              $scope.current_poll = $scope.polls[poll_index] // = item
+            }
+          })
+          $scope.current_poll.id = $routeParams.poll_id
+          console.log($scope.current_poll)
+        }
 
-        
 
-// Technically I should be using Poll.query() since I am getting all the polls, though my implementation does work.
-// Something to refactor later. - but to make this change I believe that the Poll url should include :id
+        // Technically I should be using Poll.query() since I am getting all the polls, though my implementation does work.
+        // Something to refactor later. - but to make this change I believe that the Poll url should include :id
         $scope.getPolls = function() {
           console.log("getPolls() invoked")
           //Poll.get({ id: $scope.id }, function(results) { // there is no need for any id when grabbing all the polls
@@ -237,6 +251,25 @@
               initIsPollDeleted()
               //console.log("Poll results")
               //console.log($scope.polls)
+              
+/////////////////////////////////////////////////////////////////////////////
+
+              // Not really happy with how I am placing code, but this is to get
+              // it to work.
+              // For now lets set the current_poll here, this will need to change
+              // when I refactor/merge the shared code for clientController and 
+              // pollController
+              // Go through all polls and look for a match with the route_params poll_id
+              // and build $scope.current_poll
+              
+              setCurrentPoll()
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+              
+              
           })
         }
  
@@ -270,7 +303,7 @@
               // Now call update passing in the ID first then the object you are updating
               // implementing update in this manner is dangerous. there is a contention between 2 different users
               Poll.update({ id:$scope.polls[poll_number]._id }, $scope.polls[poll_number], update_user_lookup);          
-              // currently no callback for update. hasVotedForPoll get updated in client prior to the Poll.update call
+              //hasVotedForPoll get updated in client prior to the Poll.update call
               //console.log("vote(): hasVotedForPoll[]")
               //console.log($scope.hasVotedForPoll)
             } else {
@@ -285,7 +318,7 @@
         $scope.deletePoll = function(poll_index) {
             // need a safety precaution to check if user is author of poll to delete
             if ($scope.id === $scope.polls[poll_index].author.github_id) {
-            // i could also put up a pop up confirming the deletion - not sure
+            // need buttons confirming the deletion - check Pluralsight Directives for solution to this
             console.log("deletePoll() invoked")
             $scope.isPollDeleted[poll_index] = true
             $scope.num_polls--
@@ -318,10 +351,6 @@
   };
 
   $scope.isCollapsed = true;
-
-  /*$scope.toggled = function(open) {
-    $log.log('Dropdown is now: ', open);
-  };*/
 
   $scope.toggleDropdown = function($event) {
     $event.preventDefault();

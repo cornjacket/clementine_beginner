@@ -19,7 +19,7 @@
             </div>
           </a>
           
-          <a ng-show="isLoggedIn" class="menu pull-right ng-cloak" href="/logout">Logout</span></a>
+          <a ng-show="isLoggedIn" class="menu pull-right ng-cloak" href="/logout"><span>Logout</span></a>
           <a ng-show="isLoggedIn" class="menu pull-right ng-cloak" href="">Welcome, <span>{{ name }}</span>! </a>
         </div>
       </div>
@@ -35,20 +35,7 @@
         <uib-accordion-group class="text-center" heading="Messages">
           <div class="row">
             <div class="col-md-12">
-              <!--<h3>Create a new poll</h3>-->
-              <form action="/api/polls/new" method="post">
-                Question:
-                <input width='100%' type="text" name="question">
-                <br>
-                <div ng-repeat="optionIndex in new_poll_indices">
-                  option{{optionIndex+1}}
-                  <input type="text" name="option[{{optionIndex+1}}]" value="option{{optionIndex+1}}">
-                  <br>
-                </div>
-                <br>
-                <input class="btn btn-default" type="submit" value="Submit">
-                <div ng-click="addOption()" class="btn btn-default" role="button">Add Option</div>
-              </form>
+              <h3>Message could go here</h3>
             </div>
           </div>      
           <!--<p>The body of the uib-accordion group grows to fit the contents</p>
@@ -92,7 +79,8 @@
                 
                 
                   <div class="col-md-offset-4 col-md-7">
-                    <p class='h4'>{{ item.poll.question }}</p>
+                    <!--<p class='h4'>{{ item.poll.question }}</p>-->
+                    <a class="h4 poll-question" href="/#/poll/{{item._id}}"><span>{{item.poll.question}}</span></a>
 
                   </div>
                   <div id="_upDownFlagX">
@@ -134,8 +122,14 @@
                     </div>
                     <div class="signature-bottom col-md-offset-8 col-md-3 small-text">
                       <img ng-src={{pollDetails[$index].img}} alt="poll creator" height="30" width="30">
-                      <span>{{user_lookup[item.author.username].polls_created}} </span><span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
-                      <span>{{user_lookup[item.author.username].polls_voted}} </span><span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
+                      <a class="stars" title='{{user_lookup[item.author.username].polls_created}} polls'>
+                        <span>{{user_lookup[item.author.username].polls_created}} </span>
+                        <span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
+                      </a>
+                      <a class="stars" title='{{user_lookup[item.author.username].polls_voted}} votes'>
+                        <span>{{user_lookup[item.author.username].polls_voted}} </span>
+                        <span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
+                      </a>
                     </div>
     
                   </div>                  
