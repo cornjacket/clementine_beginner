@@ -3,7 +3,7 @@
 (function () {
 
    angular
-      .module('pollPosition', ['ngResource', 'ngAnimate', 'ui.bootstrap'])
+      .module('pollPosition')    // providers removed since now this is a reference
       .controller('clientController', ['$scope', '$resource', '$http', function ($scope, $resource, $http) {
          
         $scope.pollHeader = "All Polls"
