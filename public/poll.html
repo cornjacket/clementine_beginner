@@ -30,36 +30,6 @@
       <h4>Welcome to PollPosition. A place to make polls...</h4>
     </div>    
 
-    <div ng-show="false" class="container ng-cloak">
-      <uib-accordion close-others="oneAtATime"> <!-- dont think oneAtATime is needed -->
-        <uib-accordion-group class="text-center" heading="Messages">
-          <div class="row">
-            <div class="col-md-12">
-              <!--<h3>Create a new poll</h3>-->
-              <form action="/api/polls/new" method="post">
-                Question:
-                <input width='100%' type="text" name="question">
-                <br>
-                <div ng-repeat="optionIndex in new_poll_indices">
-                  option{{optionIndex+1}}
-                  <input type="text" name="option[{{optionIndex+1}}]" value="option{{optionIndex+1}}">
-                  <br>
-                </div>
-                <br>
-                <input class="btn btn-default" type="submit" value="Submit">
-                <div ng-click="addOption()" class="btn btn-default" role="button">Add Option</div>
-              </form>
-            </div>
-          </div>      
-          <!--<p>The body of the uib-accordion group grows to fit the contents</p>
-          <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
-          <div ng-repeat="item in items">{{item}}</div>-->
-        </uib-accordion-group>
-      </uib-accordion>
-      <!--<hr />-->
-
-
-</div>
 
 <!---------------------------------------------------------------------------------------->  
     <div class="row">
@@ -70,21 +40,12 @@
             
             <div class="col-md-offset-4 col-md-8"> 
               <h3>{{pollHeader}} <small ng-hide="isLoggedIn">- Please log in to vote.</small></h3>
-              <!-- Single button -->
-              <div ng-show="isLoggedIn" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
-                <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
-                  View <span class="caret"></span>
-                </button>
-                <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
-                  <li role="menuitem"><a ng-click="setAllPolls(true)" href="">All Polls</a></li>
-                  <li role="menuitem"><a ng-click="setAllPolls(false)" href="">My Polls</a></li>
-                </ul>
-              </div>
+
               <hr />  
             </div>
 </div>
             
-            <div ng-repeat ="item in polls">
+            <div ng-repeat ="item in polls | limitTo:1">
               <div ng-show="!isPollDeleted[$index] && (displayAllPolls || (!displayAllPolls && isPollAuthoredByUser[$index]))">
                 
                 
@@ -155,107 +116,25 @@
           <div class="ng-cloak">
             <!--<h4>{{num_polls}} Polls, {{num_users}} Users, and {{num_votes}} Votes</h4>-->
             <h3>{{num_polls}} Polls, {{num_votes}} Votes</h3>
-            <button ng-show="isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
+            
+            
+            
+            <!--<button ng-show="isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>-->
+            
+            <!-- Single button -->
+            <div ng-show="isLoggedIn" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
+              <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+                View <span class="caret"></span>
+              </button>
+              <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+                <li role="menuitem"><a ng-click="doSomething()" href="">Bar Chart</a></li>
+                <li role="menuitem"><a ng-click="doSomething()" href="">Pie Chart</a></li>
+              </ul>
+            </div>            
             <hr /> 
+            
           </div>
-        	<div uib-collapse="isCollapsed" class="ng-cloak">
-        		<div class="well well-lg new-poll">
-  		        <div class="row">
-  		          <div class="col-md-9">
-  		            <h4>Create a new poll</h4>
-  		          </div>
-  		          <div class="col-md-offset-1 col-md-1">
-                  <a ng-click="cancelNewPoll()" class="btn btn-default btn-xs" role="button">X</a>
-                </div>
-  		        </div>
-              <div class="row">
-                <div class="col-md-12">
-		              <br>
-                  <form action="/api/polls/new" method="post">
-                    <input type="text" name="question" class="form-control" placeholder="Enter your poll question here" aria-describedby="basic-addon2" required>
-                    <br>  
-                    <div ng-repeat="optionIndex in new_poll_indices">
-                      <input type="text" name="option[{{optionIndex+1}}]" class="form-control" placeholder="Enter your poll option here" aria-describedby="basic-addon2" required>
-                    </div>
-                    <br>
-                    <input type="text" name="tags" class="form-control" placeholder="Enter at least one tag. Separate tags with spaces." aria-describedby="basic-addon2" required>
-                    <br>
-                    <input class="btn btn-default" type="submit" value="Submit">
-                    <div ng-click="addOption()" class="btn btn-default" role="button">Add Option</div>
-                  </form>
-                </div>
-              </div>
-    		    </div>
-    		    <hr />
-    	   </div>              
-          
-      		<div class="well well-lg ng-cloak leader-board">
-		        <div class="row">
-		          <div class="col-md-12">
-		            <h4 class="text-center">Top Poll Voters</h4>
-		          </div>
-		        </div>
-            <div class="row">
-              <div class="col-md-12">
-	              <br>
-
-                  <table class="table table-condensed small-text">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Username</th>
-                        <th>Name</th>
-                        <th class="text-center">Votes</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr ng-repeat="user_details in score_board | orderBy:'-polls_voted' | limitTo:5">
-                        <td>{{$index+1}}</td>
-                        <td>{{user_details.username}}</td>
-                        <td>{{user_details.displayName}}</td>
-                        <td class="text-center">{{user_details.polls_voted}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-              </div>
-            </div>
-  		    </div>
-          <br>
-      		<div class="well well-lg ng-cloak leader-board">
-		        <div class="row">
-		          <div class="col-md-12">
-		            <h4 class="text-center">Top Poll Posters</h4>
-		          </div>
-		        </div>
-            <div class="row">
-              <div class="col-md-12">
-	              <br>
-
-                  <table class="table table-condensed small-text">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Username</th>
-                        <th>Name</th>
-                        <th class="text-center">Polls</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr ng-repeat="user_details in score_board | orderBy:'-polls_created' | limitTo:5">
-                        <td>{{$index+1}}</td>
-                        <td>{{user_details.username}}</td>
-                        <td>{{user_details.displayName}}</td>
-                        <td class="text-center">{{user_details.polls_created}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-              </div>
-            </div>
-  		    </div>
-      		         
-          <hr />
+        	              
   
        </nav>
     </div>

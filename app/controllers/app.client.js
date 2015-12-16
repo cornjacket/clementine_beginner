@@ -12,7 +12,7 @@
           })
           .when("/poll/:id", {
              templateUrl: "public/poll.html",
-             controller: "clientController"
+             controller: "pollController"
           })
           .otherwise({redirect:"/"})
       })
