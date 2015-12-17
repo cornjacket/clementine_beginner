@@ -101,7 +101,8 @@
                         <div class="col-md-offset-4 col-md-1">
                           <a ng-hide="pollDetails[$parent.$index].hasVotedForPoll" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
                           <p class="poll-option text-center" ng-show="pollDetail.detail.hasVotedForPoll" ng-class="{ 'user_voted': pollDetail.detail.has_voted_for_option[$index] }">
-                             <ng-pluralize count="aggregate_votes[$parent.$index][$index]" when="{ 
+                             <!--<ng-pluralize count="aggregate_votes[$parent.$index][$index]" when="{ -->
+                             <ng-pluralize count="pollDetail.detail.aggregate_votes[$index]" when="{ 
                                '1': '1 vote', 
                                'other': '{} votes'}">
                              </ng-pluralize>

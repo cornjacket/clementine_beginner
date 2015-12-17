@@ -43,6 +43,40 @@
 
         }
 
+
+
+
+
+
+        var _countVotes = function(pollDetail) {
+            
+           // iterate through each poll and then iterate through each votes subarray and sum and store
+           // note that each votes[] subarray contains the id's for users that have voted for that respected
+           // option. Therefore determining the vote count equates to taking the length of the array.
+           
+           // Note that now I am storing the vote count so we dont need to count votes. ie. following code
+           // can be simplified. 
+           console.log("countVotes() invoked")
+              //$scope.polls.forEach(function(item,poll_index,ary) {
+                console.log(pollDetail.item.poll.question)
+                var new_poll_votes = new Array()
+                console.log("Voting list")
+                pollDetail.item.poll.votes.forEach(function(vote_ary, vote_index, parent_ary) {
+                    console.log(vote_index+" "+vote_ary)
+                    new_poll_votes.push(vote_ary.length)
+                })
+                //$scope.aggregate_votes.push(new_poll_votes)
+                pollDetail.details.aggregate_votes.push(new_poll_votes)
+              //})
+
+        }
+
+
+
+
+
+
+
         var setGithubUserImage = function(username, poll_index) { // dont like the index method, change later
           return $http.get("https://api.github.com/users/" + username)
                   .then(function(response){
@@ -269,7 +303,8 @@
                   isPollAuthoredByUser: false,
                   hasAlreadyVoted:      false, // has user voted for this poll
                   isPollDeleted:        false, // has user deleted this poll
-                  img:                  "http://isigned.org/images/anonymous.png"
+                  img:                  "http://isigned.org/images/anonymous.png",
+                  aggregate_votes:      0
                 }
                 
                 return {
@@ -281,11 +316,13 @@
               $scope.newPollDetails.forEach(function(pollDetail) {
                 _updateHasAlreadyVoted(pollDetail)
                 _setGithubUserImage(pollDetail.item.author.username,pollDetail) // parametes can be merged
+                _countVotes(pollDetail)
               })
           
               
               $scope.polls = results.data
-              $scope.num_polls = $scope.polls.length
+              $scope.num_polls = $scope.polls.length // this should still work?????????????
+              
               // lets go through all the polls and see if the user has already voted by inspecting the votes
               initPollDetails()
               updateHasAlreadyVoted()
