@@ -53,7 +53,7 @@
         <!--Main Content -->
           <div class="wrapper col-md-7 ng-cloak">
             
-<div class="row">
+           <div class="row">
             
             <div class="col-md-offset-4 col-md-8"> 
               <h3>{{pollHeader}} <small ng-hide="isLoggedIn">- Please log in to vote.</small></h3>
@@ -69,7 +69,7 @@
               </div>
               <hr />  
             </div>
-</div>
+           </div>
             
             <div ng-repeat ="item in polls">
               <div ng-show="!isPollDeleted[$index] && (displayAllPolls || (!displayAllPolls && isPollAuthoredByUser[$index]))">
