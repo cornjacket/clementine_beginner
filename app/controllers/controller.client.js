@@ -10,7 +10,8 @@
         $scope.displayAllPolls = true
         $scope.num_polls       = 0 
         $scope.isLoggedIn      = false
-        $scope.pollDetails     = []  // the previous hasVotedForPoll array is deprecated
+        $scope.newPollDetails  = [] // encapsulate everything under this heading
+        $scope.pollDetails     = []  
         $scope.aggregate_votes = []  // ary of aggregate votes for the i'th poll
         $scope.isPollAuthoredByUser = [] // ary of boolean indicating whether user is the author of the poll
         $scope.isPollDeleted = [] // locally keep track if author deletes the poll
@@ -63,6 +64,33 @@
                 setGithubUserImage(item.author.username,poll_index)
               })
         }
+
+
+        var _updateHasAlreadyVoted = function(pollDetail) { // should take id as a parameter
+            
+            console.log("_updateHasAlreadyVoted() invoked")
+            console.log("SCOPE.ID = "+$scope.id)
+                var alreadyVoted = false
+                
+                //console.log("Voting list")
+                pollDetail.item.poll.votes.forEach(function(vote_ary, vote_index, parent_ary) {
+                    //console.log(vote_index+" "+vote_ary)
+                    if (vote_ary.indexOf($scope.id) != -1) {
+                        //console.log("Found a vote. This has been already voted on.")
+                        pollDetail.detail.has_voted_for_option[vote_index] = true
+                        //$scope.pollDetails[poll_index].has_voted_for_option[vote_index] = true
+                        alreadyVoted = true
+                    } else {
+                        pollDetail.detail.has_voted_for_option[vote_index] = false
+                        //$scope.pollDetails[poll_index].has_voted_for_option[vote_index] = false
+                    }
+                })
+                pollDetail.detail.hasVotedForPoll = alreadyVoted // this should work out of the box
+                //$scope.pollDetails[poll_index].hasVotedForPoll = alreadyVoted // this should work out of the box
+              //})
+            
+        }
+
 
         // this checks the hasAlreadyVoted[] array
         var updateHasAlreadyVoted = function() {
@@ -225,6 +253,30 @@
           //Poll.get({ id: $scope.id }, function(results) { // there is no need for any id when grabbing all the polls
           Poll.get( {}, function(results) {
           //$scope.polls = Poll.query( function() { //(results) {
+          
+              // need to make one array of newPollDetails objects that has all the info I want
+              //
+              $scope.newPollDetails = results.data.map(function(item) {
+                
+                var detail = {
+                  has_voted_for_option: [], // order is important in this list, eventually
+                  isPollAuthoredByUser: false,
+                  hasAlreadyVoted:      false, // has user voted for this poll
+                  isPollDeleted:        false, // has user deleted this poll
+                  img:                  "http://isigned.org/images/anonymous.png"
+                }
+                
+                return {
+                  item:   item,  // contains info grabbed from server
+                  detail: detail
+                }
+              })          
+          
+              $scope.newPollDetails.forEach(function(pollDetail) {
+                _updateHasAlreadyVoted(pollDetail)
+              })
+          
+              
               $scope.polls = results.data
               $scope.num_polls = $scope.polls.length
               // lets go through all the polls and see if the user has already voted by inspecting the votes
@@ -235,6 +287,12 @@
               initIsPollDeleted()
               //console.log("Poll results")
               //console.log($scope.polls)
+              
+
+              
+              
+              console.log($scope.newPollDetails)
+              
           })
         }
  
