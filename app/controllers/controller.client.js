@@ -321,9 +321,7 @@
           
               
               $scope.polls = results.data
-              $scope.num_polls = $scope.polls.length // this should still work?????????????
-              console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-              console.log($scope.polls.length)
+              $scope.num_polls = $scope.newPollDetails.length //$scope.polls.length // this should still work?????????????
               
               
               // lets go through all the polls and see if the user has already voted by inspecting the votes
