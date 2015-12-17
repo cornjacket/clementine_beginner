@@ -51,7 +51,13 @@
                   });
         };
     
-
+        var _setGithubUserImage = function(username, pollDetail) { // dont like the index method, change later
+          return $http.get("https://api.github.com/users/" + username)
+                  .then(function(response){
+                     console.log(response.data.avatar_url)
+                     pollDetail.detail.img = response.data.avatar_url
+                  });
+        };
 
         var initPollDetails = function() {
             
@@ -274,6 +280,7 @@
           
               $scope.newPollDetails.forEach(function(pollDetail) {
                 _updateHasAlreadyVoted(pollDetail)
+                _setGithubUserImage(pollDetail.item.author.username,pollDetail) // parametes can be merged
               })
           
               

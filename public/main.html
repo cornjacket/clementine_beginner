@@ -123,7 +123,8 @@
                       asked by {{pollDetail.item.author.username}} on {{pollDetail.item.created_at | date }}
                     </div>
                     <div class="signature-bottom col-md-offset-8 col-md-3 small-text">
-                      <img ng-src={{pollDetails[$index].img}} alt="poll creator" height="30" width="30">
+                      <!--<img ng-src={{pollDetails[$index].img}} alt="poll creator" height="30" width="30">-->
+                      <img ng-src={{pollDetail.detail.img}} alt="poll creator" height="30" width="30">
                       <a class="stars" title='{{user_lookup[item.author.username].polls_created}} polls'>
                         <span>{{user_lookup[pollDetail.item.author.username].polls_created}} </span>
                         <span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
