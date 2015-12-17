@@ -66,7 +66,7 @@
                     new_poll_votes.push(vote_ary.length)
                 })
                 //$scope.aggregate_votes.push(new_poll_votes)
-                pollDetail.details.aggregate_votes.push(new_poll_votes)
+                pollDetail.detail.aggregate_votes.push(new_poll_votes)
               //})
 
         }
@@ -304,7 +304,7 @@
                   hasAlreadyVoted:      false, // has user voted for this poll
                   isPollDeleted:        false, // has user deleted this poll
                   img:                  "http://isigned.org/images/anonymous.png",
-                  aggregate_votes:      0
+                  aggregate_votes:      []
                 }
                 
                 return {
@@ -322,6 +322,9 @@
               
               $scope.polls = results.data
               $scope.num_polls = $scope.polls.length // this should still work?????????????
+              console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+              console.log($scope.polls.length)
+              
               
               // lets go through all the polls and see if the user has already voted by inspecting the votes
               initPollDetails()
