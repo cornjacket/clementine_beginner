@@ -74,7 +74,7 @@
             
             <!--<div ng-repeat ="item in polls">-->
             <div ng-repeat ="pollDetail in newPollDetails">
-              <div ng-show="!isPollDeleted[$index] && (displayAllPolls || (!displayAllPolls && isPollAuthoredByUser[$index]))">
+              <div ng-show="!pollDetail.detail.isPollDeleted && (displayAllPolls || (!displayAllPolls && pollDetail.detail.isPollAuthoredByUser))">
                 
                 
                 <div class="row">
@@ -90,7 +90,7 @@
                     <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
                     <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>-->
                     <div class="col-md-1">
-                      <a ng-click="deletePoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && isPollAuthoredByUser[$index]" role="button">X</a>
+                      <a ng-click="deletePoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && pollDetail.detail.isPollAuthoredByUser" role="button">X</a>
                     </div>
                   </div>
                   
@@ -101,7 +101,6 @@
                         <div class="col-md-offset-4 col-md-1">
                           <a ng-hide="pollDetails[$parent.$index].hasVotedForPoll" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
                           <p class="poll-option text-center" ng-show="pollDetail.detail.hasVotedForPoll" ng-class="{ 'user_voted': pollDetail.detail.has_voted_for_option[$index] }">
-                             <!--<ng-pluralize count="aggregate_votes[$parent.$index][$index]" when="{ -->
                              <ng-pluralize count="pollDetail.detail.aggregate_votes[$index]" when="{ 
                                '1': '1 vote', 
                                'other': '{} votes'}">
@@ -151,7 +150,6 @@
         <!--Nav Bar -->
         <nav class="wrapper col-md-3 ng-cloak">
           <div class="ng-cloak">
-            <!--<h4>{{num_polls}} Polls, {{num_users}} Users, and {{num_votes}} Votes</h4>-->
             <h3>{{num_polls}} Polls, {{num_votes}} Votes</h3>
             <button ng-show="isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
             <hr /> 

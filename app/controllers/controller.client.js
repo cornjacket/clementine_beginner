@@ -165,6 +165,15 @@
             })
         }
 
+
+        // Becareful, user has to be defined to run this function
+        // fill $scope.pollAuthoredByUser which is used in view
+        var _determinePollAuthoredByUser = function(pollDetail){
+          console.log("_determinePollsAuthoredByUser() invoked")
+          pollDetail.detail.isPollAuthoredByUser = $scope.isLoggedIn  ? (pollDetail.item.author.github_id === $scope.id) : false
+        }
+
+
         // Becareful, user has to be defined to run this function
         // fill $scope.pollAuthoredByUser which is used in view
         var determinePollsAuthoredByUser = function(){
@@ -317,12 +326,12 @@
                 _updateHasAlreadyVoted(pollDetail)
                 _setGithubUserImage(pollDetail.item.author.username,pollDetail) // parametes can be merged
                 _countVotes(pollDetail)
+                _determinePollAuthoredByUser(pollDetail)
               })
           
               
               $scope.polls = results.data
-              $scope.num_polls = $scope.newPollDetails.length //$scope.polls.length // this should still work?????????????
-              
+              $scope.num_polls = $scope.newPollDetails.length 
               
               // lets go through all the polls and see if the user has already voted by inspecting the votes
               initPollDetails()
