@@ -45,9 +45,6 @@
 
 
 
-
-
-
         var _countVotes = function(pollDetail) {
             
            // iterate through each poll and then iterate through each votes subarray and sum and store
@@ -57,7 +54,6 @@
            // Note that now I am storing the vote count so we dont need to count votes. ie. following code
            // can be simplified. 
            console.log("countVotes() invoked")
-              //$scope.polls.forEach(function(item,poll_index,ary) {
                 console.log(pollDetail.item.poll.question)
                 var new_poll_votes = new Array()
                 console.log("Voting list")
@@ -65,16 +61,9 @@
                     console.log(vote_index+" "+vote_ary)
                     new_poll_votes.push(vote_ary.length)
                 })
-                //$scope.aggregate_votes.push(new_poll_votes)
-                //pollDetail.detail.aggregate_votes.push(new_poll_votes)
                 pollDetail.detail.aggregate_votes = new_poll_votes
-              //})
 
         }
-
-
-
-
 
 
 
@@ -85,7 +74,8 @@
                      $scope.pollDetails[poll_index].img = response.data.avatar_url
                   });
         };
-    
+
+
         var _setGithubUserImage = function(username, pollDetail) { // dont like the index method, change later
           return $http.get("https://api.github.com/users/" + username)
                   .then(function(response){
@@ -93,6 +83,7 @@
                      pollDetail.detail.img = response.data.avatar_url
                   });
         };
+
 
         var initPollDetails = function() {
             
@@ -158,6 +149,8 @@
               })
             
         }
+
+
 
         var initIsPollDeleted = function() {
           console.log("initIsPollDeleted() invoked")
@@ -237,12 +230,7 @@
               $scope.publicRepos = results.publicRepos
               $scope.isLoggedIn = results.username !== undefined // testing - why is a html page being sent to client
               
-              // This is getting unwieldy. Need to refactor code. I should just attach the results
-              // object to $scope.user and then change the html references.
-              // I can also attach pollDetails to a more_details field of $scope.user
-              // I should be able to do this soon. And massage around the problem I have with
-              // my database update mechanism.
-              
+
               console.log("isLoggedIn = "+$scope.isLoggedIn)
               console.log("username = "+results.username)
               console.log("name")
@@ -276,7 +264,7 @@
                   'polls_voted':  user.polls.num_voted
                 }
                 // a separate array having all this information is useful when using
-                // ng-repeat with filters
+                // ng-repeat with filters for the scoreboard
                 $scope.score_board.push({
                   'username':      user.github.username,
                   'displayName':   user.github.displayName,
@@ -426,7 +414,21 @@
               console.log("ERROR: vote(): trying to vote when hasVotedForPoll["+poll_number+"] === "+$scope.pollDetails[poll_number].hasVotedForPoll)
           }
         }
-
+        $scope._deletePoll = function(pollDetail) {
+            // need a safety precaution to check if user is author of poll to delete
+            if ($scope.id === pollDetail.item.author.github_id) {
+            // i could also put up a pop up confirming the deletion - not sure
+            console.log("deletePoll() invoked")
+            pollDetail.detail.isPollDeleted = true
+            $scope.num_polls--
+            Poll.delete({ id:pollDetail.item._id }, update_user_lookup);   
+            } else {
+                // I can envision this happening while using $index
+                console.log("ERROR: deletePoll. Trying to delete a poll by non-author")
+                console.log($scope.id)
+                console.log(pollDetail.item.author.github_id)
+            }
+        }
 
 
 

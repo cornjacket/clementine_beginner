@@ -90,7 +90,7 @@
                     <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
                     <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>-->
                     <div class="col-md-1">
-                      <a ng-click="deletePoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && pollDetail.detail.isPollAuthoredByUser" role="button">X</a>
+                      <a ng-click="_deletePoll(pollDetail)" class="btn btn-default btn-xs" ng-show="isLoggedIn && pollDetail.detail.isPollAuthoredByUser" role="button">X</a>
                     </div>
                   </div>
                   
