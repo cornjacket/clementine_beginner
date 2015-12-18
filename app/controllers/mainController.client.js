@@ -10,63 +10,62 @@
         $scope.displayAllPolls = true
         $scope.num_polls       = 0 
         $scope.isLoggedIn      = false
-        $scope.newPollDetails  = [] 
+        $scope.polls           = [] 
         
         console.log("CLIENT HAS STARTED")
 
-        var _countVotes = function(pollDetail) {
+        var countVotes = function(poll) {
             
            // iterate through each votes subarray and sum and store
            // note that each votes[] subarray contains the id's for users that have voted for that respected
            // option. Therefore determining the vote count equates to taking the length of the array.
-           
            // Note that now I am storing the vote count so we dont need to count votes. ie. following code
            // can be simplified. 
            console.log("countVotes() invoked")
-                console.log(pollDetail.item.poll.question)
+                console.log(poll.item.poll.question)
                 var new_poll_votes = new Array()
                 console.log("Voting list")
-                pollDetail.item.poll.votes.forEach(function(vote_ary, vote_index, parent_ary) {
+                poll.item.poll.votes.forEach(function(vote_ary, vote_index, parent_ary) {
                     console.log(vote_index+" "+vote_ary)
                     new_poll_votes.push(vote_ary.length)
                 })
-                pollDetail.aggregate_votes = new_poll_votes
+                poll.aggregate_votes = new_poll_votes
 
         }
 
 
-        var _setGithubUserImage = function(username, pollDetail) { // dont like the index method, change later
-          return $http.get("https://api.github.com/users/" + username)
+        var setGithubUserImage = function(poll) {
+          return $http.get("https://api.github.com/users/" + poll.item.author.username)
                   .then(function(response){
                      console.log(response.data.avatar_url)
-                     pollDetail.img = response.data.avatar_url
+                     poll.img = response.data.avatar_url
                   });
         };
 
-        var _updateHasAlreadyVoted = function(pollDetail) { // should take id as a parameter
+        var updateHasAlreadyVoted = function(poll) { // should take id as a parameter
             
             console.log("_updateHasAlreadyVoted() invoked")
             console.log("SCOPE.ID = "+$scope.id)
                 var alreadyVoted = false
                 
-                pollDetail.item.poll.votes.forEach(function(vote_ary, vote_index, parent_ary) {
+                poll.item.poll.votes.forEach(function(vote_ary, vote_index, parent_ary) {
                     if (vote_ary.indexOf($scope.id) != -1) {
-                        pollDetail.has_voted_for_option[vote_index] = true
+                        poll.has_voted_for_option[vote_index] = true
                         alreadyVoted = true
                     } else {
-                        pollDetail.has_voted_for_option[vote_index] = false
+                        poll.has_voted_for_option[vote_index] = false
                     }
                 })
-                pollDetail.hasVotedForPoll = alreadyVoted // this should work out of the box
+                poll.hasVotedForPoll = alreadyVoted // this should work out of the box
             
         }
 
 
         // Becareful, user has to be defined to run this function
         // fill $scope.pollAuthoredByUser which is used in view
-        var _determinePollAuthoredByUser = function(pollDetail){
+        var determinePollAuthoredByUser = function(poll){
           console.log("_determinePollsAuthoredByUser() invoked")
-          pollDetail.isPollAuthoredByUser = $scope.isLoggedIn  ? (pollDetail.item.author.github_id === $scope.id) : false
+          poll.isPollAuthoredByUser = $scope.isLoggedIn  ? (poll.item.author.github_id === $scope.id) : false
         }
 
 
@@ -178,9 +177,8 @@
           Poll.get( {}, function(results) {
           //$scope.polls = Poll.query( function() { //(results) {
           
-              // need to make one array of newPollDetails objects that has all the info I want
-              //
-              $scope.newPollDetails = results.data.map(function(item) {
+              // need to make one array of objects that has all the info
+              $scope.polls = results.data.map(function(item) {
                 
                 return {
                   item:                 item,  // contains info grabbed from server
@@ -193,18 +191,19 @@
                 }
               })          
           
-              $scope.newPollDetails.forEach(function(pollDetail) {
-                _updateHasAlreadyVoted(pollDetail)
-                _setGithubUserImage(pollDetail.item.author.username,pollDetail) // parametes can be merged
-                _countVotes(pollDetail)
-                _determinePollAuthoredByUser(pollDetail)
+              $scope.polls.forEach(function(poll) {
+                updateHasAlreadyVoted(poll)
+                setGithubUserImage(poll) // parameters can be merged
+                countVotes(poll)
+                determinePollAuthoredByUser(poll)
               })
           
               
-              $scope.polls = results.data
-              $scope.num_polls = $scope.newPollDetails.length 
+              //$scope.polls = results.data
+              $scope.num_polls = $scope.polls.length 
 
-              console.log($scope.newPollDetails)
+              console.log("HERE NOW")
+              console.log($scope.polls)
               
           })
         }
@@ -220,41 +219,41 @@
         // Now vote() explicitly checks to see whether or not the user has voted on a poll instead of
         // assuming the gui will not display the vote button. We should assume there will be bugs in the code
         // and that we will need multiple safeguards to prevent voter fraud. :)
-        $scope._vote = function(pollDetail, option_number) {
+        $scope.vote = function(poll, option_number) {
           console.log("vote(): invoked") 
-          if (pollDetail.hasVotedForPoll === false) {
-            if (pollDetail.item.poll.votes[option_number].indexOf($scope.id) === -1) {
-              pollDetail.item.poll.votes[option_number].push($scope.id)
+          if (poll.hasVotedForPoll === false) {
+            if (poll.item.poll.votes[option_number].indexOf($scope.id) === -1) {
+              poll.item.poll.votes[option_number].push($scope.id)
               console.log("You just voted for poll XXX option "+option_number)
-              pollDetail.hasVotedForPoll = true
-              pollDetail.has_voted_for_option[option_number] = true
-              pollDetail.aggregate_votes[option_number]++ 
+              poll.hasVotedForPoll = true
+              poll.has_voted_for_option[option_number] = true
+              poll.aggregate_votes[option_number]++ 
               // Now call update passing in the ID first then the object you are updating
               // implementing update in this manner is dangerous. there is a contention between 2 different users
-              Poll.update({ id:pollDetail.item._id }, pollDetail.item, update_user_lookup);          
+              Poll.update({ id:poll.item._id }, poll.item, update_user_lookup);          
             } else {
                 console.log("ERROR: vote(): trying to vote when votes array already contains user.id")
-                console.log("ERROR: "+pollDetail.item.poll.votes[option_number]+" "+$scope.id)
+                console.log("ERROR: "+poll.item.poll.votes[option_number]+" "+$scope.id)
             }
           } else {
-              console.log("ERROR: vote(): trying to vote when hasVotedForPoll === "+pollDetail.hasVotedForPoll)
+              console.log("ERROR: vote(): trying to vote when hasVotedForPoll === "+poll.hasVotedForPoll)
           }
         }
 
         
-        $scope._deletePoll = function(pollDetail) {
+        $scope.deletePoll = function(poll) {
             // need a safety precaution to check if user is author of poll to delete
-            if ($scope.id === pollDetail.item.author.github_id) {
+            if ($scope.id === poll.item.author.github_id) {
             // i could also put up a pop up confirming the deletion - not sure - see angular directives video
             console.log("deletePoll() invoked")
-            pollDetail.isPollDeleted = true
+            poll.isPollDeleted = true
             $scope.num_polls--
-            Poll.delete({ id:pollDetail.item._id }, update_user_lookup);   
+            Poll.delete({ id:poll.item._id }, update_user_lookup);   
             } else {
                 // I can envision this happening while using $index
                 console.log("ERROR: deletePoll. Trying to delete a poll by non-author")
                 console.log($scope.id)
-                console.log(pollDetail.item.author.github_id)
+                console.log(poll.item.author.github_id)
             }
         }
 

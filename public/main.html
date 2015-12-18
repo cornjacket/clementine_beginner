@@ -73,8 +73,8 @@
             
             
             <!--<div ng-repeat ="item in polls">-->
-            <div ng-repeat ="pollDetail in newPollDetails">
-              <div ng-show="!pollDetail.isPollDeleted && (displayAllPolls || (!displayAllPolls && pollDetail.isPollAuthoredByUser))">
+            <div ng-repeat ="poll in polls">
+              <div ng-show="!poll.isPollDeleted && (displayAllPolls || (!displayAllPolls && poll.isPollAuthoredByUser))">
                 
                 
                 <div class="row">
@@ -82,7 +82,7 @@
                 
                   <div class="col-md-offset-4 col-md-7">
                     <!--<p class='h4'>{{ item.poll.question }}</p>-->
-                    <a class="h4 poll-question" href="/#/poll/{{pollDetail.item._id}}"><span>{{pollDetail.item.poll.question}}</span></a>
+                    <a class="h4 poll-question" href="/#/poll/{{poll.item._id}}"><span>{{poll.item.poll.question}}</span></a>
 
                   </div>
                   <div id="_upDownFlagX">
@@ -90,48 +90,46 @@
                     <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
                     <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>-->
                     <div class="col-md-1">
-                      <a ng-click="_deletePoll(pollDetail)" class="btn btn-default btn-xs" ng-show="isLoggedIn && pollDetail.isPollAuthoredByUser" role="button">X</a>
+                      <a ng-click="deletePoll(poll)" class="btn btn-default btn-xs" ng-show="isLoggedIn && poll.isPollAuthoredByUser" role="button">X</a>
                     </div>
                   </div>
                   
 </div><!-- row -->                  
                 
-                    <div ng-repeat="option in pollDetail.item.poll.options track by $index">
+                    <div ng-repeat="option in poll.item.poll.options track by $index">
                       <div class="row"> 
                         <div class="col-md-offset-4 col-md-1">
-                          <!--<a ng-hide="pollDetail.hasVotedForPoll" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>-->
-                          <a ng-hide="pollDetail.hasVotedForPoll" ng-click="_vote(pollDetail, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
-                          <p class="poll-option text-center" ng-show="pollDetail.hasVotedForPoll" ng-class="{ 'user_voted': pollDetail.has_voted_for_option[$index] }">
-                             <ng-pluralize count="pollDetail.aggregate_votes[$index]" when="{ 
+                          <a ng-hide="poll.hasVotedForPoll" ng-click="vote(poll, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
+                          <p class="poll-option text-center" ng-show="poll.hasVotedForPoll" ng-class="{ 'user_voted': poll.has_voted_for_option[$index] }">
+                             <ng-pluralize count="poll.aggregate_votes[$index]" when="{ 
                                '1': '1 vote', 
                                'other': '{} votes'}">
                              </ng-pluralize>
                           </p>
                         </div>
                         <div class="col-md-7"> 
-                          <p class="poll-option" ng-class="{ 'user_voted': pollDetail.has_voted_for_option[$index] }">{{ option }}</p>
+                          <p class="poll-option" ng-class="{ 'user_voted': poll.has_voted_for_option[$index] }">{{ option }}</p>
                         </div>      
                       </div>                  
                     </div>      
                   
                   <div class="row tag-group">
                     <div class="col-md-offset-5 col-md-3">
-                      <div ng-repeat="tag in pollDetail.item.poll.tags" class="tag small-text">
+                      <div ng-repeat="tag in poll.item.poll.tags" class="tag small-text">
                         <span >{{tag}}</span>
                       </div>
                     </div>
                     <div class="signature-top col-md-3 small-text">
-                      asked by {{pollDetail.item.author.username}} on {{pollDetail.item.created_at | date }}
+                      asked by {{poll.item.author.username}} on {{poll.item.created_at | date }}
                     </div>
                     <div class="signature-bottom col-md-offset-8 col-md-3 small-text">
-                      <!--<img ng-src={{pollDetails[$index].img}} alt="poll creator" height="30" width="30">-->
-                      <img ng-src={{pollDetail.img}} alt="poll creator" height="30" width="30">
-                      <a class="stars" title='{{user_lookup[pollDetail.item.author.username].polls_created}} polls'>
-                        <span>{{user_lookup[pollDetail.item.author.username].polls_created}} </span>
+                      <img ng-src={{poll.img}} alt="poll creator" height="30" width="30">
+                      <a class="stars" title='{{user_lookup[poll.item.author.username].polls_created}} polls'>
+                        <span>{{user_lookup[poll.item.author.username].polls_created}} </span>
                         <span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
                       </a>
-                      <a class="stars" title='{{user_lookup[pollDetail.item.author.username].polls_voted}} votes'>
-                        <span>{{user_lookup[pollDetail.item.author.username].polls_voted}} </span>
+                      <a class="stars" title='{{user_lookup[poll.item.author.username].polls_voted}} votes'>
+                        <span>{{user_lookup[poll.item.author.username].polls_voted}} </span>
                         <span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
                       </a>
                     </div>
