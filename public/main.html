@@ -99,7 +99,8 @@
                     <div ng-repeat="option in pollDetail.item.poll.options track by $index">
                       <div class="row"> 
                         <div class="col-md-offset-4 col-md-1">
-                          <a ng-hide="pollDetails[$parent.$index].hasVotedForPoll" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
+                          <!--<a ng-hide="pollDetail.detail.hasVotedForPoll" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>-->
+                          <a ng-hide="pollDetail.detail.hasVotedForPoll" ng-click="_vote(pollDetail, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
                           <p class="poll-option text-center" ng-show="pollDetail.detail.hasVotedForPoll" ng-class="{ 'user_voted': pollDetail.detail.has_voted_for_option[$index] }">
                              <ng-pluralize count="pollDetail.detail.aggregate_votes[$index]" when="{ 
                                '1': '1 vote', 
@@ -125,11 +126,11 @@
                     <div class="signature-bottom col-md-offset-8 col-md-3 small-text">
                       <!--<img ng-src={{pollDetails[$index].img}} alt="poll creator" height="30" width="30">-->
                       <img ng-src={{pollDetail.detail.img}} alt="poll creator" height="30" width="30">
-                      <a class="stars" title='{{user_lookup[item.author.username].polls_created}} polls'>
+                      <a class="stars" title='{{user_lookup[pollDetail.item.author.username].polls_created}} polls'>
                         <span>{{user_lookup[pollDetail.item.author.username].polls_created}} </span>
                         <span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
                       </a>
-                      <a class="stars" title='{{user_lookup[item.author.username].polls_voted}} votes'>
+                      <a class="stars" title='{{user_lookup[pollDetail.item.author.username].polls_voted}} votes'>
                         <span>{{user_lookup[pollDetail.item.author.username].polls_voted}} </span>
                         <span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
                       </a>

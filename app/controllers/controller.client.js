@@ -66,7 +66,8 @@
                     new_poll_votes.push(vote_ary.length)
                 })
                 //$scope.aggregate_votes.push(new_poll_votes)
-                pollDetail.detail.aggregate_votes.push(new_poll_votes)
+                //pollDetail.detail.aggregate_votes.push(new_poll_votes)
+                pollDetail.detail.aggregate_votes = new_poll_votes
               //})
 
         }
@@ -310,7 +311,7 @@
                 var detail = {
                   has_voted_for_option: [], // order is important in this list, eventually
                   isPollAuthoredByUser: false,
-                  hasAlreadyVoted:      false, // has user voted for this poll
+                  hasVotedForPoll:      false, // if current user has voted on poll
                   isPollDeleted:        false, // has user deleted this poll
                   img:                  "http://isigned.org/images/anonymous.png",
                   aggregate_votes:      []
@@ -356,6 +357,40 @@
           $scope.getUsers()  
         }
 
+
+
+        // Now vote() explicitly checks to see whether or not the user has voted on a poll instead of
+        // assuming the gui will not display the vote button. We should assume there will be bugs in the code
+        // and that we will need multiple safeguards to prevent voter fraud. :)
+        $scope._vote = function(pollDetail, option_number) {
+          console.log("vote(): invoked") 
+          if (pollDetail.detail.hasVotedForPoll === false) {
+            if (pollDetail.item.poll.votes[option_number].indexOf($scope.id) === -1) {
+              pollDetail.item.poll.votes[option_number].push($scope.id)
+              console.log("You just voted for poll XXX option "+option_number)
+              pollDetail.detail.hasVotedForPoll = true
+              pollDetail.detail.has_voted_for_option[option_number] = true
+              // update the count - for now lets just call count, later I can forcibly increment aggregate_count ary
+              pollDetail.detail.aggregate_votes[option_number]++  // maybe this should be a function
+
+              // Now call update passing in the ID first then the object you are updating
+              // implementing update in this manner is dangerous. there is a contention between 2 different users
+              Poll.update({ id:pollDetail.item._id }, pollDetail.item, update_user_lookup);          
+              // currently no callback for update. hasVotedForPoll get updated in client prior to the Poll.update call
+              //console.log("vote(): hasVotedForPoll[]")
+              //console.log($scope.hasVotedForPoll)
+            } else {
+                console.log("ERROR: vote(): trying to vote when votes array already contains user.id")
+                console.log("ERROR: "+pollDetail.item.poll.votes[option_number]+" "+$scope.id)
+            }
+          } else {
+              console.log("ERROR: vote(): trying to vote when hasVotedForPoll === "+pollDetail.detail.hasVotedForPoll)
+          }
+        }
+
+
+
+
  
         // Now vote() explicitly checks to see whether or not the user has voted on a poll instead of
         // assuming the gui will not display the vote button. We should assume there will be bugs in the code
@@ -391,6 +426,9 @@
               console.log("ERROR: vote(): trying to vote when hasVotedForPoll["+poll_number+"] === "+$scope.pollDetails[poll_number].hasVotedForPoll)
           }
         }
+
+
+
 
         $scope.deletePoll = function(poll_index) {
             // need a safety precaution to check if user is author of poll to delete
