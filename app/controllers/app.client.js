@@ -8,7 +8,7 @@
         $routeProvider
           .when("/", {
              templateUrl: "public/main.html",
-             controller: "clientController"
+             controller: "mainController"
           })
           .when("/poll/:poll_id", {
              templateUrl: "public/poll.html",

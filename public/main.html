@@ -74,7 +74,7 @@
             
             <!--<div ng-repeat ="item in polls">-->
             <div ng-repeat ="pollDetail in newPollDetails">
-              <div ng-show="!pollDetail.detail.isPollDeleted && (displayAllPolls || (!displayAllPolls && pollDetail.detail.isPollAuthoredByUser))">
+              <div ng-show="!pollDetail.isPollDeleted && (displayAllPolls || (!displayAllPolls && pollDetail.isPollAuthoredByUser))">
                 
                 
                 <div class="row">
@@ -90,7 +90,7 @@
                     <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
                     <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>-->
                     <div class="col-md-1">
-                      <a ng-click="_deletePoll(pollDetail)" class="btn btn-default btn-xs" ng-show="isLoggedIn && pollDetail.detail.isPollAuthoredByUser" role="button">X</a>
+                      <a ng-click="_deletePoll(pollDetail)" class="btn btn-default btn-xs" ng-show="isLoggedIn && pollDetail.isPollAuthoredByUser" role="button">X</a>
                     </div>
                   </div>
                   
@@ -99,17 +99,17 @@
                     <div ng-repeat="option in pollDetail.item.poll.options track by $index">
                       <div class="row"> 
                         <div class="col-md-offset-4 col-md-1">
-                          <!--<a ng-hide="pollDetail.detail.hasVotedForPoll" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>-->
-                          <a ng-hide="pollDetail.detail.hasVotedForPoll" ng-click="_vote(pollDetail, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
-                          <p class="poll-option text-center" ng-show="pollDetail.detail.hasVotedForPoll" ng-class="{ 'user_voted': pollDetail.detail.has_voted_for_option[$index] }">
-                             <ng-pluralize count="pollDetail.detail.aggregate_votes[$index]" when="{ 
+                          <!--<a ng-hide="pollDetail.hasVotedForPoll" ng-click="vote($parent.$index, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>-->
+                          <a ng-hide="pollDetail.hasVotedForPoll" ng-click="_vote(pollDetail, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
+                          <p class="poll-option text-center" ng-show="pollDetail.hasVotedForPoll" ng-class="{ 'user_voted': pollDetail.has_voted_for_option[$index] }">
+                             <ng-pluralize count="pollDetail.aggregate_votes[$index]" when="{ 
                                '1': '1 vote', 
                                'other': '{} votes'}">
                              </ng-pluralize>
                           </p>
                         </div>
                         <div class="col-md-7"> 
-                          <p class="poll-option" ng-class="{ 'user_voted': pollDetail.detail.has_voted_for_option[$index] }">{{ option }}</p>
+                          <p class="poll-option" ng-class="{ 'user_voted': pollDetail.has_voted_for_option[$index] }">{{ option }}</p>
                         </div>      
                       </div>                  
                     </div>      
@@ -125,7 +125,7 @@
                     </div>
                     <div class="signature-bottom col-md-offset-8 col-md-3 small-text">
                       <!--<img ng-src={{pollDetails[$index].img}} alt="poll creator" height="30" width="30">-->
-                      <img ng-src={{pollDetail.detail.img}} alt="poll creator" height="30" width="30">
+                      <img ng-src={{pollDetail.img}} alt="poll creator" height="30" width="30">
                       <a class="stars" title='{{user_lookup[pollDetail.item.author.username].polls_created}} polls'>
                         <span>{{user_lookup[pollDetail.item.author.username].polls_created}} </span>
                         <span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
