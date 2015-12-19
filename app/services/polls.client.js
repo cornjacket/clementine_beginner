@@ -136,15 +136,30 @@
       }
     }
 
+    var deletePoll = function(poll, id) {
+        // need a safety precaution to check if user is author of poll to delete
+        if (id === poll.item.author.github_id) {
+        // i could also put up a pop up confirming the deletion - not sure - see angular directives video
+        console.log("deletePoll() invoked")
+        poll.isPollDeleted = true
+        //$scope.num_polls--
+        return Poll.delete({ id:poll.item._id }).$promise //, update_user_lookup);   
+        } else {
+            // I can envision this happening while using $index
+            console.log("ERROR: deletePoll. Trying to delete a poll by non-author")
+            console.log(id)
+            console.log(poll.item.author.github_id)
+        }
+    }
 
 
-/////////////////////////////////////////////////////////////////////
     
  
     
     return {
-      getPolls: getPolls,
-      vote:     vote
+      getPolls:   getPolls,
+      deletePoll: deletePoll,
+      vote:       vote
     };
     
   };

@@ -121,35 +121,17 @@
           .then(update_user_lookup)
         }
 
+        $scope.deletePoll = function(poll) {
+          pollService.deletePoll(poll, $scope.id)
+          .then(update_user_lookup)
+        }
+
+
+
 /*
 FOR NOW REMOVE VOTE() AND DELETE(). THIS SHOULD BE MOVED INTO THE SERVICE. BUT THEN I NEED TO MODIFY POLLS IN
 BOTH CONTROLLER AND IN THE SERVICE. SEEMS QUIRKY.
 
-        // Now vote() explicitly checks to see whether or not the user has voted on a poll instead of
-        // assuming the gui will not display the vote button. We should assume there will be bugs in the code
-        // and that we will need multiple safeguards to prevent voter fraud. :)
-        $scope.vote = function(poll, option_number) {
-          console.log("vote(): invoked") 
-          if (poll.hasVotedForPoll === false) {
-            if (poll.item.poll.votes[option_number].indexOf($scope.id) === -1) {
-              poll.item.poll.votes[option_number].push($scope.id)
-              console.log("You just voted for poll XXX option "+option_number)
-              poll.hasVotedForPoll = true
-              poll.has_voted_for_option[option_number] = true
-              poll.aggregate_votes[option_number]++ 
-              // Now call update passing in the ID first then the object you are updating
-              // implementing update in this manner is dangerous. there is a contention between 2 different users
-              Poll.update({ id:poll.item._id }, poll.item, update_user_lookup);          
-            } else {
-                console.log("ERROR: vote(): trying to vote when votes array already contains user.id")
-                console.log("ERROR: "+poll.item.poll.votes[option_number]+" "+$scope.id)
-            }
-          } else {
-              console.log("ERROR: vote(): trying to vote when hasVotedForPoll === "+poll.hasVotedForPoll)
-          }
-        }
-
-        
         $scope.deletePoll = function(poll) {
             // need a safety precaution to check if user is author of poll to delete
             if ($scope.id === poll.item.author.github_id) {
@@ -206,6 +188,7 @@ BOTH CONTROLLER AND IN THE SERVICE. SEEMS QUIRKY.
         $scope.getUser(function() {
           pollService.getPolls($scope.id).then(function(polls){
             $scope.polls = polls
+            $scope.num_polls = polls.length // this will need to be updated periodically
           })
         }); // logic inside of getPolls depends on getUser completing
 
