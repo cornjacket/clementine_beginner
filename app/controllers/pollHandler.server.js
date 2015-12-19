@@ -90,6 +90,8 @@ var Users = require('../models/users'); // TESTING
   this.updateVotes = function (req, res) {
         console.log("pollHandler.updateVotes() invoked")
         console.log(req.body._id)
+        console.log("req.body.poll")
+        console.log(req.body.poll)
         Polls
             .findOneAndUpdate({ '_id': req.body._id}, //"565e9c0e71c8197f6deed728" }, //req._id }, 
               { $set: 
@@ -114,6 +116,8 @@ var Users = require('../models/users'); // TESTING
 
 
 /////// Inserting Users.method in here due to troubles with using UserController
+console.log(req.user)
+
 
            Users
             .findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'polls.num_voted': 1 } })

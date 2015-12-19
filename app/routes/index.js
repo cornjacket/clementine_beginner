@@ -25,17 +25,17 @@ module.exports = function (app, passport) {
         res.sendFile(path + '/public/index.html');
     });
 
-    app.route('/login')
+/*    app.route('/login')
       .get(function (req, res) {
         res.sendFile(path + '/public/login.html');
     });
-        
-/*    app.route('/logout')
+*/        
+    app.route('/logout')
       .get(function (req, res) {
         req.logout();
         res.redirect('/');
     });
-*/    
+    
 
     app.route('/api/polls/new')
       .get(isLoggedIn, function (req, res) {

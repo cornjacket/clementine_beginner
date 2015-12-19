@@ -4,7 +4,8 @@
 
    angular
       .module('pollPosition')
-      .controller('mainController', ['$scope', '$resource', '$http', function ($scope, $resource, $http) {
+      .controller('mainController', ['$scope', '$resource', '$http', 'pollService',
+          function ($scope, $resource, $http, pollService) {
          
         $scope.pollHeader = "All Polls"
         $scope.displayAllPolls = true
@@ -14,70 +15,10 @@
         
         console.log("CLIENT HAS STARTED")
 
-        var countVotes = function(poll) {
-            
-           // iterate through each votes subarray and sum and store
-           // note that each votes[] subarray contains the id's for users that have voted for that respected
-           // option. Therefore determining the vote count equates to taking the length of the array.
-           // Note that now I am storing the vote count so we dont need to count votes. ie. following code
-           // can be simplified. 
-           console.log("countVotes() invoked")
-                console.log(poll.item.poll.question)
-                var new_poll_votes = new Array()
-                console.log("Voting list")
-                poll.item.poll.votes.forEach(function(vote_ary, vote_index, parent_ary) {
-                    console.log(vote_index+" "+vote_ary)
-                    new_poll_votes.push(vote_ary.length)
-                })
-                poll.aggregate_votes = new_poll_votes
-
-        }
-
-
-        var setGithubUserImage = function(poll) {
-          return $http.get("https://api.github.com/users/" + poll.item.author.username)
-                  .then(function(response){
-                     console.log(response.data.avatar_url)
-                     poll.img = response.data.avatar_url
-                  });
-        };
-
-        var updateHasAlreadyVoted = function(poll) { // should take id as a parameter
-            
-            console.log("_updateHasAlreadyVoted() invoked")
-            console.log("SCOPE.ID = "+$scope.id)
-                var alreadyVoted = false
-                
-                poll.item.poll.votes.forEach(function(vote_ary, vote_index, parent_ary) {
-                    if (vote_ary.indexOf($scope.id) != -1) {
-                        poll.has_voted_for_option[vote_index] = true
-                        alreadyVoted = true
-                    } else {
-                        poll.has_voted_for_option[vote_index] = false
-                    }
-                })
-                poll.hasVotedForPoll = alreadyVoted // this should work out of the box
-            
-        }
-
-
-        // Becareful, user has to be defined to run this function
-        // fill $scope.pollAuthoredByUser which is used in view
-        var determinePollAuthoredByUser = function(poll){
-          console.log("_determinePollsAuthoredByUser() invoked")
-          poll.isPollAuthoredByUser = $scope.isLoggedIn  ? (poll.item.author.github_id === $scope.id) : false
-        }
-
 
         var User = $resource('/api/user/:id');
 
         var Users = $resource('/api/users/:id'); // I need to revisit why this behavior is happening. Maybe inspect mean.js code
-
-        var Poll = $resource('/api/polls/:id', { id: '@_id' }, {
-                     update: {
-                       method: 'PUT' // this method issues a PUT request
-                     }
-                   })
 
         $scope.addOption = function () {
            console.log("$scope.addOption() invoked")
@@ -168,53 +109,21 @@
           })
         }
 
-
-// Technically I should be using Poll.query() since I am getting all the polls, though my implementation does work.
-// Something to refactor later. - but to make this change I believe that the Poll url should include :id
-        $scope.getPolls = function() {
-          console.log("getPolls() invoked")
-          //Poll.get({ id: $scope.id }, function(results) { // there is no need for any id when grabbing all the polls
-          Poll.get( {}, function(results) {
-          //$scope.polls = Poll.query( function() { //(results) {
-          
-              // need to make one array of objects that has all the info
-              $scope.polls = results.data.map(function(item) {
-                
-                return {
-                  item:                 item,  // contains info grabbed from server
-                  has_voted_for_option: [],    // order is important in this list, eventually
-                  isPollAuthoredByUser: false,
-                  hasVotedForPoll:      false, // if current user has voted on poll
-                  isPollDeleted:        false, // has user deleted this poll
-                  img:                  "http://isigned.org/images/anonymous.png",
-                  aggregate_votes:      []
-                }
-              })          
-          
-              $scope.polls.forEach(function(poll) {
-                updateHasAlreadyVoted(poll)
-                setGithubUserImage(poll) // parameters can be merged
-                countVotes(poll)
-                determinePollAuthoredByUser(poll)
-              })
-          
-              
-              //$scope.polls = results.data
-              $scope.num_polls = $scope.polls.length 
-
-              console.log("HERE NOW")
-              console.log($scope.polls)
-              
-          })
-        }
- 
         var update_user_lookup = function() {
           // this will update the polls_created, poll_voted stars. I could just 
           // update the $scope.user_lookup directly inside vote and inside deletePoll which would be faster
           $scope.getUsers()  
         }
 
+        $scope.vote = function(poll, option_number) {
+          console.log("mainController: vote() invoked, using id = "+$scope.id)
+          pollService.vote(poll, option_number, $scope.id)
+          .then(update_user_lookup)
+        }
 
+/*
+FOR NOW REMOVE VOTE() AND DELETE(). THIS SHOULD BE MOVED INTO THE SERVICE. BUT THEN I NEED TO MODIFY POLLS IN
+BOTH CONTROLLER AND IN THE SERVICE. SEEMS QUIRKY.
 
         // Now vote() explicitly checks to see whether or not the user has voted on a poll instead of
         // assuming the gui will not display the vote button. We should assume there will be bugs in the code
@@ -256,7 +165,7 @@
                 console.log(poll.item.author.github_id)
             }
         }
-
+*/
 
 /////////////////////////////
 
@@ -294,7 +203,11 @@
 
         $scope.initOptions()
         $scope.getUsers() // this will give us all the users so we can build our create/vote hash
-        $scope.getUser($scope.getPolls); // logic inside of getPolls depends on getUser completing
+        $scope.getUser(function() {
+          pollService.getPolls($scope.id).then(function(polls){
+            $scope.polls = polls
+          })
+        }); // logic inside of getPolls depends on getUser completing
 
       }]);
    
