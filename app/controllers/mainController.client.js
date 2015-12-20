@@ -119,16 +119,15 @@
   }
 
 
-
-      initOptions()
-      getUsers() // this will give us all the users so we can build our create/vote hash
-      getUser($scope.id).then(function() {
-        pollService.getPolls($scope.id).then(function(polls){
+  initOptions()
+  getUsers() // this will give us all the users so we can build our create/vote hash
+  getUser($scope.id).then(function() {
+      pollService.getPolls($scope.id).then(function(polls){
           $scope.polls = polls
           $scope.num_polls = polls.length // this will need to be updated periodically
-        })
-      }); // logic inside of getPolls depends on getUser completing
+      })
+  }); // logic inside of getPolls depends on getUser completing
 
-    }]);
+  }]);
    
 })();
