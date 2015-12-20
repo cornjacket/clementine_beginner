@@ -1,7 +1,21 @@
 (function() {
   var userService = function($resource) {
     
+    var User = $resource('/api/user/:id');
     var Users = $resource('/api/users/:id'); // I need to revisit why this behavior is happening. Maybe inspect mean.js code
+
+
+        // first time getUser is called it returns nothing
+        // i see a strange response when id is undefined but i dont see a match
+        // in the server console to get user
+        var getUser = function (id) {
+           console.log("getUser() invoked")
+           console.log("GETUSER() id = "+id)
+           return User.get({ id: id }).$promise
+             .then(function(results) {
+                 return results
+             })
+        }
 
 // Technically I should be using User.query() since I am getting all the users
 // but I had problems with that method when I tried with Poll.query
@@ -49,7 +63,8 @@
     
 
     return {
-      getUsers: getUsers
+      getUsers: getUsers,
+      getUser:  getUser
       
     };
     
