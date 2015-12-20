@@ -9,25 +9,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand nav-bar-menu-item" href="/#/">PollPosition</a>
+          <a class="navbar-brand nav-bar-menu-item" href="/#/">pollOverflow</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 
-          <a href="/auth/github" ng-hide="isLoggedIn"  title='Log in with GitHub'>
+          <a href="/auth/github" ng-hide="user.isLoggedIn"  title='Log in with GitHub'>
             <div class="btn pull-right" id="login-btn">
               <img src="public/img/github_32px.png" alt="github logo" />
             </div>
           </a>
           
-          <a ng-show="isLoggedIn" class="menu pull-right ng-cloak" href="/logout"><span>Logout</span></a>
-          <a ng-show="isLoggedIn" class="menu pull-right ng-cloak" href="">Welcome, <span>{{ name }}</span>! </a>
+          <a ng-show="user.isLoggedIn" class="menu pull-right ng-cloak" href="/logout"><span>Logout</span></a>
+          <a ng-show="user.isLoggedIn" class="menu pull-right ng-cloak" href="">Welcome, <span>{{ user.name }}</span>! </a>
         </div>
       </div>
     </nav>
 
 
-    <div ng-hide="isLoggedIn" class="container text-center">
-      <h4>Welcome to PollPosition. A place to make polls...</h4>
+    <div ng-hide="user.isLoggedIn" class="container text-center">
+      <h4>Welcome to pollOverflow. A place to make polls...</h4>
     </div>    
 
     <div ng-show="false" class="container ng-cloak">
@@ -56,9 +56,9 @@
            <div class="row">
             
             <div class="col-md-offset-4 col-md-8"> 
-              <h3>{{pollHeader}} <small ng-hide="isLoggedIn">- Please log in to vote.</small></h3>
+              <h3>{{pollHeader}} <small ng-hide="user.isLoggedIn">- Please log in to vote.</small></h3>
               <!-- Single button -->
-              <div ng-show="isLoggedIn" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
+              <div ng-show="user.isLoggedIn" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
                 <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
                   View <span class="caret"></span>
                 </button>
@@ -89,7 +89,7 @@
                     <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
                     <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>-->
                     <div class="col-md-1">
-                      <a ng-click="deletePoll(poll)" class="btn btn-default btn-xs" ng-show="isLoggedIn && poll.isPollAuthoredByUser" role="button">X</a>
+                      <a ng-click="deletePoll(poll)" class="btn btn-default btn-xs" ng-show="user.isLoggedIn && poll.isPollAuthoredByUser" role="button">X</a>
                     </div>
                   </div>
                   
@@ -98,7 +98,7 @@
                     <div ng-repeat="option in poll.item.poll.options track by $index">
                       <div class="row"> 
                         <div class="col-md-offset-4 col-md-1">
-                          <a ng-hide="poll.hasVotedForPoll" ng-click="vote(poll, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !isLoggedIn }" role="button">Vote</a>
+                          <a ng-hide="poll.hasVotedForPoll" ng-click="vote(poll, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !user.isLoggedIn }" role="button">Vote</a>
                           <p class="poll-option text-center" ng-show="poll.hasVotedForPoll" ng-class="{ 'user_voted': poll.has_voted_for_option[$index] }">
                              <ng-pluralize count="poll.aggregate_votes[$index]" when="{ 
                                '1': '1 vote', 
@@ -123,12 +123,12 @@
                     </div>
                     <div class="signature-bottom col-md-offset-8 col-md-3 small-text">
                       <img ng-src={{poll.img}} alt="poll creator" height="30" width="30">
-                      <a class="stars" title='{{user_lookup[poll.item.author.username].polls_created}} polls'>
-                        <span>{{user_lookup[poll.item.author.username].polls_created}} </span>
+                      <a class="stars" title='{{users.lookup[poll.item.author.username].polls_created}} polls'>
+                        <span>{{users.lookup[poll.item.author.username].polls_created}} </span>
                         <span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
                       </a>
-                      <a class="stars" title='{{user_lookup[poll.item.author.username].polls_voted}} votes'>
-                        <span>{{user_lookup[poll.item.author.username].polls_voted}} </span>
+                      <a class="stars" title='{{users.lookup[poll.item.author.username].polls_voted}} votes'>
+                        <span>{{users.lookup[poll.item.author.username].polls_voted}} </span>
                         <span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
                       </a>
                     </div>
@@ -148,8 +148,8 @@
         <!--Nav Bar -->
         <nav class="wrapper col-md-3 ng-cloak">
           <div class="ng-cloak">
-            <h3>{{num_polls}} Polls, {{num_votes}} Votes</h3>
-            <button ng-show="isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
+            <h3>{{num_polls}} Polls, {{users.num_votes}} Votes</h3>
+            <button ng-show="user.isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
             <hr /> 
           </div>
         	<div uib-collapse="isCollapsed" class="ng-cloak">
@@ -203,7 +203,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="user_details in score_board | orderBy:'-polls_voted' | limitTo:5">
+                      <tr ng-repeat="user_details in users.score_board | orderBy:'-polls_voted' | limitTo:5">
                         <td>{{$index+1}}</td>
                         <td>{{user_details.username}}</td>
                         <td>{{user_details.displayName}}</td>
@@ -236,7 +236,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="user_details in score_board | orderBy:'-polls_created' | limitTo:5">
+                      <tr ng-repeat="user_details in users.score_board | orderBy:'-polls_created' | limitTo:5">
                         <td>{{$index+1}}</td>
                         <td>{{user_details.username}}</td>
                         <td>{{user_details.displayName}}</td>

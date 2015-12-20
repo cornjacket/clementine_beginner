@@ -4,20 +4,18 @@
 
    angular
       .module('pollPosition')
-      .controller('mainController', ['$scope', '$resource', '$http', 'pollService', 'userService',
-          function ($scope, $resource, $http, pollService, userService) {
+      .controller('mainController', ['$scope', '$resource', '$http', 'Poll', 'User',
+          function ($scope, $resource, $http, Poll, User) {
          
         $scope.pollHeader = "All Polls"
         $scope.displayAllPolls = true
+        $scope.users           = {}
         $scope.num_polls       = 0 
-        $scope.isLoggedIn      = false
+        //$scope.user.isLoggedIn = false // will this generate an error
         $scope.polls           = [] 
         
         console.log("CLIENT HAS STARTED")
-
-
         
-
         $scope.addOption = function () {
            console.log("$scope.addOption() invoked")
            console.log($scope.new_poll_indices)
@@ -25,7 +23,7 @@
         }
         
         var initOptions = function() {
-          console.log("$scope.initOptions() invoked")
+          console.log("initOptions() invoked")
           $scope.new_poll_indices = [ 0, 1 ]
           $scope.next_poll_option = 2
           $scope.question         = "here is the question"
@@ -35,37 +33,16 @@
 
         $scope.cancelNewPoll = function() {
           console.log("$scope.cancelNewPoll() invoked")
-          $scope.initOptions()
+          initOptions()
           $scope.isCollapsed = true
           console.log($scope.new_poll_indices)
           console.log($scope.option)
         }
      
 
-        var getUser = function() {
-          return userService.getUser().then(function(data){ // returned so that it can be then-able
-              console.log("User results")
-              console.log(data)
-              $scope.name = (data.displayName !== null) ? data.displayName : data.username
-              $scope.displayName = (data.displayName !== null) ? data.displayName : "none"
-              $scope.id = data.id
-              $scope.username = data.username
-              $scope.publicRepos = data.publicRepos
-              $scope.isLoggedIn = data.username !== undefined // testing - why is a html page being sent to client
-              
-              //console.log("isLoggedIn = "+$scope.isLoggedIn)
-              //console.log("username = "+results.username)
-              //console.log("name")
-              //console.log($scope.name)
-          })
-        }        
-
         var getUsers = function() {
-          return userService.getUsers().then(function(data) {
-            $scope.user_lookup = data.user_lookup
-            $scope.score_board = data.score_board
-            $scope.num_users   = data.num_users
-            $scope.num_votes   = data.num_votes
+          return User.all().then(function(data) {
+            $scope.users = data
           })
         }
 
@@ -76,13 +53,13 @@
         }
 
         $scope.vote = function(poll, option_number) {
-          console.log("mainController: vote() invoked, using id = "+$scope.id)
-          pollService.vote(poll, option_number, $scope.id)
+          console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
+          Poll.vote(poll, option_number, $scope.user.id)
           .then(update_user_lookup)
         }
 
         $scope.deletePoll = function(poll) {
-          pollService.deletePoll(poll, $scope.id)
+          Poll.deletePoll(poll, $scope.user.id) // should be on the parameter list
           .then(update_user_lookup)
         }
 
@@ -121,12 +98,16 @@
 
   initOptions()
   getUsers() // this will give us all the users so we can build our create/vote hash
-  getUser($scope.id).then(function() {
-      pollService.getPolls($scope.id).then(function(polls){
+  //getUser($scope.user).then(function() {
+
+  User.get().then(function(user) {
+    $scope.user = user
+    Poll.getPolls(user).then(function(polls){
           $scope.polls = polls
           $scope.num_polls = polls.length // this will need to be updated periodically
       })
-  }); // logic inside of getPolls depends on getUser completing
+  })
+
 
   }]);
    

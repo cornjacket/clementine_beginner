@@ -1,5 +1,5 @@
 (function() {
-  var pollService = function($resource, $http) {
+  var Poll = function($resource, $http) {
 
 
 // isPollAuthoredByUser will be false if the user is not logged in when the polls are retrieved from
@@ -74,7 +74,7 @@
 
 // Technically I should be using Poll.query() since I am getting all the polls, though my implementation does work.
 // Something to refactor later. - but to make this change I believe that the Poll url should include :id
-    var getPolls = function(id) {  // need to pass in the id of the current user
+    var getPolls = function(user) {  // need to pass in the id of the current user
       console.log("getPolls() invoked")
       // If we return a promise, then the calling function can perform a .then on it.
       return Poll.get({}).$promise
@@ -96,10 +96,10 @@
           })          
       
           polls.forEach(function(poll) {
-            updateHasAlreadyVoted(poll,id)
+            updateHasAlreadyVoted(poll,user.id)
             setGithubUserImage(poll) // parameters can be merged
             countVotes(poll)
-            determinePollAuthoredByUser(poll,id)
+            determinePollAuthoredByUser(poll,user.id)
           })
       
           
@@ -167,7 +167,7 @@
   
   var module = angular.module("pollPosition");
   // register service with angular
-  module.factory("pollService", pollService);
+  module.factory("Poll", Poll);
   
   
 }());
