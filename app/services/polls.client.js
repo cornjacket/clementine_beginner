@@ -77,7 +77,8 @@
     var getPolls = function(id) {  // need to pass in the id of the current user
       console.log("getPolls() invoked")
       // If we return a promise, then the calling function can perform a .then on it.
-      return Poll.get({}).$promise.then( function(results) {
+      return Poll.get({}).$promise
+        .then( function(results) {
       //$scope.polls = Poll.query( function() { //(results) {
       
           // need to make one array of objects that has all the info

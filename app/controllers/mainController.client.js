@@ -4,8 +4,8 @@
 
    angular
       .module('pollPosition')
-      .controller('mainController', ['$scope', '$resource', '$http', 'pollService',
-          function ($scope, $resource, $http, pollService) {
+      .controller('mainController', ['$scope', '$resource', '$http', 'pollService', 'userService',
+          function ($scope, $resource, $http, pollService, userService) {
          
         $scope.pollHeader = "All Polls"
         $scope.displayAllPolls = true
@@ -18,7 +18,7 @@
 
         var User = $resource('/api/user/:id');
 
-        var Users = $resource('/api/users/:id'); // I need to revisit why this behavior is happening. Maybe inspect mean.js code
+        //var Users = $resource('/api/users/:id'); // I need to revisit why this behavior is happening. Maybe inspect mean.js code
 
         $scope.addOption = function () {
            console.log("$scope.addOption() invoked")
@@ -26,7 +26,7 @@
            $scope.new_poll_indices.push($scope.next_poll_option++) 
         }
         
-        $scope.initOptions = function() {
+        var initOptions = function() {
           console.log("$scope.initOptions() invoked")
           $scope.new_poll_indices = [ 0, 1 ]
           $scope.next_poll_option = 2
@@ -46,7 +46,7 @@
         // first time getUser is called it returns nothing
         // i see a strange response when id is undefined but i dont see a match
         // in the server console to get user
-        $scope.getUser = function (callback) {
+        var getUser = function (callback) {
            console.log("getUser() invoked")
            console.log("GETUSER() $scope.id = "+$scope.id)
            User.get({ id: $scope.id }, function (results) {  // dont think scope.id is really necessary here. Remove and see what happens
@@ -70,7 +70,16 @@
         }
         
 
+        var getUsers = function() {
+          userService.getUsers().then(function(data) {
+            $scope.user_lookup = data.user_lookup
+            $scope.score_board = data.score_board
+            $scope.num_users   = data.num_users
+            $scope.num_votes   = data.num_votes
+          })
+        }
 
+/*
 // Technically I should be using User.query() since I am getting all the users
 // but I had problems with that method when I tried with Poll.query
         $scope.getUsers = function() {
@@ -108,11 +117,13 @@
               
           })
         }
+*/
+
 
         var update_user_lookup = function() {
           // this will update the polls_created, poll_voted stars. I could just 
           // update the $scope.user_lookup directly inside vote and inside deletePoll which would be faster
-          $scope.getUsers()  
+          getUsers()  
         }
 
         $scope.vote = function(poll, option_number) {
@@ -183,9 +194,9 @@ BOTH CONTROLLER AND IN THE SERVICE. SEEMS QUIRKY.
 
 
 
-        $scope.initOptions()
-        $scope.getUsers() // this will give us all the users so we can build our create/vote hash
-        $scope.getUser(function() {
+        initOptions()
+        getUsers() // this will give us all the users so we can build our create/vote hash
+        getUser(function() {
           pollService.getPolls($scope.id).then(function(polls){
             $scope.polls = polls
             $scope.num_polls = polls.length // this will need to be updated periodically
