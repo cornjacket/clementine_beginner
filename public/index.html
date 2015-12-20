@@ -3,13 +3,37 @@
 <html ng-app="pollPosition">
 
   <head>
-    <title>PollPosition</title>
+    <title>pollOverflow</title>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="/public/css/main.css" rel="stylesheet" type="text/css">
   </head>
 
-  <body> <!--ng-controller="clientController">-->
+  <body>
       
+     <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="loginController">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand nav-bar-menu-item" href="/#/">pollOverflow</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+          <a href="/auth/github" ng-hide="user.isLoggedIn"  title='Log in with GitHub'>
+            <div class="btn pull-right" id="login-btn">
+              <img src="public/img/github_32px.png" alt="github logo" />
+            </div>
+          </a>
+          
+          <a ng-show="user.isLoggedIn" class="menu pull-right ng-cloak" href="/logout"><span>Logout</span></a>
+          <a ng-show="user.isLoggedIn" class="menu pull-right ng-cloak" href="">Welcome, <span>{{ user.name }}</span>! </a>
+        </div>
+      </div>
+    </nav>  
 
     <div ng-view></div>
 
@@ -22,6 +46,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
     <script type="text/javascript" src="controllers/app.client.js"></script>
+    <script type="text/javascript" src="controllers/loginController.client.js"></script>
     <script type="text/javascript" src="controllers/mainController.client.js"></script>
     <script type="text/javascript" src="controllers/pollController.client.js"></script>
     <script type="text/javascript" src="services/users.client.js"></script>

@@ -1,6 +1,6 @@
   <div>
       
-   <nav class="navbar navbar-inverse navbar-fixed-top">
+   <!--<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -23,7 +23,7 @@
           <a ng-show="user.isLoggedIn" class="menu pull-right ng-cloak" href="">Welcome, <span>{{ user.name }}</span>! </a>
         </div>
       </div>
-    </nav>
+    </nav>-->
 
 
     <div ng-hide="user.isLoggedIn" class="container text-center">
@@ -203,11 +203,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="user_details in users.score_board | orderBy:'-polls_voted' | limitTo:5">
+                      <tr ng-repeat="user in users.score_board | orderBy:'-polls_voted' | limitTo:5">
                         <td>{{$index+1}}</td>
-                        <td>{{user_details.username}}</td>
-                        <td>{{user_details.displayName}}</td>
-                        <td class="text-center">{{user_details.polls_voted}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.displayName}}</td>
+                        <td class="text-center">{{user.polls_voted}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -236,11 +236,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="user_details in users.score_board | orderBy:'-polls_created' | limitTo:5">
+                      <tr ng-repeat="user in users.score_board | orderBy:'-polls_created' | limitTo:5">
                         <td>{{$index+1}}</td>
-                        <td>{{user_details.username}}</td>
-                        <td>{{user_details.displayName}}</td>
-                        <td class="text-center">{{user_details.polls_created}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.displayName}}</td>
+                        <td class="text-center">{{user.polls_created}}</td>
                       </tr>
                     </tbody>
                   </table>
