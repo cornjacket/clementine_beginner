@@ -3,7 +3,7 @@
 (function () {
 
    angular
-      .module('pollPosition', ['ngResource', 'ngAnimate', 'ui.bootstrap', 'ngRoute'])
+      .module('pollPosition', ['ngResource', 'ngAnimate', 'ui.bootstrap', 'ngRoute', "chart.js"])
       .config(function($routeProvider, $locationProvider) {
         $routeProvider
           .when("/", {

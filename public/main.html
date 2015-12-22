@@ -1,50 +1,15 @@
-  <div>
+<div>
       
-   <!--<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand nav-bar-menu-item" href="/#/">pollOverflow</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-
-          <a href="/auth/github" ng-hide="user.isLoggedIn"  title='Log in with GitHub'>
-            <div class="btn pull-right" id="login-btn">
-              <img src="public/img/github_32px.png" alt="github logo" />
-            </div>
-          </a>
-          
-          <a ng-show="user.isLoggedIn" class="menu pull-right ng-cloak" href="/logout"><span>Logout</span></a>
-          <a ng-show="user.isLoggedIn" class="menu pull-right ng-cloak" href="">Welcome, <span>{{ user.name }}</span>! </a>
-        </div>
-      </div>
-    </nav>-->
-
-
-    <div ng-hide="user.isLoggedIn" class="container text-center">
-      <h4>Welcome to pollOverflow. A place to make polls...</h4>
-    </div>    
-
-    <div ng-show="false" class="container ng-cloak">
-      <uib-accordion close-others="oneAtATime"> <!-- dont think oneAtATime is needed -->
-        <uib-accordion-group class="text-center" heading="Messages">
-          <div class="row">
-            <div class="col-md-12">
-              <h3>Message could go here</h3>
-            </div>
-          </div>      
-          <!--<p>The body of the uib-accordion group grows to fit the contents</p>
-          <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
-          <div ng-repeat="item in items">{{item}}</div>-->
-        </uib-accordion-group>
-      </uib-accordion>
-      <!--<hr />-->
-
+  <div ng-show="false" class="container ng-cloak">
+    <uib-accordion close-others="oneAtATime"> <!-- dont think oneAtATime is needed -->
+      <uib-accordion-group class="text-center" heading="Messages">
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Message could go here</h3>
+          </div>
+        </div>      
+      </uib-accordion-group>
+    </uib-accordion>
 
 </div>
 
@@ -71,8 +36,6 @@
             </div>
            </div>
             
-            
-            <!--<div ng-repeat ="item in polls">-->
             <div ng-repeat ="poll in polls">
               <div ng-show="!poll.isPollDeleted && (displayAllPolls || (!displayAllPolls && poll.isPollAuthoredByUser))">
                 

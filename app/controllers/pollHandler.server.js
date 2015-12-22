@@ -26,7 +26,7 @@ var Users = require('../models/users'); // TESTING
     newPoll.poll.options = []
     newPoll.poll.options = req.body.option 
     newPoll.poll.votes = []
-    newPoll.poll.tags = req.body.tags.split(' ')
+    newPoll.poll.tags = req.body.tags.toLowerCase().split(' ')
     // each subarray in votes contains the user_id's for the respective options subarray
     //console.log(newPoll.poll.options)
     //console.log(newPoll.poll.options.length)

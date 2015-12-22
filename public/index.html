@@ -5,12 +5,13 @@
   <head>
     <title>pollOverflow</title>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.css" />
     <link href="/public/css/main.css" rel="stylesheet" type="text/css">
   </head>
 
-  <body>
+  <body ng-controller="loginController"> <!--should be around enclosin div below -->
       
-     <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="loginController">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -34,17 +35,21 @@
         </div>
       </div>
     </nav>  
-
+    <div ng-hide="user.isLoggedIn" class="container text-center">
+      <h4>Welcome to pollOverflow. A place to make and vote on polls...</h4>
+    </div> 
     <div ng-view></div>
 
 <!---------------------------------------------------------------------------------------->  
 
-
+    
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script src="//cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js"></script>
     <script type="text/javascript" src="controllers/app.client.js"></script>
     <script type="text/javascript" src="controllers/loginController.client.js"></script>
     <script type="text/javascript" src="controllers/mainController.client.js"></script>

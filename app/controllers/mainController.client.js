@@ -11,7 +11,6 @@
         $scope.displayAllPolls = true
         $scope.users           = {}
         $scope.num_polls       = 0 
-        //$scope.user.isLoggedIn = false // will this generate an error
         $scope.polls           = [] 
         
         console.log("CLIENT HAS STARTED")
@@ -98,10 +97,9 @@
 
   initOptions()
   getUsers() // this will give us all the users so we can build our create/vote hash
-  //getUser($scope.user).then(function() {
 
-  User.get().then(function(user) {
-    $scope.user = user
+  User.get().then(function(user) { // needed if index.html loginController is not on body
+    $scope.user = user   
     Poll.getPolls(user).then(function(polls){
           $scope.polls = polls
           $scope.num_polls = polls.length // this will need to be updated periodically
