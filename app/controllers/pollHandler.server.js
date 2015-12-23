@@ -18,6 +18,8 @@ var Users = require('../models/users'); // TESTING
     console.log(req.body.question)
     var newPoll = new Polls();
 
+
+
     // we are kinda being redundant with the id and name and username but for now, it makes things easier. optimize later
     newPoll.author.github_id = req.user.github.id; // just simpler to use github_id
     newPoll.author.name = (req.user.github.displayName !== null) ? req.user.github.displayName : req.user.github.username;

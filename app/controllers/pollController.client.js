@@ -23,10 +23,10 @@
      
      var clear_graph = function() {
        $scope.labels = []
-       $scope.pie_labels = ["hi","bye"]
+       $scope.pie_labels = []
        $scope.series = []
        $scope.data = []
-       $scope.pie_data = [0, 0]
+       $scope.pie_data = []
      }
      
      var init_graph = function() {
@@ -99,7 +99,8 @@
 ////////////////////////////////////////////
         getUsers()
         User.get().then(function(user) { // needed if index.html loginController is not on body
-          $scope.user = user   
+          $scope.user = user
+          console.log(user)
           Poll.getPolls(user).then(function(_polls){
             polls = _polls
             $scope.num_polls = polls.length // this will need to be updated periodically
