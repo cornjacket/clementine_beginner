@@ -14,8 +14,6 @@
             </div>
            </div>
  
- 
-            
             <div ng-show="!poll.isPollDeleted && (displayAllPolls || (!displayAllPolls && poll.isPollAuthoredByUser))">
                 
                 
@@ -31,7 +29,7 @@
                     <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
                     <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>-->
                     <div class="col-md-1">
-                      <a ng-click="deletePoll(poll)" class="btn btn-default btn-xs" ng-show="user.isLoggedIn && poll.isPollAuthoredByUser" role="button">X</a>
+                      <a ng-click="deletePoll(poll)" class="btn btn-default btn-xs" href="/#/" ng-show="user.isLoggedIn && poll.isPollAuthoredByUser" role="button">X</a>
                     </div>
                   </div>
                   
@@ -80,15 +78,9 @@
                     <hr />
                   </div>
                   
-                  
                 <!--</div> comment row -->
                   
-                  
               </div>
- 
- 
- 
- 
  
           </div>
         <!--Nav Bar -->
@@ -96,7 +88,8 @@
         <nav class="wrapper col-md-3 ng-cloak">
           <div class="ng-cloak">
             <h3>{{num_polls}} Polls, {{users.num_votes}} Votes</h3>
-            <div class="btn-group pull-right" uib-dropdown is-open="status.isopen">
+            
+            <div ng-show="user.isLoggedIn && poll.hasVotedForPoll" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
                 <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
                   View <span class="caret"></span>
                 </button>
@@ -105,10 +98,11 @@
                   <li role="menuitem"><a ng-click="displayBarGraph=false" href="">Pie Chart</a></li>
                 </ul>
             </div>
+            
             <hr />
           </div>
         
-                     
+<div ng-show="user.isLoggedIn && poll.hasVotedForPoll">
           
       		<div ng-show="displayBarGraph" class="well well-lg ng-cloak leader-board">
 		        <div class="row">
@@ -120,8 +114,8 @@
               <div class="col-md-12">
 	              <br>
 
-<canvas id="bar-chart" class="chart chart-bar" chart-data="data" chart-labels="labels" 
-    chart-legend="true" chart-series="series" chart-click="onClick"></canvas>                   
+                  <canvas id="bar-chart" class="chart chart-bar" chart-data="data" chart-labels="labels" 
+                      chart-legend="true" chart-series="series" chart-click="onClick"></canvas>                   
 
               </div>
             </div>
@@ -137,18 +131,17 @@
               <div class="col-md-12">
 	              <br>
 
-<canvas id="polar-area" class="chart chart-pie"
-  chart-data="pie_data" chart-labels="pie_labels">
-</canvas> 
-
-<!--<canvas id="line-chart" class="chart chart-polar-area" chart-data="data" chart-labels="labels" 
-    chart-legend="true" chart-series="series" chart-click="onClick"></canvas>-->
+                  <canvas id="polar-area" class="chart chart-pie"
+                    chart-data="pie_data" chart-labels="pie_labels" chart-legend="true">
+                  </canvas> 
 
               </div>
             </div>
   		    </div>
       		         
           <hr />
+
+</div>
   
        </nav>
     </div>

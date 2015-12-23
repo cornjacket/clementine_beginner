@@ -19,6 +19,38 @@
 
         console.log("CLIENT HAS STARTED")
 
+////////////////////////////////////////////     
+     
+     var clear_graph = function() {
+       $scope.labels = []
+       $scope.pie_labels = ["hi","bye"]
+       $scope.series = []
+       $scope.data = []
+       $scope.pie_data = [0, 0]
+     }
+     
+     var init_graph = function() {
+     
+        clear_graph()
+        // label can be the questions
+        // take $scope.poll and iterate through each of the options
+        console.log("pollController: init_graph() invoked")
+        console.log($scope.poll)
+        $scope.poll.item.poll.options.forEach(function(option) {
+          $scope.series.push(option)
+          $scope.pie_labels.push(option)
+        })
+        $scope.poll.aggregate_votes.forEach(function(votes) {
+          $scope.data.push([ votes ])
+          $scope.pie_data.push( votes )
+        })
+        $scope.onClick = function (points, evt) {
+          console.log(points, evt);
+        };
+      
+     }
+
+
         var getUsers = function() {
           return User.all().then(function(data) {
             $scope.users = data
@@ -34,12 +66,19 @@
         $scope.vote = function(poll, option_number) {
           console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
           Poll.vote(poll, option_number, $scope.user.id)
-          .then(update_user_lookup)
+          .then(function() {
+            update_user_lookup()
+            init_graph()
+          })
         }
 
         $scope.deletePoll = function(poll) {
           Poll.deletePoll(poll, $scope.user.id) // should be on the parameter list
-          .then(update_user_lookup)
+          .then(function() {
+            update_user_lookup() // this is not really needed since there will be nothing to look up
+            clear_graph() // this isn't removing the graph
+            console.log("HEY, THIS JUST GOT INVOKED")
+          })
         }        
 
         var setCurrentPoll = function(){
@@ -54,39 +93,7 @@
           })
 
         }
-////////////////////////////////////////////     
-     
-     var init_graph = function() {
-     
-        // label can be the questions
-        // take $scope.poll and iterate through each of the options
-        console.log("pollController: init_graph() invoked")
-        console.log($scope.poll)
-     
-        $scope.labels = []
-        $scope.pie_labels = []
-        
-        $scope.series = []
-        $scope.poll.item.poll.options.forEach(function(option) {
-          $scope.series.push(option)
-          $scope.pie_labels.push(option)
-        })
-        
-        $scope.data = []
-        $scope.pie_data = []
-        $scope.poll.aggregate_votes.forEach(function(votes) {
-          $scope.data.push([ votes ])
-          $scope.pie_data.push( votes )
-        })
-        
-        //$scope.pie_data = [300, 500, 100, 40, 120];
-        //$scope.pie_labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];
-        
-        $scope.onClick = function (points, evt) {
-          console.log(points, evt);
-        };
-      
-     }
+
       
         
 ////////////////////////////////////////////
