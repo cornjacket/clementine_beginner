@@ -6,6 +6,9 @@
 // the server. The question remains how will this field get updated, when the service caches the polls.
 // Currently we are not caching, just restructing getPolls into a service.
 
+   
+   var cached_polls = null // use this to return cached version of polls
+
 
 
 // I need the service to go off and grab the polls from the server and then append all the stuff
@@ -77,6 +80,55 @@
     var getPolls = function(user) {  // need to pass in the id of the current user
       console.log("getPolls() invoked")
       // If we return a promise, then the calling function can perform a .then on it.
+      
+      if (cached_polls === null) {
+        
+        cached_polls = Poll.get({}).$promise
+        .then( function(results) {
+      //$scope.polls = Poll.query( function() { //(results) {
+          console.log("THIS THEN HAS BEEN INVOKED. BUT I WOULD RATHER HAVE THE DATA")
+          // need to make one array of objects that has all the info
+          var polls = results.data.map(function(item) {
+            
+            return {
+              item:                 item,  // contains info grabbed from server
+              has_voted_for_option: [],    // order is important in this list, eventually
+              isPollAuthoredByUser: false,
+              hasVotedForPoll:      false, // if current user has voted on poll
+              isPollDeleted:        false, // has user deleted this poll
+              img:                  "http://isigned.org/images/anonymous.png",
+              aggregate_votes:      []
+            }
+          })          
+      
+          polls.forEach(function(poll) {
+            updateHasAlreadyVoted(poll,user.id)
+            setGithubUserImage(poll) // parameters can be merged
+            countVotes(poll)
+            determinePollAuthoredByUser(poll,user.id)
+          })
+      
+          
+          console.log("HERE NOW")
+          console.log(polls)
+          return polls
+          
+        })
+        return cached_polls
+        
+      } else { // if cached_polls
+      
+      return cached_polls // but what are we returning here, that previous promise that has completed
+      }
+    }
+
+
+/*
+// Technically I should be using Poll.query() since I am getting all the polls, though my implementation does work.
+// Something to refactor later. - but to make this change I believe that the Poll url should include :id
+    var getPolls = function(user) {  // need to pass in the id of the current user
+      console.log("getPolls() invoked")
+      // If we return a promise, then the calling function can perform a .then on it.
       return Poll.get({}).$promise
         .then( function(results) {
       //$scope.polls = Poll.query( function() { //(results) {
@@ -112,6 +164,7 @@
           
       })
         }
+*/
 
     // Now vote() explicitly checks to see whether or not the user has voted on a poll instead of
     // assuming the gui will not display the vote button. We should assume there will be bugs in the code
