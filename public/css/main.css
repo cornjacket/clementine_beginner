@@ -82,7 +82,7 @@ font-weight: bold;}
 .poll-question {
     display: inline-block;
     text-decoration: none;
-    color: #7f7fff;
+    color: #000099; /*#00007f; /*#000066; /*#7f7fff;*/
     margin-top: 0;
     margin-bottom: 5px;
 }
@@ -94,7 +94,7 @@ font-weight: bold;}
 
 
 .poll-question:hover {
-    color: #b2b2ff;
+    color: #3232ff;
 }
 
 
