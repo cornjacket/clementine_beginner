@@ -35,13 +35,17 @@
               <hr />  
             </div>
            </div>
-            
+
+          <div ng-show="user.isLoggedIn && !displayAllPolls && userHasNoPolls" class="row">
+            <div class="col-md-offset-4 col-md-8">
+             <h3>You have no polls to display. Please make a new poll.</h3>
+            </div>
+          </div><!-- row -->                  
+                
             <div ng-repeat ="poll in polls">
               <div ng-show="!poll.isPollDeleted && (displayAllPolls || (!displayAllPolls && poll.isPollAuthoredByUser))">
                 
-                
                 <div class="row">
-                
                 
                   <div class="col-md-offset-4 col-md-7">
                     <a class="h4 poll-question" href="/#/poll/{{poll.item._id}}"><span>{{poll.item.poll.question}}</span></a>
@@ -56,9 +60,9 @@
                     </div>
                   </div>
                   
-</div><!-- row -->                  
+                </div><!-- row -->                  
                 
-                    <div ng-repeat="option in poll.item.poll.options track by $index">
+                <div ng-repeat="option in poll.item.poll.options track by $index">
                       <div class="row"> 
                         <div class="col-md-offset-4 col-md-1">
                           <a ng-hide="poll.hasVotedForPoll" ng-click="vote(poll, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !user.isLoggedIn }" role="button">Vote</a>
@@ -75,7 +79,7 @@
                       </div>                  
                     </div>      
                   
-                  <div class="row tag-group">
+                <div class="row tag-group">
                     <div class="col-md-offset-5 col-md-3">
                       <div ng-repeat="tag in poll.item.poll.tags" class="tag small-text">
                         <span >{{tag}}</span>
@@ -97,13 +101,9 @@
                     </div>
     
                   </div>                  
-                  <div class="col-md-offset-4 col-md-8">
+                <div class="col-md-offset-4 col-md-8">
                     <hr />
                   </div>
-                  
-                  
-                <!--</div> comment row -->
-                  
                   
               </div>
             </div>

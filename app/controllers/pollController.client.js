@@ -100,8 +100,11 @@
         getUsers()
         User.get().then(function(user) { // needed if index.html loginController is not on body
           $scope.user = user
+          console.log("USER")
           console.log(user)
+          console.log($scope.users)
           Poll.getPolls(user).then(function(_polls){
+            console.log("POLL CALLED IN CONTROLLER")
             polls = _polls
             $scope.num_polls = polls.length // this will need to be updated periodically
             setCurrentPoll()

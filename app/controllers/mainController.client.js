@@ -92,6 +92,8 @@
       console.log("setAllPolls() invoked")
       $scope.pollHeader = (displayAllPolls) ? "All Polls" : "My Polls"
       $scope.displayAllPolls = displayAllPolls
+      $scope.userHasNoPolls = ($scope.users.lookup[$scope.user.username].polls_created <= 0)
+      console.log("setAllPolls() : polls created by user = "+ $scope.users.lookup[$scope.user.username].polls_created)
   }
 
 
