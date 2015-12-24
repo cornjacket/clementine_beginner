@@ -38,7 +38,6 @@
           console.log($scope.option)
         }
      
-
         var getUsers = function() {
           return User.all().then(function(data) {
             $scope.users = data
@@ -48,41 +47,16 @@
         $scope.vote = function(poll, option_number) {
           console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
           Poll.vote(poll, option_number, $scope.user.id)
-          // local copy of poll is modified but user_lookup needs to be fixed
           .then(function() {
-            $scope.users.lookup[$scope.user.username].polls_voted++ // this should be in users service
-            // now need to change the score_board too
-            
-            // iterate through the score_board
-            $scope.users.score_board.forEach(function(user,user_index,ary) {
-              if (user.username === $scope.user.username) { 
-                console.log(user.username+" has been found")
-                // now i need to increment polls_voted for this element - should quit early from this loop
-                user.polls_voted++
-              }
-            })
-            
+            User.incrementPollsVoted($scope.user.username) // update score_board/user_lookup
           })
         }
 
         $scope.deletePoll = function(poll) {
-          Poll.deletePoll(poll, $scope.user.id) // should be on the parameter list
+          Poll.deletePoll(poll, $scope.user.id)
           .then(function() {
-            $scope.users.lookup[$scope.user.username].polls_created--
-            
-            // iterate through the score_board
-            $scope.users.score_board.forEach(function(user,user_index,ary) {
-              if (user.username === $scope.user.username) { 
-                console.log(user.username+" has been found")
-                // now i need to decrement polls_created for this element - should quit early from this loop
-                user.polls_created--
-              }
-            })
-            
+            User.decrementPollsCreated($scope.user.username) // update score_board/user_lookup
           })
-          //$scope.users.lookup[$scope.user.username].polls_created subtract
-          
-          
         }
 
 /////////////////////////////
@@ -121,7 +95,7 @@
 
 
   initOptions()
-  getUsers() // this will give us all the users so we can build our create/vote hash
+  getUsers() // user_lookup/score_board
 
   User.get().then(function(user) { // needed if index.html loginController is not on body
     $scope.user = user   

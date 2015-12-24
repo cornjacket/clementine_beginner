@@ -57,12 +57,32 @@
           })
         }
         
-        var update_user_lookup = function() {
+/*        var update_user_lookup = function() {
           // this will update the polls_created, poll_voted stars. I could just 
           // update the $scope.user_lookup directly inside vote and inside deletePoll which would be faster
           getUsers()  
         }
-        
+*/
+
+        $scope.vote = function(poll, option_number) {
+          console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
+          Poll.vote(poll, option_number, $scope.user.id)
+          .then(function() {
+            User.incrementPollsVoted($scope.user.username) // update score_board/user_lookup
+            init_graph()
+          })
+        }
+
+        $scope.deletePoll = function(poll) {
+          Poll.deletePoll(poll, $scope.user.id)
+          .then(function() {
+            User.decrementPollsCreated($scope.user.username) // update score_board/user_lookup
+            clear_graph()
+          })
+        }
+
+
+/*
         $scope.vote = function(poll, option_number) {
           console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
           Poll.vote(poll, option_number, $scope.user.id)
@@ -80,6 +100,7 @@
             console.log("HEY, THIS JUST GOT INVOKED")
           })
         }        
+*/
 
         var setCurrentPoll = function(){
           console.log("findCurrentPoll() invoked")
