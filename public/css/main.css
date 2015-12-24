@@ -135,3 +135,7 @@ font-weight: bold;}
 .menu:active {
     color: #FF630D;
 }
+
+.ng-cloak {
+  display: none !important;
+}
