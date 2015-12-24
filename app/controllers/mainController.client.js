@@ -45,16 +45,9 @@
           })
         }
 
-        var update_user_lookup = function() {
-          // this will update the polls_created, poll_voted stars. I could just 
-          // update the $scope.user_lookup directly inside vote and inside deletePoll which would be faster
-          getUsers()  
-        }
-
         $scope.vote = function(poll, option_number) {
           console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
           Poll.vote(poll, option_number, $scope.user.id)
-          //.then(update_user_lookup) // no longer use server's response to update voting change
           // local copy of poll is modified but user_lookup needs to be fixed
           .then(function() {
             $scope.users.lookup[$scope.user.username].polls_voted++ // this should be in users service
@@ -74,7 +67,6 @@
 
         $scope.deletePoll = function(poll) {
           Poll.deletePoll(poll, $scope.user.id) // should be on the parameter list
-          //.then(update_user_lookup)
           .then(function() {
             $scope.users.lookup[$scope.user.username].polls_created--
             

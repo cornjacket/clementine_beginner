@@ -60,6 +60,12 @@
         }
 */
 
+    // pulled these variables out so that I can have vote and delte api calls
+    var user_lookup = {}
+    var score_board = []
+    var num_votes   = 0
+    var num_users   = 0 //
+    
 // Technically I should be using User.query() since I am getting all the users
 // but I had problems with that method when I tried with Poll.query
     var all = function() {
@@ -70,10 +76,10 @@
           console.log("getUsers() results")
           console.log(results)
           console.log("**** I AM GETTING ALL THE USERS FROM THE SERVER. ****")
-          var user_lookup = {}
-          var score_board = []
-          var num_votes   = 0
-          var num_users = results.data.length // note that with a lot of users, then this will no longer work
+          user_lookup = {}
+          score_board = []
+          num_votes   = 0
+          num_users = results.data.length // note that with a lot of users, then this will no longer work
           results.data.forEach(function(user){
             // user_lookup provides a convenient way to get polls created and voted
             // when knowing the user's username. however there are problems using
