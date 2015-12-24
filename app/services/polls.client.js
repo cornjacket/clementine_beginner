@@ -86,7 +86,7 @@
         cached_polls = Poll.get({}).$promise
         .then( function(results) {
       //$scope.polls = Poll.query( function() { //(results) {
-          console.log("THIS THEN HAS BEEN INVOKED. BUT I WOULD RATHER HAVE THE DATA")
+          console.log("GETTING POLLS FROM THE SERVER")
           // need to make one array of objects that has all the info
           var polls = results.data.map(function(item) {
             
@@ -117,7 +117,7 @@
         return cached_polls
         
       } else { // if cached_polls
-      
+        console.log("*** Providing polls from local cache and not getting from server. ***")
       return cached_polls // but what are we returning here, that previous promise that has completed
       }
     }

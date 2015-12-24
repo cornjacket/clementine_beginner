@@ -54,12 +54,43 @@
         $scope.vote = function(poll, option_number) {
           console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
           Poll.vote(poll, option_number, $scope.user.id)
-          .then(update_user_lookup)
+          //.then(update_user_lookup) // no longer use server's response to update voting change
+          // local copy of poll is modified but user_lookup needs to be fixed
+          .then(function() {
+            $scope.users.lookup[$scope.user.username].polls_voted++ // this should be in users service
+            // now need to change the score_board too
+            
+            // iterate through the score_board
+            $scope.users.score_board.forEach(function(user,user_index,ary) {
+              if (user.username === $scope.user.username) { 
+                console.log(user.username+" has been found")
+                // now i need to increment polls_voted for this element - should quit early from this loop
+                user.polls_voted++
+              }
+            })
+            
+          })
         }
 
         $scope.deletePoll = function(poll) {
           Poll.deletePoll(poll, $scope.user.id) // should be on the parameter list
-          .then(update_user_lookup)
+          //.then(update_user_lookup)
+          .then(function() {
+            $scope.users.lookup[$scope.user.username].polls_created--
+            
+            // iterate through the score_board
+            $scope.users.score_board.forEach(function(user,user_index,ary) {
+              if (user.username === $scope.user.username) { 
+                console.log(user.username+" has been found")
+                // now i need to decrement polls_created for this element - should quit early from this loop
+                user.polls_created--
+              }
+            })
+            
+          })
+          //$scope.users.lookup[$scope.user.username].polls_created subtract
+          
+          
         }
 
 /////////////////////////////

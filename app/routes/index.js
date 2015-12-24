@@ -67,7 +67,7 @@ module.exports = function (app, passport) {
 
     app.route('/api/polls')
       .get( function (req, res) {
-        console.log("index.js: get /api/polls received")
+        console.log("GET /api/polls received")
         pollHandler.listPolls({},req,res)
       })
 
