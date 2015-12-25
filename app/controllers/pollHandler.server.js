@@ -5,7 +5,9 @@ function PollHandler () {
   var Polls = require('../models/polls');
   var UserHandler = require(process.cwd() + '/app/controllers/userHandler.server.js');
 
-var Users = require('../models/users'); // TESTING
+  //var Users = require('../models/users'); // TESTING
+
+  var userHandler = new UserHandler()
 
   this.createPoll = function (req, res) {
       
@@ -18,9 +20,6 @@ var Users = require('../models/users'); // TESTING
     console.log(req.body.question)
     var newPoll = new Polls();
 
-
-
-    // we are kinda being redundant with the id and name and username but for now, it makes things easier. optimize later
     newPoll.author.github_id = req.user.github.id; // just simpler to use github_id
     newPoll.author.name = (req.user.github.displayName !== null) ? req.user.github.displayName : req.user.github.username;
     newPoll.author.username = req.user.github.username; // useful when wanting to look up poll by username
@@ -51,29 +50,11 @@ var Users = require('../models/users'); // TESTING
         console.log("TEST")
         console.log(UserHandler)
         
+        userHandler.incrementPollCount(req,res)
         
-        
-        
-//TESTING
-            Users
-            .findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'polls.num_created': 1 } })
-            .exec(function (err, result) {
-                    if (err) { throw err; }
-                    console.log("increment user's polls.num_created")
-                    //res.json(result.polls.num_created); -- redirect already sent
-                }
-            );
-        
-        
-        
-        
-        
-        //UserHandler.test()
-        //UserHandler.addToPollCount(req, res) -- generated an error
     });
     // the clickController code returned some json but right now i am not doing that. instead i am letting the route redirect
-    
-    // Also I am letting index.js determine the action to do, either by not doing anything here
+    // Also I am letting index.js determine the action to do by not doing anything here
   }
 
   this.listPolls = function (search_param,req,res) {
@@ -82,7 +63,6 @@ var Users = require('../models/users'); // TESTING
             .find(search_param, function (err, result) {
                 if (err) { throw err; }
                 //console.log("pollHandler.server: " + result) // uncomment to inspect poll
-                
                 ////res.json(result) -- returning result like this breaks Angular, though this did work with vanillaJS
                 res.json({ data: result}); // so encap'ing inside an object solves this problem
             });
@@ -95,50 +75,30 @@ var Users = require('../models/users'); // TESTING
         console.log("req.body.poll")
         console.log(req.body.poll)
         Polls
-            .findOneAndUpdate({ '_id': req.body._id}, //"565e9c0e71c8197f6deed728" }, //req._id }, 
+            .findOneAndUpdate({ '_id': req.body._id}, 
               { $set: 
                 { 
                   'poll.votes': req.body.poll.votes 
                 }
               },
               { new: true }
-             ) // need to replace with  req.poll.votes
+             ) 
             .exec(function (err, result) {
                     if (err) { throw err; }
                     console.log("pollHander.updateVotes()")
                     console.log(result)
                     
-                    // Indent in after this works. This is a poor way to implement but the quickest to code.
+                    // This is a poor way to implement but the quickest to code.
                     // This needs to change at some point.
                     Polls
                         .findOneAndUpdate({ '_id': req.body._id}, { $inc: { 'poll.vote_count': 1 } })
                         .exec(function (err, poll_result) {
                                 console.log("PollHandler: just inc'd vote_cote hopefully")
                                 if (err) { throw err; }
-
-
-/////// Inserting Users.method in here due to troubles with using UserController
-console.log(req.user)
-
-
-           Users
-            .findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'polls.num_voted': 1 } })
-            .exec(function (err, result) {
-                    if (err) { throw err; }
-                    console.log("increment user's polls.num_voted")
-                    res.json(poll_result.poll.vote_count);
-                    //res.json(result.polls.num_created); -- return vote_count instead
-                }
-            );   
-
-
-
-            
-                                //res.json(poll_result.poll.vote_count);
+                                console.log(req.user)
+                                userHandler.addToVoteCount(req, res)
                             }
                         );                    
-                    
-                //    res.json("ok") COMMENTED OUT FOR TESTING SO THAT INC ABOVE CAN SEND RESPONSE
                     
                 }
             );
@@ -149,37 +109,10 @@ console.log(req.user)
       Polls.remove({ '_id': req.params.id}, function deletePoll(err) {
        console.log("poll deleted from database")
        if (err) { throw err; }
-       
-// DUE TO BUG WITH USERHANDLER, I AM INCLUDING OUR CODE HERE       
-       
-            Users
-            .findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'polls.num_created': -1 } })
-            .exec(function (err, result) {
-                    if (err) { throw err; }
-                    console.log("decrement user's polls.num_created")
-                    res.json(result.polls.num_created);
-                }
-            );       
-       
-       
-       
-       //res.json("ok"); -- removed because we are doing the response above in the callback
+         userHandler.decrementPollCount(req,res)
       });
   }
 
-/*
-  this.resetClicks = function (req, res) {
-        Users
-            .findOneAndUpdate({ 'github.id': req.user.github.id }, { 'nbrClicks.clicks': 0 })
-            .exec(function (err, result) {
-                    if (err) { throw err; }
-
-                    res.json(result.nbrClicks);
-                }
-            );
-  };
-*/  
-  
 }
 
 module.exports = PollHandler;
