@@ -5,8 +5,6 @@ function PollHandler () {
   var Polls = require('../models/polls');
   var UserHandler = require(process.cwd() + '/app/controllers/userHandler.server.js');
 
-  //var Users = require('../models/users'); // TESTING
-
   var userHandler = new UserHandler()
 
   this.createPoll = function (req, res) {

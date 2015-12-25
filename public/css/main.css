@@ -63,7 +63,7 @@ font-weight: bold;}
 }
 
 .new-poll, .panel, .panel-default, .panel-heading, .panel-title, .panel-group {
-    background-color: #ffe5e5;
+    background-color: #fff0f5;
 }
 
 /* http://stackoverflow.com/questions/20821662/bootstrap-table-bordered-remove-right-left-borders*/
@@ -76,7 +76,7 @@ font-weight: bold;}
 }
 
 .leader-board {
-    background-color: beige;
+    background-color: #fff0f5; 
 }
 
 .poll-question {
