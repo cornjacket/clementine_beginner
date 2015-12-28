@@ -4,12 +4,11 @@
 
 // isPollAuthoredByUser will be false if the user is not logged in when the polls are retrieved from
 // the server. The question remains how will this field get updated, when the service caches the polls.
-// Currently we are not caching, just restructing getPolls into a service.
+// Currently we are caching, but logging causes a re-direct which empties cached_polls. Need something
+// similar to the users/user caching that looks for an undefined id as the basis for performing a
+// read from the server.
 
-   
    var cached_polls = null // use this to return cached version of polls
-
-
 
 // I need the service to go off and grab the polls from the server and then append all the stuff
 // that I need appended. Then I can return this as a promise to the calling routine.
@@ -26,20 +25,22 @@
        // option. Therefore determining the vote count equates to taking the length of the array.
        // Note that now I am storing the vote count so we dont need to count votes. ie. following code
        // can be simplified. 
-       console.log("countVotes() invoked")
-            console.log(poll.item.poll.question)
-            var new_poll_votes = new Array()
-            console.log("Voting list")
-            poll.item.poll.votes.forEach(function(vote_ary, vote_index, parent_ary) {
-                console.log(vote_index+" "+vote_ary)
-                new_poll_votes.push(vote_ary.length)
-            })
-            poll.aggregate_votes = new_poll_votes
+      console.log("countVotes() invoked")
+      console.log(poll.item.poll.question)
+      var new_poll_votes = new Array()
+      console.log("Voting list")
+      poll.item.poll.votes.forEach(function(vote_ary, vote_index, parent_ary) {
+        console.log(vote_index+" "+vote_ary)
+        new_poll_votes.push(vote_ary.length)
+      })
+      poll.aggregate_votes = new_poll_votes
 
     }
 
 
     var setGithubUserImage = function(poll) {
+      console.log("setGithubUserImage() invoked")
+      console.log(poll)
       return $http.get("https://api.github.com/users/" + poll.item.author.username)
               .then(function(response){
                  console.log(response.data.avatar_url)
@@ -65,12 +66,9 @@
         
     }
 
-
-/////////////// How to handle isLoggedIn
-
     // Becareful, user has to be defined to run this function
     // fill $scope.pollAuthoredByUser which is used in view
-    var determinePollAuthoredByUser = function(poll,id){ // *********** $scope.id needs to be passed in
+    var determinePollAuthoredByUser = function(poll,id){ // ** $scope.id needs to be passed in
       console.log("_determinePollsAuthoredByUser() invoked")
       poll.isPollAuthoredByUser = (poll.item.author.github_id === id)
     }
@@ -85,11 +83,9 @@
         
         cached_polls = Poll.get({}).$promise
         .then( function(results) {
-      //$scope.polls = Poll.query( function() { //(results) {
           console.log("GETTING POLLS FROM THE SERVER")
           // need to make one array of objects that has all the info
           var polls = results.data.map(function(item) {
-            
             return {
               item:                 item,  // contains info grabbed from server
               has_voted_for_option: [],    // order is important in this list, eventually
@@ -100,16 +96,12 @@
               aggregate_votes:      []
             }
           })          
-      
           polls.forEach(function(poll) {
             updateHasAlreadyVoted(poll,user.id)
             setGithubUserImage(poll) // parameters can be merged
             countVotes(poll)
             determinePollAuthoredByUser(poll,user.id)
           })
-      
-          
-          console.log("HERE NOW")
           console.log(polls)
           return polls
           
@@ -121,50 +113,6 @@
       return cached_polls // but what are we returning here, that previous promise that has completed
       }
     }
-
-
-/*
-// Technically I should be using Poll.query() since I am getting all the polls, though my implementation does work.
-// Something to refactor later. - but to make this change I believe that the Poll url should include :id
-    var getPolls = function(user) {  // need to pass in the id of the current user
-      console.log("getPolls() invoked")
-      // If we return a promise, then the calling function can perform a .then on it.
-      return Poll.get({}).$promise
-        .then( function(results) {
-      //$scope.polls = Poll.query( function() { //(results) {
-      
-          // need to make one array of objects that has all the info
-          var polls = results.data.map(function(item) {
-            
-            return {
-              item:                 item,  // contains info grabbed from server
-              has_voted_for_option: [],    // order is important in this list, eventually
-              isPollAuthoredByUser: false,
-              hasVotedForPoll:      false, // if current user has voted on poll
-              isPollDeleted:        false, // has user deleted this poll
-              img:                  "http://isigned.org/images/anonymous.png",
-              aggregate_votes:      []
-            }
-          })          
-      
-          polls.forEach(function(poll) {
-            updateHasAlreadyVoted(poll,user.id)
-            setGithubUserImage(poll) // parameters can be merged
-            countVotes(poll)
-            determinePollAuthoredByUser(poll,user.id)
-          })
-      
-          
-          // The user can determine the lenth of polls when they use .length
-          //$scope.num_polls = $scope.polls.length 
-
-          console.log("HERE NOW")
-          console.log(polls)
-          return polls
-          
-      })
-        }
-*/
 
     // Now vote() explicitly checks to see whether or not the user has voted on a poll instead of
     // assuming the gui will not display the vote button. We should assume there will be bugs in the code
@@ -190,6 +138,40 @@
       }
     }
 
+    var createPoll = function(poll, user) {
+        console.log("createPoll() invoked")
+        
+        var new_poll = new Poll()
+        new_poll.data = poll
+        return Poll.save(new_poll).$promise.then( function(item) {
+          console.log("Poll.save() invoked in polls.client")
+          console.log(item)
+          // add the new entry into the list of users
+          var poll_obj = {}
+          poll_obj.item = item
+          poll_obj.has_voted_for_option = []    // order is important in this list, eventually
+          poll_obj.isPollAuthoredByUser = false
+          poll_obj.hasVotedForPoll = false, // if current user has voted on poll
+          poll_obj.isPollDeleted = false, // has user deleted this poll
+          poll_obj.img = "http://isigned.org/images/anonymous.png",
+          poll_obj.aggregate_votes = []
+        
+          updateHasAlreadyVoted(poll_obj,user.id)
+          setGithubUserImage(poll_obj) // parameters can be merged
+          countVotes(poll_obj)
+          determinePollAuthoredByUser(poll_obj,user.id)
+          
+          // need to add poll to the poll list
+          console.log(cached_polls)
+          // we need to go into the promise and update its field
+          // this could have been done in the app, but better abstraction here
+          cached_polls.$$state.value.push(poll_obj)  // probably need to change names poll-item, poll_obj-poll
+          return item
+          
+        })
+  
+    }
+
     var deletePoll = function(poll, id) {
         // need a safety precaution to check if user is author of poll to delete
         if (id === poll.item.author.github_id) {
@@ -212,6 +194,7 @@
     
     return {
       getPolls:   getPolls,
+      createPoll: createPoll,
       deletePoll: deletePoll,
       vote:       vote
     };

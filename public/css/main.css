@@ -62,7 +62,12 @@ font-weight: bold;}
     margin-right: 2px;
 }
 
+/*
 .new-poll, .panel, .panel-default, .panel-heading, .panel-title, .panel-group {
+    background-color: #fff0f5;
+}*/
+
+.new-poll {
     background-color: #fff0f5;
 }
 
@@ -105,6 +110,11 @@ font-weight: bold;}
 .poll-option {
     margin-top: 0;
     margin-bottom: 1px;
+}
+
+.bottom-poll-group {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .tag-group {

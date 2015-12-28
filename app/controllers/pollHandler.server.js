@@ -15,17 +15,17 @@ function PollHandler () {
     console.log(req.user._id)
     console.log(req.user.github.id)
     console.log(req.body)
-    console.log(req.body.question)
+    console.log(req.body.data.question)
     var newPoll = new Polls();
 
     newPoll.author.github_id = req.user.github.id; // just simpler to use github_id
     newPoll.author.name = (req.user.github.displayName !== null) ? req.user.github.displayName : req.user.github.username;
     newPoll.author.username = req.user.github.username; // useful when wanting to look up poll by username
-    newPoll.poll.question = req.body.question;
+    newPoll.poll.question = req.body.data.question;
     newPoll.poll.options = []
-    newPoll.poll.options = req.body.option 
+    newPoll.poll.options = req.body.data.option 
     newPoll.poll.votes = []
-    newPoll.poll.tags = req.body.tags.toLowerCase().split(' ')
+    newPoll.poll.tags = req.body.data.tags.toLowerCase().split(' ')
     // each subarray in votes contains the user_id's for the respective options subarray
     //console.log(newPoll.poll.options)
     //console.log(newPoll.poll.options.length)
@@ -49,7 +49,9 @@ function PollHandler () {
         console.log(UserHandler)
         
         userHandler.incrementPollCount(req,res)
-        
+        console.log("RESPONDING FROM SERVER: POLL HANDLER")
+        console.log(newPoll._id)
+        res.json(newPoll); //{ id: newPoll._id}); // so encap'ing inside an object solves this problem
     });
     // the clickController code returned some json but right now i am not doing that. instead i am letting the route redirect
     // Also I am letting index.js determine the action to do by not doing anything here

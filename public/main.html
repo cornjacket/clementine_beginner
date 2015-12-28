@@ -42,6 +42,9 @@
             </div>
           </div><!-- row -->                  
                 
+            <dt-poll-tile></dt-poll-tile>    
+                
+                
             <div ng-repeat ="poll in polls">
               <div ng-show="!poll.isPollDeleted && (displayAllPolls || (!displayAllPolls && poll.isPollAuthoredByUser))">
                 
@@ -61,6 +64,8 @@
                   </div>
                   
                 </div><!-- row -->                  
+                
+                
                 
                 <div ng-repeat="option in poll.item.poll.options track by $index">
                       <div class="row"> 
@@ -126,25 +131,29 @@
                 </div>
   		        </div>
               <div class="row">
-                <div class="col-md-12">
+                <form>
+                  <div class="col-md-12">
 		              <br>
-                  <form action="/api/polls/new" method="post">
-                    <input type="text" name="question" class="form-control" placeholder="Enter your poll question here" aria-describedby="basic-addon2" required>
-                    <br>  
+                    <input type="text" ng-model="newPoll.question" class="form-control" placeholder="Enter your poll question here" aria-describedby="basic-addon2" required>
+                    <br>
                     <div ng-repeat="optionIndex in new_poll_indices">
-                      <input type="text" name="option[{{optionIndex+1}}]" class="form-control" placeholder="Enter your poll option here" aria-describedby="basic-addon2" required>
+                      <input type="text" ng-model="newPoll.option[optionIndex]" class="form-control" placeholder="Enter your poll option here" aria-describedby="basic-addon2" required>
                     </div>
                     <br>
-                    <input type="text" name="tags" class="form-control" placeholder="Enter at least one tag. Separate tags with spaces." aria-describedby="basic-addon2" required>
+                    <input type="text" ng-model="newPoll.tags" class="form-control" placeholder="Enter at least one tag. Separate tags with spaces." aria-describedby="basic-addon2" required>
                     <br>
-                    <input class="btn btn-default" type="submit" value="Submit">
+                    <div ng-click="submitPoll()" class="btn btn-default" role="button">Create Poll</div>
                     <div ng-click="addOption()" class="btn btn-default" role="button">Add Option</div>
-                  </form>
-                </div>
+                  </div>
+                </form>
               </div>
+              
+
     		    </div>
     		    <hr />
     	   </div>              
+          
+          <dt-score-board>This is the scoreboard<br></dt-score-board>
           
       		<div class="well well-lg ng-cloak leader-board">
 		        <div class="row">

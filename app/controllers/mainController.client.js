@@ -2,16 +2,38 @@
 
 (function () {
 
+
    angular
       .module('pollPosition')
-      .controller('mainController', ['$scope', '$resource', '$http', 'Poll', 'User',
-          function ($scope, $resource, $http, Poll, User) {
+      .directive('dtPollTile', function() {
+        return {
+          templateUrl: "public/pollTile.html",
+          restrict:    "E"
+        }
+      })
+
+   angular
+      .module('pollPosition')
+      .directive('dtScoreBoard', function() {
+        return {
+          templateUrl: "public/scoreBoard.html",
+          restrict:    "E"
+        }
+      })
+
+
+   angular
+      .module('pollPosition')
+      .controller('mainController', ['$scope', '$resource', '$http', '$location', 'Poll', 'User',
+          function ($scope, $resource, $http, $location, Poll, User) {
          
         $scope.pollHeader = "All Polls"
         $scope.displayAllPolls = true
         $scope.users           = {}
         $scope.num_polls       = 0 
         $scope.polls           = [] 
+        $scope.currentPoll     = null
+        $scope.currentScoreBoard = null
         
         console.log("CLIENT HAS STARTED")
         
@@ -23,11 +45,10 @@
         
         var initOptions = function() {
           console.log("initOptions() invoked")
-          $scope.new_poll_indices = [ 0, 1 ]
+          $scope.new_poll_indices = [ 0, 1 ] // couldnt i just use $index
           $scope.next_poll_option = 2
-          $scope.question         = "here is the question"
-          //$scope.option = []
-          
+          $scope.newPoll = {}
+          $scope.newPoll.option = []
         }
 
         $scope.cancelNewPoll = function() {
@@ -58,6 +79,33 @@
             User.decrementPollsCreated($scope.user.username) // update score_board/user_lookup
           })
         }
+        
+        $scope.submitPoll = function() {
+          console.log("submitPoll() invoked")
+          console.log($scope.newPoll)
+
+          
+          console.log($scope.newPoll.question)
+          console.log($scope.newPoll.option)
+          $scope.newPoll.option.forEach(function(option) {
+            console.log(option)
+          })
+          console.log($scope.newPoll.tags)
+          
+          
+          if ($scope.newPoll.question !== undefined && $scope.newPoll.option.length !== 0 && $scope.newPoll.tags !== undefined) {
+            $scope.isCollapsed = true
+            // then go ahead and post the poll
+            Poll.createPoll($scope.newPoll,$scope.user).then(function(result) {
+              console.log("Poll.createPoll() invoked in mainController")
+              //console.log(result)
+              initOptions() // not actually necessary since we are changing controllers
+              // change the path
+              $location.path('/poll/'+result._id)
+            })            
+          }
+        }
+
 
 /////////////////////////////
 
@@ -102,6 +150,10 @@
     Poll.getPolls(user).then(function(polls){
           $scope.polls = polls
           $scope.num_polls = polls.length // this will need to be updated periodically
+          console.log("DAVE TESTING DIRECTIVES HERE")
+          console.log($scope.polls)
+          $scope.currentPoll = $scope.polls[3]
+          console.log($scope.currentPoll)
       })
   })
 
