@@ -8,7 +8,26 @@
       .directive('dtPollTile', function() {
         return {
           templateUrl: "public/pollTile.html",
-          restrict:    "E"
+          restrict:    "E",
+          //scope:       { current_poll: '='},
+          controller:  function($scope, Poll, User) {
+            
+            $scope.vote = function(poll, option_number) {
+              console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
+              Poll.vote(poll, option_number, $scope.user.id)
+                .then(function() {
+                  User.incrementPollsVoted($scope.user.username) // update score_board/user_lookup
+                })
+              }
+
+            $scope.deletePoll = function(poll) {
+              Poll.deletePoll(poll, $scope.user.id) // should this be a User.get_id
+                .then(function() {
+                  User.decrementPollsCreated($scope.user.username) // update score_board/user_lookup
+                })
+              }
+              
+          }
         }
       })
 
@@ -32,7 +51,7 @@
         $scope.users           = {}
         $scope.num_polls       = 0 
         $scope.polls           = [] 
-        $scope.currentPoll     = null
+        $scope.currentpoll     = null
         $scope.currentScoreBoard = null
         
         console.log("CLIENT HAS STARTED")
@@ -65,6 +84,7 @@
           })
         }
 
+/*
         $scope.vote = function(poll, option_number) {
           console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
           Poll.vote(poll, option_number, $scope.user.id)
@@ -79,7 +99,7 @@
             User.decrementPollsCreated($scope.user.username) // update score_board/user_lookup
           })
         }
-        
+*/
         $scope.submitPoll = function() {
           console.log("submitPoll() invoked")
           console.log($scope.newPoll)
@@ -152,8 +172,8 @@
           $scope.num_polls = polls.length // this will need to be updated periodically
           console.log("DAVE TESTING DIRECTIVES HERE")
           console.log($scope.polls)
-          $scope.currentPoll = $scope.polls[3]
-          console.log($scope.currentPoll)
+          $scope.currentpoll = $scope.polls[3]
+          console.log($scope.currentpoll)
       })
   })
 

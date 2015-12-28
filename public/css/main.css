@@ -92,20 +92,35 @@ font-weight: bold;}
     margin-bottom: 5px;
 }
 
+.poll-question-white {
+    display: inline-block;
+    text-decoration: none;
+    color: white; /*#00007f; /*#000066; /*#7f7fff;*/
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
 .poll-question:hover, .stars:hover {
     text-decoration: none;
     cursor: pointer;
 }
 
+.poll-question-white:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: lightgray;
+}
 
 .poll-question:hover {
     color: #3232ff;
 }
 
-
 .stars {
     text-decoration: none;
 }
+
+
+
 
 .poll-option {
     margin-top: 0;
@@ -116,6 +131,11 @@ font-weight: bold;}
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+.poll-button {
+    margin-left: 5px;
+}
+
 
 .tag-group {
     margin-top: 5px;
