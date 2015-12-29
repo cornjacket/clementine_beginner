@@ -1,0 +1,61 @@
+<div ng-show="true">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <div class="row">    
+        <h4 class="text-center">{{mytitle}}</h4><div class="col-md-9">
+          <h4>Create a new poll</h4>
+        </div>
+        <div class="col-md-offset-1 col-md-1">
+          <a ng-click="cancelNewPoll()" class="btn btn-default btn-xs" role="button">X</a>
+        </div>
+      </div>
+    </div>    
+    <div class="row">
+      <form>
+        <div class="col-md-offset-1 col-md-10">
+          <br>
+          <input type="text" ng-model="newPoll.question" class="form-control" placeholder="Enter your poll question here" aria-describedby="basic-addon2" required>
+          <br>
+          <div ng-repeat="optionIndex in new_poll_indices">
+            <input type="text" ng-model="newPoll.option[optionIndex]" class="form-control" placeholder="Enter your poll option here" aria-describedby="basic-addon2" required>
+          </div>
+          <br>
+          <input type="text" ng-model="newPoll.tags" class="form-control" placeholder="Enter tags separated by spaces." aria-describedby="basic-addon2" required>
+          <br>
+          <div ng-click="submitPoll()" class="btn btn-default newpoll-button" role="button">Create Poll</div>
+          <div ng-click="addOption()" class="btn btn-default newpoll-button" role="button">Add Option</div>
+        </div>
+      </form>
+    </div>    
+  </div>
+</div>
+<div ng-show="false">
+    <div class="well well-lg new-poll">
+      <div class="row">
+        <div class="col-md-9">
+          <h4>Create a new poll</h4>
+        </div>
+        <div class="col-md-offset-1 col-md-1">
+          <a ng-click="cancelNewPoll()" class="btn btn-default btn-xs" role="button">X</a>
+        </div>
+      </div>
+      <div class="row">
+        <form>
+          <div class="col-md-12">
+            <br>
+            <input type="text" ng-model="newPoll.question" class="form-control" placeholder="Enter your poll question here" aria-describedby="basic-addon2" required>
+            <br>
+            <div ng-repeat="optionIndex in new_poll_indices">
+              <input type="text" ng-model="newPoll.option[optionIndex]" class="form-control" placeholder="Enter your poll option here" aria-describedby="basic-addon2" required>
+            </div>
+            <br>
+            <input type="text" ng-model="newPoll.tags" class="form-control" placeholder="Enter tags separates by spaces." aria-describedby="basic-addon2" required>
+            <br>
+            <div ng-click="submitPoll()" class="btn btn-default" role="button">Create Poll</div>
+            <div ng-click="addOption()" class="btn btn-default" role="button">Add Option</div>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+<hr />

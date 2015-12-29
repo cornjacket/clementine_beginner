@@ -1,5 +1,4 @@
 <div>
-      
   <div ng-show="false" class="container ng-cloak">
     <uib-accordion close-others="oneAtATime"> <!-- dont think oneAtATime is needed -->
       <uib-accordion-group class="text-center" heading="Messages">
@@ -10,221 +9,50 @@
         </div>      
       </uib-accordion-group>
     </uib-accordion>
-
-</div>
-
-<!---------------------------------------------------------------------------------------->  
-    <div class="row">
-        <!--Main Content -->
-          <div class="wrapper col-md-7 ng-cloak">
-            
-           <div class="row">
-            
-            <div class="col-md-offset-4 col-md-8"> 
-              <h3>{{pollHeader}} <small ng-hide="user.isLoggedIn">- Please log in to vote.</small></h3>
-              <!-- Single button -->
-              <div ng-show="user.isLoggedIn" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
-                <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
-                  View <span class="caret"></span>
-                </button>
-                <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
-                  <li role="menuitem"><a ng-click="setAllPolls(true)" href="">All Polls</a></li>
-                  <li role="menuitem"><a ng-click="setAllPolls(false)" href="">My Polls</a></li>
-                </ul>
-              </div>
-              <hr />  
-            </div>
-           </div>
-
-          <div ng-show="user.isLoggedIn && !displayAllPolls && userHasNoPolls" class="row">
-            <div class="col-md-offset-4 col-md-8">
-             <h3>You have no polls to display. Please make a new poll.</h3>
-            </div>
-          </div><!-- row -->                  
-                
-            <dt-poll-tile current_poll="currentPoll"></dt-poll-tile>    
-                
-                
-            <div ng-repeat ="poll in polls">
-              <div ng-show="!poll.isPollDeleted && (displayAllPolls || (!displayAllPolls && poll.isPollAuthoredByUser))">
-                
-                <div class="row">
-                
-                  <div class="col-md-offset-4 col-md-7">
-                    <a class="h4 poll-question" href="/#/poll/{{poll.item._id}}"><span>{{poll.item.poll.question}}</span></a>
-
-                  </div>
-                  <div id="_upDownFlagX">
-                    <!--<a ng-click="downVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
-                    <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
-                    <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>-->
-                    <div class="col-md-1">
-                      <a ng-click="deletePoll(poll)" class="btn btn-default btn-xs" ng-show="user.isLoggedIn && poll.isPollAuthoredByUser" role="button">X</a>
-                    </div>
-                  </div>
-                  
-                </div><!-- row -->                  
-                
-                
-                
-                <div ng-repeat="option in poll.item.poll.options track by $index">
-                      <div class="row"> 
-                        <div class="col-md-offset-4 col-md-1">
-                          <a ng-hide="poll.hasVotedForPoll" ng-click="vote(poll, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !user.isLoggedIn }" role="button">Vote</a>
-                          <p class="poll-option text-center" ng-show="poll.hasVotedForPoll" ng-class="{ 'user_voted': poll.has_voted_for_option[$index] }">
-                             <ng-pluralize count="poll.aggregate_votes[$index]" when="{ 
-                               '1': '1 vote', 
-                               'other': '{} votes'}">
-                             </ng-pluralize>
-                          </p>
-                        </div>
-                        <div class="col-md-7"> 
-                          <p class="poll-option" ng-class="{ 'user_voted': poll.has_voted_for_option[$index] }">{{ option }}</p>
-                        </div>      
-                      </div>                  
-                    </div>      
-                  
-                <div class="row tag-group">
-                    <div class="col-md-offset-5 col-md-3">
-                      <div ng-repeat="tag in poll.item.poll.tags" class="tag small-text">
-                        <span >{{tag}}</span>
-                      </div>
-                    </div>
-                    <div class="signature-top col-md-3 small-text">
-                      asked by {{poll.item.author.username}} on {{poll.item.created_at | date }}
-                    </div>
-                    <div class="signature-bottom col-md-offset-8 col-md-3 small-text">
-                      <img ng-src={{poll.img}} alt="poll creator" height="30" width="30">
-                      <a class="stars" title='{{users.lookup[poll.item.author.username].polls_created}} polls'>
-                        <span>{{users.lookup[poll.item.author.username].polls_created}} </span>
-                        <span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
-                      </a>
-                      <a class="stars" title='{{users.lookup[poll.item.author.username].polls_voted}} votes'>
-                        <span>{{users.lookup[poll.item.author.username].polls_voted}} </span>
-                        <span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
-                      </a>
-                    </div>
-    
-                  </div>                  
-                <div class="col-md-offset-4 col-md-8">
-                    <hr />
-                  </div>
-                  
-              </div>
-            </div>
-          </div>
-        <!--Nav Bar -->
-        <nav class="wrapper col-md-3 ng-cloak">
-          <div class="ng-cloak">
-            <h3>{{num_polls}} Polls, {{users.num_votes}} Votes</h3>
-            <button ng-show="user.isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
-            <hr /> 
-          </div>
-        	<div uib-collapse="isCollapsed" class="ng-cloak">
-        		<div class="well well-lg new-poll">
-  		        <div class="row">
-  		          <div class="col-md-9">
-  		            <h4>Create a new poll</h4>
-  		          </div>
-  		          <div class="col-md-offset-1 col-md-1">
-                  <a ng-click="cancelNewPoll()" class="btn btn-default btn-xs" role="button">X</a>
-                </div>
-  		        </div>
-              <div class="row">
-                <form>
-                  <div class="col-md-12">
-		              <br>
-                    <input type="text" ng-model="newPoll.question" class="form-control" placeholder="Enter your poll question here" aria-describedby="basic-addon2" required>
-                    <br>
-                    <div ng-repeat="optionIndex in new_poll_indices">
-                      <input type="text" ng-model="newPoll.option[optionIndex]" class="form-control" placeholder="Enter your poll option here" aria-describedby="basic-addon2" required>
-                    </div>
-                    <br>
-                    <input type="text" ng-model="newPoll.tags" class="form-control" placeholder="Enter at least one tag. Separate tags with spaces." aria-describedby="basic-addon2" required>
-                    <br>
-                    <div ng-click="submitPoll()" class="btn btn-default" role="button">Create Poll</div>
-                    <div ng-click="addOption()" class="btn btn-default" role="button">Add Option</div>
-                  </div>
-                </form>
-              </div>
-              
-
-    		    </div>
-    		    <hr />
-    	   </div>              
-          
-          <dt-score-board>This is the scoreboard<br></dt-score-board>
-          
-      		<div class="well well-lg ng-cloak leader-board">
-		        <div class="row">
-		          <div class="col-md-12">
-		            <h4 class="text-center">Top Poll Voters</h4>
-		          </div>
-		        </div>
-            <div class="row">
-              <div class="col-md-12">
-	              <br>
-
-                  <table class="table table-condensed small-text">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Username</th>
-                        <th>Name</th>
-                        <th class="text-center">Votes</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr ng-repeat="user in users.score_board | orderBy:'-polls_voted' | limitTo:5">
-                        <td>{{$index+1}}</td>
-                        <td>{{user.username}}</td>
-                        <td>{{user.displayName}}</td>
-                        <td class="text-center">{{user.polls_voted}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-              </div>
-            </div>
-  		    </div>
-          <br>
-      		<div class="well well-lg ng-cloak leader-board">
-		        <div class="row">
-		          <div class="col-md-12">
-		            <h4 class="text-center">Top Poll Posters</h4>
-		          </div>
-		        </div>
-            <div class="row">
-              <div class="col-md-12">
-	              <br>
-
-                  <table class="table table-condensed small-text">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Username</th>
-                        <th>Name</th>
-                        <th class="text-center">Polls</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr ng-repeat="user in users.score_board | orderBy:'-polls_created' | limitTo:5">
-                        <td>{{$index+1}}</td>
-                        <td>{{user.username}}</td>
-                        <td>{{user.displayName}}</td>
-                        <td class="text-center">{{user.polls_created}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-              </div>
-            </div>
-  		    </div>
-      		         
-          <hr />
-  
-       </nav>
-    </div>
-
   </div>
+<!---------------------------------------------------------------------------------------->  
+  <div class="row">
+    <div class="wrapper col-md-7 ng-cloak">
+    <div class="row">
+      
+      <div class="col-md-offset-4 col-md-8"> 
+        <h3>{{pollHeader}} <small ng-hide="user.isLoggedIn">- Please log in to vote.</small></h3>
+        <!-- Single button -->
+        <div ng-show="user.isLoggedIn" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
+          <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+            View <span class="caret"></span>
+          </button>
+          <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+            <li role="menuitem"><a ng-click="setAllPolls(true)" href="">All Polls</a></li>
+            <li role="menuitem"><a ng-click="setAllPolls(false)" href="">My Polls</a></li>
+          </ul>
+        </div>
+        <hr />  
+      </div>
+    </div>
+    <div ng-show="user.isLoggedIn && !displayAllPolls && userHasNoPolls" class="row">
+      <div class="col-md-offset-4 col-md-8">
+        <h3>You have no polls to display. Please make a new poll.</h3>
+      </div>
+    </div>
+    <div ng-repeat ="poll in polls">
+        <dt-poll-tile poll="poll" user="user" users="users" display-all-polls="displayAllPolls"></dt-poll-tile>
+    </div>
+  </div>
+  
+  <nav class="wrapper col-md-3 ng-cloak">
+    <div class="ng-cloak">
+      <h3>{{num_polls}} Polls, {{users.num_votes}} Votes</h3>
+      <button ng-show="user.isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
+      <hr /> 
+    </div>
+  	<div uib-collapse="isCollapsed" class="ng-cloak">
+      <dt-new-poll></dt-new-poll>
+   </div> 
+    <dt-score-board users="users" mytitle="Top Poll Voters" myheading="Votes" myfield="polls_voted"><br></dt-score-board>
+    <dt-score-board users="users" mytitle="Top Poll Posters" myheading="Polls" myfield="polls_created"><br></dt-score-board>
+    <hr />
+  </nav>
+    </div>
+</div>
 

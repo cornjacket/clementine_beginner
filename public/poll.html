@@ -14,7 +14,8 @@
             </div>
            </div>
  
-            <div ng-show="!poll.isPollDeleted && (displayAllPolls || (!displayAllPolls && poll.isPollAuthoredByUser))">
+            <dt-poll-tile poll="poll" user="user" display-all-polls="displayAllPolls"></dt-poll-tile>
+            <!--<div ng-show="!poll.isPollDeleted && (displayAllPolls || (!displayAllPolls && poll.isPollAuthoredByUser))">
                 
                 
                 <div class="row">
@@ -25,15 +26,15 @@
 
                   </div>
                   <div id="_upDownFlagX">
-                    <!--<a ng-click="downVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
+                    <a ng-click="downVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
                     <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
-                    <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>-->
+                    <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
                     <div class="col-md-1">
                       <a ng-click="deletePoll(poll)" class="btn btn-default btn-xs" href="/#/" ng-show="user.isLoggedIn && poll.isPollAuthoredByUser" role="button">X</a>
                     </div>
                   </div>
                   
-</div><!-- row -->                  
+</div>
                 
                     <div ng-repeat="option in poll.item.poll.options track by $index">
                       <div class="row"> 
@@ -78,9 +79,9 @@
                     <hr />
                   </div>
                   
-                <!--</div> comment row -->
+                
                   
-              </div>
+              </div>-->
  
           </div>
         <!--Nav Bar -->

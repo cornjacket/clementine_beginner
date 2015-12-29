@@ -57,9 +57,10 @@ font-weight: bold;}
     background-color: #ffe5e5;
     padding: 2px 2px;
     padding: 4px 4px;
-    display: inline;
+    display: inline-block;
     margin-left: 2px;
     margin-right: 2px;
+    margin-bottom: 4px;
 }
 
 /*
@@ -69,6 +70,10 @@ font-weight: bold;}
 
 .new-poll {
     background-color: #fff0f5;
+}
+
+.newpoll-button {
+    margin-bottom: 20px;
 }
 
 /* http://stackoverflow.com/questions/20821662/bootstrap-table-bordered-remove-right-left-borders*/

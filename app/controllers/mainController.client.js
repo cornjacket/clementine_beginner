@@ -9,7 +9,12 @@
         return {
           templateUrl: "public/pollTile.html",
           restrict:    "E",
-          //scope:       { current_poll: '='},
+          scope:       { 
+            poll: '=',
+            user: '=' , // same as below
+            users: '=', // should i pass this in or have the directive use the users service
+            displayAllPolls: '='
+          },
           controller:  function($scope, Poll, User) {
             
             $scope.vote = function(poll, option_number) {
@@ -36,9 +41,78 @@
       .directive('dtScoreBoard', function() {
         return {
           templateUrl: "public/scoreBoard.html",
-          restrict:    "E"
+          restrict:    "E",
+          scope:       { 
+            users: '=', // should i pass this in or have the directive use the users service
+            mytitle: '@mytitle',
+            myheading: '@myheading',
+            myfield: '@myfield'
+          }
+          
         }
       })
+
+   angular
+      .module('pollPosition')
+      .directive('dtNewPoll', function() {
+        return {
+          templateUrl: "public/newPoll.html",
+          restrict:    "E",
+          controller:  function($scope, $location, Poll) {
+           
+            $scope.addOption = function () {
+              console.log("$scope.addOption() invoked")
+              console.log($scope.new_poll_indices)
+              $scope.new_poll_indices.push($scope.next_poll_option++) 
+            }
+        
+            var initOptions = function() {
+             console.log("initOptions() invoked")
+               $scope.new_poll_indices = [ 0, 1 ] // couldnt i just use $index
+               $scope.next_poll_option = 2
+               $scope.newPoll = {}
+               $scope.newPoll.option = []
+            }
+
+            $scope.cancelNewPoll = function() {
+              console.log("$scope.cancelNewPoll() invoked")
+              initOptions()
+              $scope.isCollapsed = true
+              console.log($scope.new_poll_indices)
+              console.log($scope.option)
+            }
+
+            $scope.submitPoll = function() {
+              console.log("submitPoll() invoked")
+              console.log($scope.newPoll)
+    
+              
+              console.log($scope.newPoll.question)
+              console.log($scope.newPoll.option)
+              $scope.newPoll.option.forEach(function(option) {
+                console.log(option)
+              })
+              console.log($scope.newPoll.tags)
+              
+              
+              if ($scope.newPoll.question !== undefined && $scope.newPoll.option.length !== 0 && $scope.newPoll.tags !== undefined) {
+                $scope.isCollapsed = true
+                // then go ahead and post the poll
+                Poll.createPoll($scope.newPoll,$scope.user).then(function(result) {
+                  console.log("Poll.createPoll() invoked in mainController")
+                  //console.log(result)
+                  initOptions() // not actually necessary since we are changing controllers
+                  // change the path
+                  $location.path('/poll/'+result._id)
+                })            
+              }
+            }
+           
+            initOptions()
+          }
+        }
+      })
+
 
 
    angular
@@ -55,75 +129,11 @@
         $scope.currentScoreBoard = null
         
         console.log("CLIENT HAS STARTED")
-        
-        $scope.addOption = function () {
-           console.log("$scope.addOption() invoked")
-           console.log($scope.new_poll_indices)
-           $scope.new_poll_indices.push($scope.next_poll_option++) 
-        }
-        
-        var initOptions = function() {
-          console.log("initOptions() invoked")
-          $scope.new_poll_indices = [ 0, 1 ] // couldnt i just use $index
-          $scope.next_poll_option = 2
-          $scope.newPoll = {}
-          $scope.newPoll.option = []
-        }
-
-        $scope.cancelNewPoll = function() {
-          console.log("$scope.cancelNewPoll() invoked")
-          initOptions()
-          $scope.isCollapsed = true
-          console.log($scope.new_poll_indices)
-          console.log($scope.option)
-        }
      
         var getUsers = function() {
           return User.all().then(function(data) {
             $scope.users = data
           })
-        }
-
-/*
-        $scope.vote = function(poll, option_number) {
-          console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
-          Poll.vote(poll, option_number, $scope.user.id)
-          .then(function() {
-            User.incrementPollsVoted($scope.user.username) // update score_board/user_lookup
-          })
-        }
-
-        $scope.deletePoll = function(poll) {
-          Poll.deletePoll(poll, $scope.user.id)
-          .then(function() {
-            User.decrementPollsCreated($scope.user.username) // update score_board/user_lookup
-          })
-        }
-*/
-        $scope.submitPoll = function() {
-          console.log("submitPoll() invoked")
-          console.log($scope.newPoll)
-
-          
-          console.log($scope.newPoll.question)
-          console.log($scope.newPoll.option)
-          $scope.newPoll.option.forEach(function(option) {
-            console.log(option)
-          })
-          console.log($scope.newPoll.tags)
-          
-          
-          if ($scope.newPoll.question !== undefined && $scope.newPoll.option.length !== 0 && $scope.newPoll.tags !== undefined) {
-            $scope.isCollapsed = true
-            // then go ahead and post the poll
-            Poll.createPoll($scope.newPoll,$scope.user).then(function(result) {
-              console.log("Poll.createPoll() invoked in mainController")
-              //console.log(result)
-              initOptions() // not actually necessary since we are changing controllers
-              // change the path
-              $location.path('/poll/'+result._id)
-            })            
-          }
         }
 
 
@@ -162,7 +172,7 @@
   }
 
 
-  initOptions()
+  
   getUsers() // user_lookup/score_board
 
   User.get().then(function(user) { // needed if index.html loginController is not on body
