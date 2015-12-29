@@ -104,8 +104,24 @@
           </div>
         
 <div ng-show="user.isLoggedIn && poll.hasVotedForPoll">
-          
-      		<div ng-show="displayBarGraph" class="well well-lg ng-cloak leader-board">
+
+
+          <div ng-show="true && displayBarGraph" class="panel panel-primary">
+            <div class="panel-heading">
+              <div class="row">    
+                <h4 class="text-center">{{poll.item.poll.question}}</h4>
+		          </div>
+		        </div>
+            <div class="row">
+	              <br>
+	              <div class="col-md-offset-1 col-md-10">
+                  <canvas id="bar-chart" class="chart chart-bar" chart-data="data" chart-labels="labels" 
+                      chart-legend="true" chart-series="series" chart-click="onClick"></canvas> 
+                </div>
+            </div>
+  		    </div>
+
+      		<div ng-show="false && displayBarGraph" class="well well-lg ng-cloak leader-board">
 		        <div class="row">
 		          <div class="col-md-12">
 		            <h4 class="text-center">{{poll.item.poll.question}}</h4>
@@ -122,7 +138,23 @@
             </div>
   		    </div>
 
-      		<div ng-hide="displayBarGraph" class="well well-lg ng-cloak leader-board">
+      		<div ng-hide="displayBarGraph" class="panel panel-primary"><!--leader-board-->
+      		  <div class="panel-heading">
+		          <div class="row">
+		            <h4 class="text-center">{{poll.item.poll.question}}</h4>
+		          </div>
+		        </div>
+            <div class="row">
+              <div class="col-md-offset-1 col-md-10">
+	              <br>
+                  <canvas id="pie-chart" class="chart chart-pie"
+                    chart-data="pie_data" chart-labels="pie_labels" chart-legend="true">
+                  </canvas> 
+              </div>
+            </div>
+  		    </div>
+
+      		<div ng-hide="true || displayBarGraph" class="well well-lg ng-cloak leader-board">
 		        <div class="row">
 		          <div class="col-md-12">
 		            <h4 class="text-center">{{poll.item.poll.question}}</h4>
