@@ -5,7 +5,7 @@
 (function () {
 
    angular
-      .module('pollPosition')    // providers removed since now this is a reference
+      .module('pollPosition')
       .controller('pollController', ['$scope', '$resource', '$http', '$routeParams', '$timeout', 
         '$location', 'Poll', 'User',
         function ($scope, $resource, $http, $routeParams, $timeout, $location, Poll, User) {
@@ -30,7 +30,7 @@
        $scope.pie_data = []
      }
      
-     var init_graph = function() {
+     $scope.initGraph = function() {
      
         clear_graph()
         // label can be the questions
@@ -51,79 +51,46 @@
       
      }
 
+      var getUsers = function() {
+        return User.all().then(function(data) {
+          $scope.users = data
+        })
+      }
+      
+      $scope.redirectToRoot = function() {
+        $location.path('/')
+      }
 
-        var getUsers = function() {
-          return User.all().then(function(data) {
-            $scope.users = data
-          })
-        }
-        
-        /* this is now inside the dtPollTile directive
-        $scope.vote = function(poll, option_number) {
-          console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
-          Poll.vote(poll, option_number, $scope.user.id)
-          .then(function() {
-            User.incrementPollsVoted($scope.user.username) // update score_board/user_lookup
-            init_graph()
-          })
-        }*/
+      var setCurrentPoll = function(){
+        console.log("findCurrentPoll() invoked")
+        console.log(polls)
+        polls.forEach(function(poll,poll_index,ary) {
+          console.log("XXX "+$routeParams.poll_id+" vs "+poll.item._id)
+          
+          if (poll.item._id === $routeParams.poll_id) { 
+            $scope.poll = poll // = item
+          }
+        })
 
-        $scope.postVote = function() {
-          console.log("EXECUTING A POST VOTE FUNCTION")
-          init_graph()
-        }
-
-        $scope.postDelete = function() {
-          console.log("EXECUTING A POST DELETE FUNCTION")
-          $location.path('/')
-        }
-
-        /*
-        $scope.deletePoll = function(poll) {
-          console.log("AM I INvOKED")
-          Poll.deletePoll(poll, $scope.user.id)
-          .then(function() {
-            User.decrementPollsCreated($scope.user.username) // update score_board/user_lookup
-            clear_graph()
-            console.log("THIS IS INVOKED")
-            $location.path('/')
-            console.log("THIS WAS INVOKED")
-            
-          })
-        }
-        */
-
-
-        var setCurrentPoll = function(){
-          console.log("findCurrentPoll() invoked")
-          console.log(polls)
-          polls.forEach(function(poll,poll_index,ary) {
-            console.log("XXX "+$routeParams.poll_id+" vs "+poll.item._id)
-            
-            if (poll.item._id === $routeParams.poll_id) { 
-              $scope.poll = poll // = item
-            }
-          })
-
-        }
+      }
 
 ////////////////////////////////////////////
-        getUsers()
-        User.get().then(function(user) { // needed if index.html loginController is not on body
-          $scope.user = user
-          console.log("USER")
-          console.log(user)
-          console.log($scope.users)
-          Poll.getPolls(user).then(function(_polls){
-            console.log("POLL CALLED IN CONTROLLER")
-            polls = _polls
-            $scope.num_polls = polls.length // this will need to be updated periodically
-            setCurrentPoll()
-            init_graph()
-          })
+      getUsers()
+      User.get().then(function(user) { // needed if index.html loginController is not on body
+        $scope.user = user
+        console.log("USER")
+        console.log(user)
+        console.log($scope.users)
+        Poll.getPolls(user).then(function(_polls){
+          console.log("POLL CALLED IN CONTROLLER")
+          polls = _polls
+          $scope.num_polls = polls.length // this will need to be updated periodically
+          setCurrentPoll()
+          $scope.initGraph()
         })
+      })
         
 
-      }]);
+    }]);
    
 })();
