@@ -6,8 +6,9 @@
 
    angular
       .module('pollPosition')    // providers removed since now this is a reference
-      .controller('pollController', ['$scope', '$resource', '$http', '$routeParams', '$timeout', 'Poll', 'User',
-        function ($scope, $resource, $http, $routeParams, $timeout, Poll, User) {
+      .controller('pollController', ['$scope', '$resource', '$http', '$routeParams', '$timeout', 
+        '$location', 'Poll', 'User',
+        function ($scope, $resource, $http, $routeParams, $timeout, $location, Poll, User) {
          
         $scope.pollHeader = "Poll Detail"
         $scope.displayAllPolls = true
@@ -57,13 +58,7 @@
           })
         }
         
-/*        var update_user_lookup = function() {
-          // this will update the polls_created, poll_voted stars. I could just 
-          // update the $scope.user_lookup directly inside vote and inside deletePoll which would be faster
-          getUsers()  
-        }
-*/
-
+        /* this is now inside the dtPollTile directive
         $scope.vote = function(poll, option_number) {
           console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
           Poll.vote(poll, option_number, $scope.user.id)
@@ -71,36 +66,33 @@
             User.incrementPollsVoted($scope.user.username) // update score_board/user_lookup
             init_graph()
           })
+        }*/
+
+        $scope.postVote = function() {
+          console.log("EXECUTING A POST VOTE FUNCTION")
+          init_graph()
         }
 
+        $scope.postDelete = function() {
+          console.log("EXECUTING A POST DELETE FUNCTION")
+          $location.path('/')
+        }
+
+        /*
         $scope.deletePoll = function(poll) {
+          console.log("AM I INvOKED")
           Poll.deletePoll(poll, $scope.user.id)
           .then(function() {
             User.decrementPollsCreated($scope.user.username) // update score_board/user_lookup
             clear_graph()
+            console.log("THIS IS INVOKED")
+            $location.path('/')
+            console.log("THIS WAS INVOKED")
+            
           })
         }
+        */
 
-
-/*
-        $scope.vote = function(poll, option_number) {
-          console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
-          Poll.vote(poll, option_number, $scope.user.id)
-          .then(function() {
-            update_user_lookup()
-            init_graph()
-          })
-        }
-
-        $scope.deletePoll = function(poll) {
-          Poll.deletePoll(poll, $scope.user.id) // should be on the parameter list
-          .then(function() {
-            update_user_lookup() // this is not really needed since there will be nothing to look up
-            clear_graph() // this isn't removing the graph
-            console.log("HEY, THIS JUST GOT INVOKED")
-          })
-        }        
-*/
 
         var setCurrentPoll = function(){
           console.log("findCurrentPoll() invoked")
@@ -115,8 +107,6 @@
 
         }
 
-      
-        
 ////////////////////////////////////////////
         getUsers()
         User.get().then(function(user) { // needed if index.html loginController is not on body

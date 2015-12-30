@@ -13,7 +13,9 @@
             poll: '=',
             user: '=' , // same as below
             users: '=', // should i pass this in or have the directive use the users service
-            displayAllPolls: '='
+            displayAllPolls: '=',
+            postDelete: '&', // this looks pretty ugly to me
+            postVote: '&'
           },
           controller:  function($scope, Poll, User) {
             
@@ -22,6 +24,8 @@
               Poll.vote(poll, option_number, $scope.user.id)
                 .then(function() {
                   User.incrementPollsVoted($scope.user.username) // update score_board/user_lookup
+                  console.log("INVOKE VOTE")
+                  if ($scope.postVote) $scope.postVote()
                 })
               }
 
@@ -29,6 +33,9 @@
               Poll.deletePoll(poll, $scope.user.id) // should this be a User.get_id
                 .then(function() {
                   User.decrementPollsCreated($scope.user.username) // update score_board/user_lookup
+                  console.log("INVOKE DELETEPOLL")
+                  // why does this have to be on scope, doesnt seem like its the right way
+                  if ($scope.postDelete) $scope.postDelete()
                 })
               }
               
