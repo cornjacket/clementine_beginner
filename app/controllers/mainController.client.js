@@ -4,7 +4,7 @@
 
 
    angular
-      .module('pollPosition')
+      .module('pollOverflow')
       .directive('dtPollTile', function() {
         return {
           templateUrl: "public/pollTile.html",
@@ -44,7 +44,7 @@
       })
 
    angular
-      .module('pollPosition')
+      .module('pollOverflow')
       .directive('dtScoreBoard', function() {
         return {
           templateUrl: "public/scoreBoard.html",
@@ -60,7 +60,7 @@
       })
 
    angular
-      .module('pollPosition')
+      .module('pollOverflow')
       .directive('dtNewPoll', function() {
         return {
           templateUrl: "public/newPoll.html",
@@ -123,7 +123,7 @@
 
 
    angular
-      .module('pollPosition')
+      .module('pollOverflow')
       .controller('mainController', ['$scope', '$resource', '$http', '$location', 'Poll', 'User',
           function ($scope, $resource, $http, $location, Poll, User) {
          

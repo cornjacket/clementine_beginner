@@ -141,6 +141,13 @@ font-weight: bold;}
     margin-left: 5px;
 }
 
+.panel-button {
+    margin-left: 10px;
+}
+
+.panel-row {
+    margin-top:  3px;
+}
 
 .tag-group {
     margin-top: 5px;

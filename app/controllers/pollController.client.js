@@ -5,7 +5,7 @@
 (function () {
 
    angular
-      .module('pollPosition')
+      .module('pollOverflow')
       .controller('pollController', ['$scope', '$resource', '$http', '$routeParams', '$timeout', 
         '$location', 'Poll', 'User',
         function ($scope, $resource, $http, $routeParams, $timeout, $location, Poll, User) {

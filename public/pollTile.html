@@ -20,8 +20,8 @@
             <div ng-repeat="option in poll.item.poll.options track by $index">
               <div class="row"> 
                 <div class="col-md-2">
-                  <a ng-hide="poll.hasVotedForPoll" ng-click="vote(poll, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !user.isLoggedIn }" role="button">Vote</a>
-                  <p class="poll-option text-center" ng-show="poll.hasVotedForPoll" ng-class="{ 'user_voted': poll.has_voted_for_option[$index] }">
+                  <a ng-hide="poll.hasVotedForPoll" ng-click="vote(poll, $index)" class="btn btn-default btn-xs panel-button panel-row" ng-class="{ 'disabled': !user.isLoggedIn }" role="button">Vote</a>
+                  <p class="poll-option text-center panel-row" ng-show="poll.hasVotedForPoll" ng-class="{ 'user_voted': poll.has_voted_for_option[$index] }">
                      <ng-pluralize count="poll.aggregate_votes[$index]" when="{ 
                        '1': '1 vote', 
                        'other': '{} votes'}">
@@ -29,7 +29,7 @@
                   </p>
                 </div>
                 <div class="col-md-10"> 
-                  <p class="poll-option" ng-class="{ 'user_voted': poll.has_voted_for_option[$index] }">{{ option }}</p>
+                  <p class="poll-option panel-row" ng-class="{ 'user_voted': poll.has_voted_for_option[$index] }">{{ option }}</p>
                 </div>      
               </div>                  
             </div>            

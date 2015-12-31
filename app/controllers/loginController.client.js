@@ -3,7 +3,7 @@
 (function () {
 
   angular
-    .module('pollPosition')
+    .module('pollOverflow')
     .controller('loginController', ['$scope', 'User', function ($scope, User) {
       $scope.user = {}
         console.log("LOGIN CLIENT HAS STARTED")

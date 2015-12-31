@@ -201,7 +201,7 @@
     
   };
   
-  var module = angular.module("pollPosition");
+  var module = angular.module("pollOverflow");
   // register service with angular
   module.factory("Poll", Poll);
   
