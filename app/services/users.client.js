@@ -7,15 +7,20 @@
     var user_id = undefined
     var cached_user = null // what to do if the user logs out - how does this get setback to null
     var cached_users = null
+    var prev_user_id = null
 
     // first time getUser is called it returns an id of undefined.
     // this is because the user has not logged in yet and it is the initial response.
     // therefore we can not cache the first call to get the user
     var get = function (id) { // dont believe id is used or needed
+       console.log("**********************************************")
        console.log("getUser() invoked")
        console.log("GETUSER() id = "+id)
+       console.log("previous id = "+prev_user_id)
+       console.log("user_id = "+user_id)
        
-      if (cached_user === null || user_id === undefined) {
+       
+      if (cached_user === null || user_id !== prev_user_id) { // !== is necessary so no type conversion for null to undefined
        
         cached_user = UserResource.get({ id: id }).$promise  // dont believe the actual value of id has meaning
          .then(function(results) {
@@ -28,6 +33,7 @@
            user.username = results.username
            user.publicRepos = results.publicRepos
            user.isLoggedIn = results.username !== undefined // testing - why is a html page being sent to client
+           prev_user_id = user_id
            return user
          })
          console.log("********** Retrieving USER FROM SERVER ******************")

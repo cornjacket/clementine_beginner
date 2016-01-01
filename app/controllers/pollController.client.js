@@ -75,7 +75,7 @@
       }
 
 ////////////////////////////////////////////
-      getUsers()
+      getUsers() // used for lookup table
       User.get().then(function(user) { // needed if index.html loginController is not on body
         $scope.user = user
         console.log("USER")
