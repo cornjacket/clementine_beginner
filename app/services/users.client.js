@@ -38,7 +38,7 @@
       }
     }
 
-    // pulled these variables out so that I can have vote and delte api calls
+    // pulled these variables out so that I can have vote and delete api calls
     var user_lookup = {}
     var score_board = []
     var num_votes   = 0

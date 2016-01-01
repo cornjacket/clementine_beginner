@@ -189,7 +189,7 @@
           $scope.num_polls = polls.length // this will need to be updated periodically
           console.log("DAVE TESTING DIRECTIVES HERE")
           console.log($scope.polls)
-          $scope.currentpoll = $scope.polls[3]
+          $scope.currentpoll = $scope.polls[3] // this should be removed after i fix this bug
           console.log($scope.currentpoll)
       })
   })

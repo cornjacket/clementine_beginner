@@ -165,7 +165,7 @@
           console.log(cached_polls)
           // we need to go into the promise and update its field
           // this could have been done in the app, but better abstraction here
-          cached_polls.$$state.value.push(poll_obj)  // probably need to change names poll-item, poll_obj-poll
+          cached_polls.$$state.value.push(poll_obj)
           return item
           
         })
