@@ -14,7 +14,7 @@
             </div>
            </div>
  
-            <dt-poll-tile poll="poll" user="user" users="users" display-all-polls="displayAllPolls" post-delete="redirectToRoot()" post-vote="initGraph()"></dt-poll-tile>
+            <dt-poll-tile poll="poll" user="user" users="users" display-all-polls="displayAllPolls" post-delete="redirectToRoot()" post-vote="initGraph()" deletable="true"></dt-poll-tile>
             <!--<div ng-show="!poll.isPollDeleted && (displayAllPolls || (!displayAllPolls && poll.isPollAuthoredByUser))">
                 
                 
@@ -85,7 +85,6 @@
  
           </div>
         <!--Nav Bar -->
-        
         <nav class="wrapper col-md-3 ng-cloak">
           <div class="ng-cloak">
             <h3>{{num_polls}} Polls, {{users.num_votes}} Votes</h3>
@@ -99,17 +98,18 @@
                   <li role="menuitem"><a ng-click="displayBarGraph=false" href="">Pie Chart</a></li>
                 </ul>
             </div>
-            
             <hr />
           </div>
-        
+          
 <div ng-show="user.isLoggedIn && poll.hasVotedForPoll">
 
 
           <div ng-show="true && displayBarGraph" class="panel panel-primary">
             <div class="panel-heading">
               <div class="row">    
-                <h4 class="text-center">{{poll.item.poll.question}}</h4>
+                <div class="col-md-offset-1 col-md-10">
+                  <h4 class="text-center">{{poll.item.poll.question}}</h4>
+                </div>
 		          </div>
 		        </div>
             <div class="row">
@@ -141,7 +141,9 @@
       		<div ng-hide="displayBarGraph" class="panel panel-primary"><!--leader-board-->
       		  <div class="panel-heading">
 		          <div class="row">
-		            <h4 class="text-center">{{poll.item.poll.question}}</h4>
+		            <div class="col-md-offset-1 col-md-10">
+		              <h4 class="text-center">{{poll.item.poll.question}}</h4>
+		            </div>
 		          </div>
 		        </div>
             <div class="row">
@@ -171,8 +173,6 @@
               </div>
             </div>
   		    </div>
-      		         
-          <hr />
 
 </div>
   

@@ -10,7 +10,7 @@
              templateUrl: "public/main.html",
              controller: "mainController",
              resolve: {
-                 data: function($q, $timeout, User, Poll) {
+                 data: function($q, User, Poll) {
                      var defer = $q.defer()
                       User.all()
                       User.get().then(function(user) {
@@ -23,7 +23,7 @@
              }
           })
           .when("/poll/:poll_id", {
-             templateUrl: "public/poll.html",
+             templateUrl: "public/pollShow.html",
              controller: "pollController"
           })
           .otherwise({redirect:"/"})

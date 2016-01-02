@@ -14,11 +14,18 @@
             user: '=' , // same as below
             users: '=', // should i pass this in or have the directive use the users service
             displayAllPolls: '=',
+            deletableState: '@deletable',
             postDelete: '&', // this looks pretty ugly to me
             postVote: '&'
           },
           controller:  function($scope, Poll, User) {
             
+            $scope.deletable = ($scope.deletableState === 'true')
+            
+            console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+            console.log($scope.deletableState)
+            console.log($scope.deletable)
+            console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
             
             $scope.removing = false
             $scope.startRemoving = function() {

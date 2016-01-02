@@ -16,7 +16,7 @@
     <div class="row">
       
       <div class="col-md-offset-4 col-md-8"> 
-        <h3>{{pollHeader}} <small ng-hide="user.isLoggedIn">- Please log in to vote.</small></h3>
+        <h3>{{pollHeader}} <small ng-hide="user.isLoggedIn">- Please log in to vote or create a poll.</small></h3>
         <!-- Single button -->
         <div ng-show="user.isLoggedIn" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
           <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div ng-repeat ="poll in polls">
-        <dt-poll-tile poll="poll" user="user" users="users" display-all-polls="displayAllPolls"></dt-poll-tile>
+        <dt-poll-tile poll="poll" user="user" users="users" display-all-polls="displayAllPolls" deletable="false"></dt-poll-tile>
     </div>
   </div>
   
