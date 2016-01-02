@@ -6,11 +6,19 @@
           
             <div class="panel-heading">
              <div class="row">
-              <div class="col-md-11">
+              <div ng-hide="user.isLoggedIn && poll.isPollAuthoredByUser" class="col-md-11">
+                <a class="h4 poll-question-white" href="/#/poll/{{poll.item._id}}">{{poll.item.poll.question}}</a>
+              </div>               
+              <div ng-show="user.isLoggedIn && poll.isPollAuthoredByUser" class="col-md-9">
                 <a class="h4 poll-question-white" href="/#/poll/{{poll.item._id}}">{{poll.item.poll.question}}</a>
               </div>
-              <div class="col-md-1">
-                <a ng-click="deletePoll(poll)" class="pull-right btn btn-default btn-xs" ng-show="user.isLoggedIn && poll.isPollAuthoredByUser" role="button">X</a>
+              <div ng-show="user.isLoggedIn && poll.isPollAuthoredByUser" class="col-md-3">
+                <!--<a ng-click="deletePoll(poll)" class="pull-right btn btn-default btn-xs" ng-show="user.isLoggedIn && poll.isPollAuthoredByUser" role="button">X</a>-->
+                <a ng-click="startRemoving(poll)" class="pull-right btn btn-default btn-xs" ng-show="user.isLoggedIn && poll.isPollAuthoredByUser && !removing" role="button">X</a>
+                <span ng-show="removing">
+                  <button class="pull-right btn btn-danger btn-xs" ng-click="cancel()">Cancel</button>
+                  <button class="pull-right btn btn-success btn-xs" ng-click="deletePoll(poll)">Delete</button>
+                </span>
               </div>
              </div>
                 <!--<a ng-click="flagPoll($index)" class="pull-right btn btn-default btn-xs poll-button" ng-show="user.isLoggedIn && !poll.isPollAuthoredByUser" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>

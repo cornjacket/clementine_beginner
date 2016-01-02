@@ -19,6 +19,15 @@
           },
           controller:  function($scope, Poll, User) {
             
+            
+            $scope.removing = false
+            $scope.startRemoving = function() {
+              $scope.removing = true
+            }
+            $scope.cancel = function() {
+              $scope.removing = false
+            }
+            
             $scope.vote = function(poll, option_number) {
               console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
               Poll.vote(poll, option_number, $scope.user.id)
