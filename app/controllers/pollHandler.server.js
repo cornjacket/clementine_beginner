@@ -25,7 +25,7 @@ function PollHandler () {
     newPoll.poll.options = []
     newPoll.poll.options = req.body.data.option 
     newPoll.poll.votes = []
-    newPoll.poll.tags = req.body.data.tags.toLowerCase().split(' ')
+    newPoll.poll.tags = req.body.data.tags.toLowerCase().split(',')
     // each subarray in votes contains the user_id's for the respective options subarray
     //console.log(newPoll.poll.options)
     //console.log(newPoll.poll.options.length)

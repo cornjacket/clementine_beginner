@@ -23,7 +23,7 @@
 ////////////////////////////////////////////     
      
      var clear_graph = function() {
-       $scope.labels = []
+       $scope.labels = [ "Results" ] // This message pops up over the bar graph on hover
        $scope.pie_labels = []
        $scope.series = []
        $scope.data = []
