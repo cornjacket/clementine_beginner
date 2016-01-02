@@ -15,74 +15,7 @@
            </div>
  
             <dt-poll-tile poll="poll" user="user" users="users" display-all-polls="displayAllPolls" post-delete="redirectToRoot()" post-vote="initGraph()" deletable="true"></dt-poll-tile>
-            <!--<div ng-show="!poll.isPollDeleted && (displayAllPolls || (!displayAllPolls && poll.isPollAuthoredByUser))">
-                
-                
-                <div class="row">
-                
-                
-                  <div class="col-md-offset-4 col-md-7">
-                    <a class="h4 poll-question" href=""><span>{{poll.item.poll.question}}</span></a>
 
-                  </div>
-                  <div id="_upDownFlagX">
-                    <a ng-click="downVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>
-                    <a ng-click="upVote($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>
-                    <a ng-click="flagPoll($index)" class="btn btn-default btn-xs" ng-show="isLoggedIn && !isPollAuthoredByUser[$index]" role="button"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a>
-                    <div class="col-md-1">
-                      <a ng-click="deletePoll(poll)" class="btn btn-default btn-xs" href="/#/" ng-show="user.isLoggedIn && poll.isPollAuthoredByUser" role="button">X</a>
-                    </div>
-                  </div>
-                  
-</div>
-                
-                    <div ng-repeat="option in poll.item.poll.options track by $index">
-                      <div class="row"> 
-                        <div class="col-md-offset-4 col-md-1">
-                          <a ng-hide="poll.hasVotedForPoll" ng-click="vote(poll, $index)" class="btn btn-default btn-xs" ng-class="{ 'disabled': !user.isLoggedIn }" role="button">Vote</a>
-                          <p class="poll-option text-center" ng-show="poll.hasVotedForPoll" ng-class="{ 'user_voted': poll.has_voted_for_option[$index] }">
-                             <ng-pluralize count="poll.aggregate_votes[$index]" when="{ 
-                               '1': '1 vote', 
-                               'other': '{} votes'}">
-                             </ng-pluralize>
-                          </p>
-                        </div>
-                        <div class="col-md-7"> 
-                          <p class="poll-option" ng-class="{ 'user_voted': poll.has_voted_for_option[$index] }">{{ option }}</p>
-                        </div>      
-                      </div>                  
-                    </div>      
-                  
-                  <div class="row tag-group ng-cloak">
-                    <div class="col-md-offset-5 col-md-3">
-                      <div ng-repeat="tag in poll.item.poll.tags" class="tag small-text">
-                        <span >{{tag}}</span>
-                      </div>
-                    </div>
-                    <div class="signature-top col-md-3 small-text">
-                      asked by {{poll.item.author.username}} on {{poll.item.created_at | date }}
-                    </div>
-                    <div class="signature-bottom col-md-offset-8 col-md-3 small-text">
-                      <img ng-src={{poll.img}} alt="poll creator" height="30" width="30">
-                      <a class="stars" title='{{users.lookup[poll.item.author.username].polls_created}} polls'>
-                        <span>{{users.lookup[poll.item.author.username].polls_created}} </span>
-                        <span class="glyphicon glyphicon-star created_polls" aria-hidden="true"> </span>
-                      </a>
-                      <a class="stars" title='{{users.lookup[poll.item.author.username].polls_voted}} votes'>
-                        <span>{{users.lookup[poll.item.author.username].polls_voted}} </span>
-                        <span class="glyphicon glyphicon-star voted_polls" aria-hidden="true"> </span>
-                      </a>
-                    </div>
-    
-                  </div>                  
-                  <div class="col-md-offset-4 col-md-8">
-                    <hr />
-                  </div>
-                  
-                
-                  
-              </div>-->
- 
           </div>
         <!--Nav Bar -->
         <nav class="wrapper col-md-3 ng-cloak">
@@ -104,7 +37,7 @@
 <div ng-show="user.isLoggedIn && poll.hasVotedForPoll">
 
 
-          <div ng-show="true && displayBarGraph" class="panel panel-primary">
+          <div class="panel panel-primary">
             <div class="panel-heading">
               <div class="row">    
                 <div class="col-md-offset-1 col-md-10">
@@ -115,8 +48,18 @@
             <div class="row">
 	              <br>
 	              <div class="col-md-offset-1 col-md-10">
-                  <canvas id="bar-chart" class="chart chart-bar" chart-data="data" chart-labels="labels" 
-                      chart-legend="true" chart-series="series" chart-click="onClick"></canvas> 
+	                <div ng-show="true && displayBarGraph" class="panel panel-primary">
+                    <canvas id="bar-chart" class="chart chart-bar" chart-data="data" chart-labels="labels" 
+                      chart-legend="true" chart-series="series" chart-click="onClick">
+                    </canvas> 
+                  </div>
+                  <div ng-hide="displayBarGraph" class="panel panel-primary">
+                    <canvas id="pie-chart" class="chart chart-pie"
+                    chart-data="pie_data" chart-labels="pie_labels" chart-legend="true">
+                    </canvas> 
+                    
+                  </div>
+                  
                 </div>
             </div>
   		    </div>
@@ -134,24 +77,6 @@
                   <canvas id="bar-chart" class="chart chart-bar" chart-data="data" chart-labels="labels" 
                       chart-legend="true" chart-series="series" chart-click="onClick"></canvas>                   
 
-              </div>
-            </div>
-  		    </div>
-
-      		<div ng-hide="displayBarGraph" class="panel panel-primary"><!--leader-board-->
-      		  <div class="panel-heading">
-		          <div class="row">
-		            <div class="col-md-offset-1 col-md-10">
-		              <h4 class="text-center">{{poll.item.poll.question}}</h4>
-		            </div>
-		          </div>
-		        </div>
-            <div class="row">
-              <div class="col-md-offset-1 col-md-10">
-	              <br>
-                  <canvas id="pie-chart" class="chart chart-pie"
-                    chart-data="pie_data" chart-labels="pie_labels" chart-legend="true">
-                  </canvas> 
               </div>
             </div>
   		    </div>

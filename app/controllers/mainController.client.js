@@ -22,11 +22,6 @@
             
             $scope.deletable = ($scope.deletableState === 'true')
             
-            console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-            console.log($scope.deletableState)
-            console.log($scope.deletable)
-            console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-            
             $scope.removing = false
             $scope.startRemoving = function() {
               $scope.removing = true
