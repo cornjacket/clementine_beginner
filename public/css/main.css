@@ -13,6 +13,23 @@ a[ng-click]{
     cursor: pointer;
 }
 
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
 h3 {
     display: inline-block;
 }

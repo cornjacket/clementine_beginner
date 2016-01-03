@@ -9,7 +9,8 @@
 // read from the server.
 
    var cached_polls = null // use this to return cached version of polls
-
+   var info         = {}
+  
 // I need the service to go off and grab the polls from the server and then append all the stuff
 // that I need appended. Then I can return this as a promise to the calling routine.
     var Poll = $resource('/api/polls/:id', { id: '@_id' }, {
@@ -95,7 +96,8 @@
               img:                  "http://isigned.org/images/anonymous.png",
               aggregate_votes:      []
             }
-          })          
+          })      
+          info.num_polls = polls.length
           polls.forEach(function(poll) {
             updateHasAlreadyVoted(poll,user.id)
             setGithubUserImage(poll) // parameters can be merged
@@ -141,6 +143,8 @@
     var createPoll = function(poll, user) {
         console.log("createPoll() invoked")
         
+        console.log("cached_polls before = ")
+        console.log(cached_polls)
         var new_poll = new Poll()
         new_poll.data = poll
         return Poll.save(new_poll).$promise.then( function(item) {
@@ -162,10 +166,12 @@
           determinePollAuthoredByUser(poll_obj,user.id)
           
           // need to add poll to the poll list
-          console.log(cached_polls)
+          //console.log(cached_polls)
           // we need to go into the promise and update its field
           // this could have been done in the app, but better abstraction here
+          info.num_polls++
           cached_polls.$$state.value.push(poll_obj)
+          console.log(cached_polls)
           return item
           
         })
@@ -178,7 +184,7 @@
         // i could also put up a pop up confirming the deletion - not sure - see angular directives video
         console.log("deletePoll() invoked")
         poll.isPollDeleted = true
-        //$scope.num_polls--
+        info.num_polls--
         return Poll.delete({ id:poll.item._id }).$promise //, update_user_lookup);   
         } else {
             // I can envision this happening while using $index
@@ -196,7 +202,8 @@
       getPolls:   getPolls,
       createPoll: createPoll,
       deletePoll: deletePoll,
-      vote:       vote
+      vote:       vote,
+      info:       info
     };
     
   };

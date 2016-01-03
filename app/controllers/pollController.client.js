@@ -63,9 +63,9 @@
 
       var setCurrentPoll = function(){
         console.log("findCurrentPoll() invoked")
-        console.log(polls)
+        //console.log(polls)
         polls.forEach(function(poll,poll_index,ary) {
-          console.log("XXX "+$routeParams.poll_id+" vs "+poll.item._id)
+          //console.log("XXX "+$routeParams.poll_id+" vs "+poll.item._id)
           
           if (poll.item._id === $routeParams.poll_id) { 
             $scope.poll = poll // = item
@@ -75,6 +75,7 @@
       }
 
 ////////////////////////////////////////////
+      
       getUsers() // used for lookup table
       User.get().then(function(user) { // needed if index.html loginController is not on body
         $scope.user = user

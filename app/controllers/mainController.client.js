@@ -76,7 +76,7 @@
         return {
           templateUrl: "public/newPoll.html",
           restrict:    "E",
-          controller:  function($scope, $location, Poll) {
+          controller:  function($scope, $location, Poll, User) {
            
             $scope.addOption = function () {
               console.log("$scope.addOption() invoked")
@@ -115,6 +115,8 @@
               
               if ($scope.newPoll.question !== undefined && $scope.newPoll.option.length !== 0 && $scope.newPoll.tags !== undefined) {
                 $scope.isCollapsed = true
+                // update User's lookup and scoreboard
+                User.incrementPollsCreated($scope.user.username)
                 // then go ahead and post the poll
                 Poll.createPoll($scope.newPoll,$scope.user).then(function(result) {
                   console.log("Poll.createPoll() invoked in mainController")
@@ -151,6 +153,8 @@
         var getUsers = function() {
           return User.all().then(function(data) {
             $scope.users = data
+            console.log("mainController")
+            console.log("num_votes = "+$scope.users.stats.num_votes) // DRT this does not get updated
           })
         }
 
@@ -194,12 +198,13 @@
   getUsers() // user_lookup/score_board
 
   User.get().then(function(user) { // needed if index.html loginController is not on body
+  
     $scope.user = user   
     Poll.getPolls(user).then(function(polls){
           $scope.polls = polls
-          $scope.num_polls = polls.length // this will need to be updated periodically
-          console.log("DAVE TESTING DIRECTIVES HERE")
-          console.log($scope.polls)
+          $scope.num_polls = Poll.info.num_polls  //polls.length // this will need to be updated periodically
+          //console.log("DAVE TESTING DIRECTIVES HERE")
+          //console.log($scope.polls)
           $scope.currentpoll = $scope.polls[3] // this should be removed after i fix this bug
           console.log($scope.currentpoll)
       })

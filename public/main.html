@@ -42,7 +42,7 @@
   
   <nav class="wrapper col-md-3 ng-cloak">
     <div class="ng-cloak">
-      <h3>{{num_polls}} Polls, {{users.num_votes}} Votes</h3>
+      <h3>{{num_polls}} Polls, {{users.stats.num_votes}} Votes</h3> 
       <button ng-show="user.isLoggedIn" type="button" class="btn btn-default pull-right" ng-click="isCollapsed = false">New Poll</button>
       <hr /> 
     </div>

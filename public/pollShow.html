@@ -20,7 +20,7 @@
         <!--Nav Bar -->
         <nav class="wrapper col-md-3 ng-cloak">
           <div class="ng-cloak">
-            <h3>{{num_polls}} Polls, {{users.num_votes}} Votes</h3>
+            <h3>{{num_polls}} Polls, {{users.stats.num_votes}} Votes</h3>
             
             <div ng-show="user.isLoggedIn && poll.hasVotedForPoll" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
                 <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">

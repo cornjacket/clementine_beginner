@@ -47,8 +47,10 @@
     // pulled these variables out so that I can have vote and delete api calls
     var user_lookup = {}
     var score_board = []
-    var num_votes   = 0
-    var num_users   = 0 //
+    var stats       = {}
+    stats.num_votes = 0
+    stats.num_users = 0
+    
   
     var decrementPollsCreated = function(username) {  // passed $scope.user.username
       console.log("users.deletePoll() invoked")
@@ -83,6 +85,8 @@
     }  
     
     var incrementPollsVoted = function(username) { // passed $scope.user.username
+      console.log("User.incrementPollsVoted() invoked")
+      stats.num_votes++
       user_lookup[username].polls_voted++ 
       // now need to change the score_board too
       
@@ -108,8 +112,10 @@
           console.log("**** I AM GETTING ALL THE USERS FROM THE SERVER. ****")
           user_lookup = {}
           score_board = []
-          num_votes   = 0
-          num_users = results.data.length // note that with a lot of users, then this will no longer work
+          stats       = {}
+          stats.num_votes = 0
+          stats.num_users = 0 // is this being used
+          stats.num_users = results.data.length // note that with a lot of users, then this will no longer work
           results.data.forEach(function(user){
             // user_lookup provides a convenient way to get polls created and voted
             // when knowing the user's username. however there are problems using
@@ -127,7 +133,8 @@
               'polls_created': user.polls.num_created,
               'polls_voted':   user.polls.num_voted
             })
-            num_votes += user.polls.num_voted
+            stats.num_votes += user.polls.num_voted
+            
           })
           console.log("score board")
           console.log(user_lookup)
@@ -135,14 +142,16 @@
           return {
             lookup:      user_lookup,
             score_board: score_board,
-            num_votes:   num_votes,
-            num_users:   num_users
+            stats:       stats
+            
+            /* num_votes:   num_votes, // returning a simple variable means that this is a value that is not mutable
+            num_users:   num_users  // therefore now both of these are stored in stats */
           }
           
         })
       return cached_users // the else is not necessary, just return cached_users at the end
       } else { // if cached_users
-        console.log("I AM GETTING ALL THE USERS LOCALLY FROM THE USERS angular service.")
+        console.log("users retrieved locally from the users service.")
         return cached_users
       }
     }    
