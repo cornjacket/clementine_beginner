@@ -1,28 +1,63 @@
 <!DOCTYPE html>
-<html>
-   <head>
-     <title>Clementine.js - The elegant and lightweight full-stack boilerplate.</title>
-     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css">
-     <link href="/public/css/main.css" rel="stylesheet" type="text/css">      
-   </head>
 
-   <body>
+<html ng-app="pollOverflow">
 
-     <div class="container">
-         <img src="/public/img/clementine_150.png" />
-         <br />
-         <p class="clementine-text">Clementine.js</p>
-     </div>
+  <head>
+    <title>pollOverflow</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="//cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.css" />-->
+    <link href="/public/css/angular-chart.css" rel="stylesheet" type="text/css">
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+  </head>
 
-     <div class="container">
-         <p>You have clicked the button <span id="click-nbr"></span> times.</p>
-         <br />
-         <div class="btn-container">
-            <button type="submit" class="btn btn-add">CLICK ME!</button>
-            <button class="btn btn-delete">RESET</button>
-         </div>
-     </div>
+  <body ng-controller="loginController"> <!--should be around enclosin div below -->
+      
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand nav-bar-menu-item" href="/#/">pollOverflow</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
 
-     <script type="text/javascript" src="/controllers/clickController.client.js"></script>
-   </body>
+          <a href="/auth/github" ng-hide="user.isLoggedIn"  title='Log in with GitHub'>
+            <div class="btn pull-right" id="login-btn">
+              <img src="public/img/github_32px.png" alt="github logo" />
+            </div>
+          </a>
+          
+          <a ng-show="user.isLoggedIn" class="menu pull-right ng-cloak" href="/logout"><span>Logout</span></a>
+          <a ng-show="user.isLoggedIn" class="menu pull-right ng-cloak" href="">Welcome, <span>{{ user.name }}</span>! </a>
+        </div>
+      </div>
+    </nav>  
+    <div ng-hide="user.isLoggedIn" class="container text-center">
+      <h4>Welcome to pollOverflow. A place to make and vote on polls...</h4>
+    </div> 
+    <div ng-view></div>
+
+<!---------------------------------------------------------------------------------------->  
+
+    
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <!--<script src="//cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js"></script>-->
+    <script type="text/javascript "src="controllers/angular-chart.min.js"></script>
+    <script type="text/javascript" src="controllers/app.client.js"></script>
+    <script type="text/javascript" src="controllers/loginController.client.js"></script>
+    <script type="text/javascript" src="controllers/mainController.client.js"></script>
+    <script type="text/javascript" src="controllers/pollController.client.js"></script>
+    <script type="text/javascript" src="services/users.client.js"></script>
+    <script type="text/javascript" src="services/polls.client.js"></script>
+  </body>
+
 </html>

@@ -1,0 +1,107 @@
+<!---------------------------------------------------------------------------------------->  
+    <div class="row ng-cloak">
+      
+      
+        <!--Main Content -->
+          <div class="wrapper col-md-7 ng-cloak">
+            
+           <div class="row">
+            
+            <div class="col-md-offset-4 col-md-8"> 
+              <h3>{{pollHeader}} <small ng-hide="user.isLoggedIn">- Please log in to vote.</small></h3>
+              <!-- Single button -->
+              <hr />  
+            </div>
+           </div>
+ 
+            <dt-poll-tile poll="poll" user="user" users="users" display-all-polls="displayAllPolls" post-delete="redirectToRoot()" post-vote="initGraph()" deletable="true"></dt-poll-tile>
+
+          </div>
+        <!--Nav Bar -->
+        <nav class="wrapper col-md-3 ng-cloak">
+          <div class="ng-cloak">
+            <h3>{{num_polls}} Polls, {{users.stats.num_votes}} Votes</h3>
+            
+            <div ng-show="user.isLoggedIn && poll.hasVotedForPoll" class="btn-group pull-right" uib-dropdown is-open="status.isopen">
+                <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+                  View <span class="caret"></span>
+                </button>
+                <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+                  <li role="menuitem"><a ng-click="displayBarGraph=true" href="">Bar Chart</a></li>
+                  <li role="menuitem"><a ng-click="displayBarGraph=false" href="">Pie Chart</a></li>
+                </ul>
+            </div>
+            <hr />
+          </div>
+          
+<div ng-show="user.isLoggedIn && poll.hasVotedForPoll">
+
+
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <div class="row">    
+                <div class="col-md-offset-1 col-md-10">
+                  <h4 class="text-center">{{poll.item.poll.question}}</h4>
+                </div>
+		          </div>
+		        </div>
+            <div class="row">
+	              <br>
+	              <div class="col-md-offset-1 col-md-10">
+	                <div ng-show="true && displayBarGraph" class="panel panel-primary">
+                    <canvas id="bar-chart" class="chart chart-bar" chart-data="data" chart-labels="labels" 
+                      chart-legend="true" chart-series="series" chart-click="onClick">
+                    </canvas> 
+                  </div>
+                  <div ng-hide="displayBarGraph" class="panel panel-primary">
+                    <canvas id="pie-chart" class="chart chart-pie"
+                    chart-data="pie_data" chart-labels="pie_labels" chart-legend="true">
+                    </canvas> 
+                    
+                  </div>
+                  
+                </div>
+            </div>
+  		    </div>
+
+      		<div ng-show="false && displayBarGraph" class="well well-lg ng-cloak leader-board">
+		        <div class="row">
+		          <div class="col-md-12">
+		            <h4 class="text-center">{{poll.item.poll.question}}</h4>
+		          </div>
+		        </div>
+            <div class="row">
+              <div class="col-md-12">
+	              <br>
+
+                  <canvas id="bar-chart" class="chart chart-bar" chart-data="data" chart-labels="labels" 
+                      chart-legend="true" chart-series="series" chart-click="onClick"></canvas>                   
+
+              </div>
+            </div>
+  		    </div>
+
+      		<div ng-hide="true || displayBarGraph" class="well well-lg ng-cloak leader-board">
+		        <div class="row">
+		          <div class="col-md-12">
+		            <h4 class="text-center">{{poll.item.poll.question}}</h4>
+		          </div>
+		        </div>
+            <div class="row">
+              <div class="col-md-12">
+	              <br>
+
+                  <canvas id="pie-chart" class="chart chart-pie"
+                    chart-data="pie_data" chart-labels="pie_labels" chart-legend="true">
+                  </canvas> 
+
+              </div>
+            </div>
+  		    </div>
+
+</div>
+  
+       </nav>
+    </div>
+
+  </div>

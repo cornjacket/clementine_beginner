@@ -1,0 +1,70 @@
+<div ng-show"true">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <div class="row">    
+        <h4 class="text-center">{{mytitle}}</h4>
+      </div>
+    </div>
+    
+      <!--<div class="col-md-12">-->
+    <div class="row">
+      <div class="col-md-offset-1 col-md-10">
+          <br>
+    
+          <table class="table table-condensed small-text">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Name</th>
+                <th class="text-center">{{myheading}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="user in users.score_board | orderBy:-myfield | limitTo:5">
+                <td>{{$index+1}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.displayName}}</td>
+                <td class="text-center">{{user[myfield]}}</td>
+              </tr>
+            </tbody>
+          </table>
+    
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-show="false">  
+  <div class="well well-lg ng-cloak leader-board">
+    <div class="row">
+      <div class="col-md-12">
+        <h4 class="text-center">{{mytitle}}</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+          <br>
+    
+          <table class="table table-condensed small-text">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Name</th>
+                <th class="text-center">{{myheading}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="user in users.score_board | orderBy:-myfield | limitTo:5">
+                <td>{{$index+1}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.displayName}}</td>
+                <td class="text-center">{{user[myfield]}}</td>
+              </tr>
+            </tbody>
+          </table>
+    
+      </div>
+    </div>
+  </div>
+</div>

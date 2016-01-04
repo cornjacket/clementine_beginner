@@ -1,65 +1,200 @@
-/****** Main Styling ******/
-
+/* Move down content because we have a fixed navbar that is 50px tall */
 body {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+  padding-top: 75px; /* should be 50px after fixing navbar issue */
+  padding-bottom: 20px;
 }
 
-p {
-    margin: 8px 0 0 0;
+hr{
+   border: 1px solid #ccc;
 }
 
-.container p {
-    text-align: center;
-    padding: 0;
+/* following used for preventing browser default behavior. */
+a[ng-click]{
+    cursor: pointer;
 }
 
-/****** Logo Div Styling ******/
-
-img {
-    margin: 20px auto 0 auto;
-    display: block;
+a:link {
+    text-decoration: none;
 }
 
-.clementine-text { /* Styling for the Clementine.js text */
-    padding: 0;
-    margin: -25px 0 0 0;
-    font-weight: 500;
-    font-size: 60px;
-    color: #FFA000;
-}
-
-/****** Click Styling ******/
-
-.btn-container {    /* Styling for the div that contains the buttons */
-    margin: -10px auto 0 auto;
-    text-align: center;
-}
-
-.btn {  /* Styling for buttons */
-    margin: 0 8px;
+a:visited {
     color: white;
-    background-color: #00BCD4;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
+h3 {
     display: inline-block;
-    border: 0;
-    font-size: 14px;
-    border-radius: 3px;
-    padding: 10px 5px;
-    width: 100px;
-    font-weight: 500;
 }
 
-.btn:focus {    /* Remove outline when hovering over button */
-    outline: none;
+/* ui-bootstrap */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.ng-cloak { display:none; }
+
+.user_voted {
+font-weight: bold;}
+
+.created_polls {
+  color: blue;
 }
 
-.btn:active {   /* Scale the button down by 10% when clicking on button */
-    transform: scale(0.9, 0.9);
-    -webkit-transform: scale(0.9, 0.9);
-    -moz-transform: scale(0.9, 0.9);
+.voted_polls {
+  color: red;
 }
 
-.btn-delete {   /* Styling for delete button */
-    background-color: #ECEFF1;
-    color: #212121;
+.signature-top {
+    background-color: beige;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+   
+
+
+.signature-bottom {
+    background-color: beige;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    
+}
+
+.small-text {
+   font-size: 12px; 
+}
+
+.tag {
+    background-color: #ffe5e5;
+    padding: 2px 2px;
+    padding: 4px 4px;
+    display: inline-block;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 4px;
+}
+
+/*
+.new-poll, .panel, .panel-default, .panel-heading, .panel-title, .panel-group {
+    background-color: #fff0f5;
+}*/
+
+.new-poll {
+    background-color: #fff0f5;
+}
+
+.newpoll-button {
+    margin-bottom: 20px;
+}
+
+/* http://stackoverflow.com/questions/20821662/bootstrap-table-bordered-remove-right-left-borders*/
+.table, .tr {
+  border: 1px solid #aaa;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+  border: 1px solid #aaa;
+}
+
+.leader-board {
+    background-color: #fff0f5; 
+}
+
+.poll-question {
+    display: inline-block;
+    text-decoration: none;
+    color: #000099; /*#00007f; /*#000066; /*#7f7fff;*/
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.poll-question-white {
+    display: inline-block;
+    text-decoration: none;
+    color: white; /*#00007f; /*#000066; /*#7f7fff;*/
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.poll-question:hover, .stars:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.poll-question-white:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: lightgray;
+}
+
+.poll-question:hover {
+    color: #3232ff;
+}
+
+.stars {
+    text-decoration: none;
+}
+
+
+
+
+.poll-option {
+    margin-top: 0;
+    margin-bottom: 1px;
+}
+
+.bottom-poll-group {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.poll-button {
+    margin-left: 5px;
+}
+
+.panel-button {
+    margin-left: 10px;
+}
+
+.panel-row {
+    margin-top:  5px;
+}
+
+.tag-group {
+    margin-top: 5px;
+}
+
+.inline {
+    display: inline-block;
+}
+
+
+.menu {
+    text-decoration: none;
+    padding: 12px;
+    margin: 0;
+    color: #999;
+}
+
+.menu:visited {
+    color: #999;
+}
+
+.menu:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.menu:active {
+    color: #FF630D;
+}
+
+.ng-cloak {
+  display: none !important;
 }
