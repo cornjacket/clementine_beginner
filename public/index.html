@@ -60,4 +60,19 @@
     <script type="text/javascript" src="services/polls.client.js"></script>
   </body>
 
+=======
+     <div class="container" ng-controller="clickController">
+       <p>You have clicked the button {{ clicks }} times.</p>
+       <br />
+       <div class="btn-container">
+         <button type="submit" class="btn btn-add" ng-click="addClick()">CLICK ME!</button>
+         <button class="btn btn-delete" ng-click="resetClicks()">RESET</button>
+       </div>
+     </div>
+
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.min.js"></script>
+     <script type="text/javascript" src="/controllers/clickController.client.js"></script>
+   </body>
+>>>>>>> dfc29df5ab679afda5bcd6dc1e1d882251093979
 </html>
