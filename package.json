@@ -23,5 +23,8 @@
     "mongoose": "^4.2.6",
     "passport": "^0.3.2",
     "passport-github": "^1.0.0"
-  }
+  },
+  "engines": {
+    "node": "4.1.1"
+  }  
 }

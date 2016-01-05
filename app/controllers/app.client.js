@@ -9,6 +9,7 @@
           .when("/", {
              templateUrl: "public/main.html",
              controller: "mainController",
+             /* DRT
              resolve: {
                  data: function($q, User, Poll) {
                      var defer = $q.defer()
@@ -20,7 +21,7 @@
                       })                     
                      return defer.promise
                  }
-             }
+             }*/
           })
           .when("/poll/:poll_id", {
              templateUrl: "public/pollShow.html",

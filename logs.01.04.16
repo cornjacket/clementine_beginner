@@ -1,0 +1,1498 @@
+2016-01-03T23:58:55.365922+00:00 heroku[api]: Enable Logplex by taylor.david.ray@gmail.com
+2016-01-03T23:58:55.365922+00:00 heroku[api]: Release v2 created by taylor.david.ray@gmail.com
+2016-01-04T00:01:51.788614+00:00 heroku[router]: at=info code=H81 desc="Blank app" method=GET path="/" host=secret-eyrie-8748.herokuapp.com request_id=ff371d81-fedf-4102-8e82-6d3d3683d025 fwd="108.226.162.28" dyno= connect= service= status=502 bytes=
+2016-01-04T00:01:52.124218+00:00 heroku[router]: at=info code=H81 desc="Blank app" method=GET path="/favicon.ico" host=secret-eyrie-8748.herokuapp.com request_id=d7e1b149-aaea-4cd6-bbad-d0fce4f18982 fwd="108.226.162.28" dyno= connect= service= status=502 bytes=
+2016-01-04T00:05:09.137674+00:00 heroku[router]: at=info code=H81 desc="Blank app" method=GET path="/" host=secret-eyrie-8748.herokuapp.com request_id=2e666926-8e09-488b-b6e7-f74974f35c7b fwd="108.226.162.28" dyno= connect= service= status=502 bytes=
+2016-01-04T00:05:09.879084+00:00 heroku[router]: at=info code=H81 desc="Blank app" method=GET path="/favicon.ico" host=secret-eyrie-8748.herokuapp.com request_id=678bcf78-f2ca-4cc3-8bc0-c3ad3a3c4166 fwd="108.226.162.28" dyno= connect= service= status=502 bytes=
+2016-01-04T00:05:54.835425+00:00 heroku[api]: Deploy 7ec93b5 by taylor.david.ray@gmail.com
+2016-01-04T00:05:54.835425+00:00 heroku[api]: Release v3 created by taylor.david.ray@gmail.com
+2016-01-04T00:05:54.766725+00:00 heroku[api]: Scale to web=1 by taylor.david.ray@gmail.com
+2016-01-04T00:05:55.130757+00:00 heroku[slug-compiler]: Slug compilation started
+2016-01-04T00:05:55.130763+00:00 heroku[slug-compiler]: Slug compilation finished
+2016-01-04T00:05:56.160661+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T00:05:59.062980+00:00 app[web.1]: 
+2016-01-04T00:05:59.063004+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T00:05:59.063006+00:00 app[web.1]: > node server.js
+2016-01-04T00:05:59.063006+00:00 app[web.1]: 
+2016-01-04T00:05:59.838377+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T00:05:59.838391+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T00:05:59.838380+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T00:05:59.838392+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T00:05:59.838381+00:00 app[web.1]:                                       ^
+2016-01-04T00:05:59.838393+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T00:05:59.838382+00:00 app[web.1]: 
+2016-01-04T00:05:59.838393+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T00:05:59.838386+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T00:05:59.838394+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T00:05:59.838387+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T00:05:59.865415+00:00 app[web.1]: 
+2016-01-04T00:05:59.838388+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T00:05:59.838389+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T00:05:59.838390+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T00:05:59.838390+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T00:05:59.882010+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T00:05:59.880252+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T00:05:59.880638+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T00:05:59.882216+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T00:05:59.882382+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T00:05:59.883251+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T00:05:59.880839+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T00:05:59.882671+00:00 app[web.1]: npm ERR! 
+2016-01-04T00:05:59.883924+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T00:05:59.882510+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T00:05:59.882810+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T00:05:59.895709+00:00 app[web.1]: 
+2016-01-04T00:05:59.882958+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T00:05:59.896084+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T00:05:59.883381+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T00:05:59.883533+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T00:05:59.883790+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T00:05:59.883655+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T00:05:59.895958+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T00:05:59.883104+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T00:06:00.749686+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T00:06:00.759994+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T00:06:00.761053+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T00:06:01.597907+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T00:06:03.764147+00:00 app[web.1]: 
+2016-01-04T00:06:03.764166+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T00:06:03.764168+00:00 app[web.1]: > node server.js
+2016-01-04T00:06:03.764168+00:00 app[web.1]: 
+2016-01-04T00:06:04.137263+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T00:06:04.137602+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T00:06:04.137853+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T00:06:04.138234+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T00:06:04.138559+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T00:06:04.138701+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T00:06:04.138810+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T00:06:04.139029+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T00:06:04.138923+00:00 app[web.1]: npm ERR! 
+2016-01-04T00:06:04.139161+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T00:06:04.139249+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T00:06:04.139396+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T00:06:04.139505+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T00:06:04.142704+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T00:06:04.139602+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T00:06:04.139806+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T00:06:04.139704+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T00:06:04.139904+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T00:06:04.142806+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T00:06:04.142539+00:00 app[web.1]: 
+2016-01-04T00:06:04.124415+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T00:06:04.124420+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T00:06:04.124422+00:00 app[web.1]:                                       ^
+2016-01-04T00:06:04.124423+00:00 app[web.1]: 
+2016-01-04T00:06:04.124425+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T00:06:04.124424+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T00:06:04.124425+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T00:06:04.124426+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T00:06:04.124427+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T00:06:04.124428+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T00:06:04.124429+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T00:06:04.124429+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T00:06:04.124430+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T00:06:04.124431+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T00:06:04.124432+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T00:06:04.132810+00:00 app[web.1]: 
+2016-01-04T00:06:04.743496+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T00:06:04.724107+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T00:06:18.092178+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=secret-eyrie-8748.herokuapp.com request_id=fb3215ef-23c3-4f12-bf23-9d98ddbb7d31 fwd="108.226.162.28" dyno= connect= service= status=503 bytes=
+2016-01-04T00:06:18.957952+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=secret-eyrie-8748.herokuapp.com request_id=2a3bc50e-0e1e-41fc-849d-4f381447f20f fwd="108.226.162.28" dyno= connect= service= status=503 bytes=
+2016-01-04T00:29:45.662016+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T00:29:47.621094+00:00 app[web.1]: 
+2016-01-04T00:29:47.621104+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T00:29:47.621105+00:00 app[web.1]: > node server.js
+2016-01-04T00:29:47.621106+00:00 app[web.1]: 
+2016-01-04T00:29:47.975568+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T00:29:47.975572+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T00:29:47.975573+00:00 app[web.1]:                                       ^
+2016-01-04T00:29:47.975574+00:00 app[web.1]: 
+2016-01-04T00:29:47.975574+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T00:29:47.975575+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T00:29:47.975576+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T00:29:47.975577+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T00:29:47.975577+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T00:29:47.975578+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T00:29:47.975579+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T00:29:47.975580+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T00:29:47.975581+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T00:29:47.975581+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T00:29:47.983182+00:00 app[web.1]: 
+2016-01-04T00:29:47.988872+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T00:29:47.989056+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T00:29:47.989356+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T00:29:47.975582+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T00:29:47.989526+00:00 app[web.1]: npm ERR! 
+2016-01-04T00:29:47.989683+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T00:29:47.989849+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T00:29:47.990010+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T00:29:47.990168+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T00:29:47.990317+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T00:29:47.990467+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T00:29:47.990774+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T00:29:47.990618+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T00:29:47.990923+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T00:29:47.993362+00:00 app[web.1]: 
+2016-01-04T00:29:47.993567+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T00:29:47.993703+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T00:29:47.987300+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T00:29:47.987584+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T00:29:47.987757+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T00:29:47.988192+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T00:29:48.623966+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T00:29:48.636887+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T00:29:44.643764+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T01:18:05.284194+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T01:18:06.708922+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T01:18:09.050958+00:00 app[web.1]: 
+2016-01-04T01:18:09.050988+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T01:18:09.050990+00:00 app[web.1]: > node server.js
+2016-01-04T01:18:09.050991+00:00 app[web.1]: 
+2016-01-04T01:18:09.427279+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T01:18:09.427283+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T01:18:09.427285+00:00 app[web.1]:                                       ^
+2016-01-04T01:18:09.427286+00:00 app[web.1]: 
+2016-01-04T01:18:09.427286+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T01:18:09.427287+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T01:18:09.427288+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T01:18:09.427288+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T01:18:09.427290+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T01:18:09.427290+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T01:18:09.427289+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T01:18:09.427291+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T01:18:09.427292+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T01:18:09.427293+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T01:18:09.427294+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T01:18:09.441657+00:00 app[web.1]: 
+2016-01-04T01:18:09.448584+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T01:18:09.448863+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T01:18:09.449704+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T01:18:09.457613+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T01:18:09.457881+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T01:18:09.448099+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T01:18:09.450548+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T01:18:09.450797+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T01:18:09.451000+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T01:18:09.451434+00:00 app[web.1]: npm ERR! 
+2016-01-04T01:18:09.451642+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T01:18:09.451860+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T01:18:09.452056+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T01:18:09.452257+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T01:18:09.452444+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T01:18:09.452635+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T01:18:09.453029+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T01:18:09.452827+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T01:18:09.453247+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T01:18:09.457194+00:00 app[web.1]: 
+2016-01-04T01:18:10.176399+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T01:18:10.161397+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T02:46:30.055590+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T02:46:32.934839+00:00 app[web.1]: 
+2016-01-04T02:46:32.934867+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T02:46:32.934869+00:00 app[web.1]: > node server.js
+2016-01-04T02:46:32.934869+00:00 app[web.1]: 
+2016-01-04T02:46:33.640864+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T02:46:33.641326+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T02:46:33.641634+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T02:46:33.642531+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T02:46:33.642798+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T02:46:33.643024+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T02:46:33.643233+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T02:46:33.643449+00:00 app[web.1]: npm ERR! 
+2016-01-04T02:46:33.643657+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T02:46:33.643875+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T02:46:33.644084+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T02:46:33.644331+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T02:46:33.644553+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T02:46:33.644754+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T02:46:33.644948+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T02:46:33.645161+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T02:46:33.645340+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T02:46:33.649511+00:00 app[web.1]: 
+2016-01-04T02:46:33.622536+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T02:46:33.622540+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T02:46:33.622541+00:00 app[web.1]:                                       ^
+2016-01-04T02:46:33.622546+00:00 app[web.1]: 
+2016-01-04T02:46:33.622546+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T02:46:33.622547+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T02:46:33.622548+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T02:46:33.622549+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T02:46:33.622550+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T02:46:33.622551+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T02:46:33.622552+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T02:46:33.622553+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T02:46:33.622551+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T02:46:33.622554+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T02:46:33.622555+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T02:46:33.633892+00:00 app[web.1]: 
+2016-01-04T02:46:33.649898+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T02:46:33.650076+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T02:46:34.446758+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T02:46:28.878842+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T02:46:34.448870+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T04:17:00.027548+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=secret-eyrie-8748.herokuapp.com request_id=b15d24aa-a0ef-4403-b256-d97304be1163 fwd="108.226.162.28" dyno= connect= service= status=503 bytes=
+2016-01-04T04:17:01.258023+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=secret-eyrie-8748.herokuapp.com request_id=d8296d9d-a86e-4e8c-827d-e766b2cb8db6 fwd="108.226.162.28" dyno= connect= service= status=503 bytes=
+2016-01-04T05:38:38.363479+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T05:38:41.468434+00:00 app[web.1]: 
+2016-01-04T05:38:41.468442+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T05:38:41.468444+00:00 app[web.1]: > node server.js
+2016-01-04T05:38:41.468445+00:00 app[web.1]: 
+2016-01-04T05:38:42.216897+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T05:38:42.199234+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T05:38:42.199278+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T05:38:42.199291+00:00 app[web.1]:                                       ^
+2016-01-04T05:38:42.199302+00:00 app[web.1]: 
+2016-01-04T05:38:42.199314+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T05:38:42.199316+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T05:38:42.199316+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T05:38:42.199317+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T05:38:42.199318+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T05:38:42.199319+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T05:38:42.199319+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T05:38:42.199320+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T05:38:42.199321+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T05:38:42.199321+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T05:38:42.199332+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T05:38:42.210392+00:00 app[web.1]: 
+2016-01-04T05:38:42.217419+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T05:38:42.217712+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T05:38:42.218713+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T05:38:42.218963+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T05:38:42.219208+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T05:38:42.219403+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T05:38:42.219694+00:00 app[web.1]: npm ERR! 
+2016-01-04T05:38:42.219925+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T05:38:42.220129+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T05:38:42.220390+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T05:38:42.220592+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T05:38:42.220780+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T05:38:42.221182+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T05:38:42.220970+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T05:38:42.221383+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T05:38:42.221570+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T05:38:42.225676+00:00 app[web.1]: 
+2016-01-04T05:38:42.225969+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T05:38:42.226173+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T05:38:43.185515+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T06:13:07.629260+00:00 heroku[api]: Attach MONGOLAB resource by taylor.david.ray@gmail.com
+2016-01-04T06:13:07.629260+00:00 heroku[api]: Release v4 created by taylor.david.ray@gmail.com
+2016-01-04T06:13:07.944101+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T06:13:08.837140+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T06:13:10.572221+00:00 app[web.1]: 
+2016-01-04T06:13:10.572229+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T06:13:10.572230+00:00 app[web.1]: > node server.js
+2016-01-04T06:13:10.572230+00:00 app[web.1]: 
+2016-01-04T06:13:10.967209+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T06:13:10.967607+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T06:13:10.967842+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T06:13:10.968728+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T06:13:10.968879+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T06:13:10.969083+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T06:13:10.969273+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T06:13:10.969399+00:00 app[web.1]: npm ERR! 
+2016-01-04T06:13:10.969520+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T06:13:10.969632+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T06:13:10.969987+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T06:13:10.970095+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T06:13:10.970199+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T06:13:10.970298+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T06:13:10.970397+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T06:13:10.970503+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T06:13:10.970602+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T06:13:10.973131+00:00 app[web.1]: 
+2016-01-04T06:13:10.973295+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T06:13:10.973389+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T06:13:10.954873+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T06:13:10.954876+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T06:13:10.954877+00:00 app[web.1]:                                       ^
+2016-01-04T06:13:10.954878+00:00 app[web.1]: 
+2016-01-04T06:13:10.954879+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T06:13:10.954880+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T06:13:10.954881+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T06:13:10.954881+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T06:13:10.954883+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T06:13:10.954884+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T06:13:10.954884+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T06:13:10.954885+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T06:13:10.954887+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T06:13:10.954886+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T06:13:10.954887+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T06:13:10.962842+00:00 app[web.1]: 
+2016-01-04T06:13:11.574875+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T06:13:12.670491+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T06:13:11.589486+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T06:13:11.590753+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T06:13:15.339860+00:00 app[web.1]: 
+2016-01-04T06:13:15.339869+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T06:13:15.339871+00:00 app[web.1]: > node server.js
+2016-01-04T06:13:15.339872+00:00 app[web.1]: 
+2016-01-04T06:13:16.037153+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T06:13:16.037186+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T06:13:16.037198+00:00 app[web.1]:                                       ^
+2016-01-04T06:13:16.037208+00:00 app[web.1]: 
+2016-01-04T06:13:16.037220+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T06:13:16.037221+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T06:13:16.037222+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T06:13:16.037223+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T06:13:16.037224+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T06:13:16.037224+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T06:13:16.037226+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T06:13:16.037225+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T06:13:16.037226+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T06:13:16.037227+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T06:13:16.037237+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T06:13:16.051287+00:00 app[web.1]: 
+2016-01-04T06:13:16.062824+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T06:13:16.062212+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T06:13:16.063157+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T06:13:16.074565+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T06:13:16.064539+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T06:13:16.075059+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T06:13:16.064856+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T06:13:16.065134+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T06:13:16.065349+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T06:13:16.065624+00:00 app[web.1]: npm ERR! 
+2016-01-04T06:13:16.065849+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T06:13:16.066326+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T06:13:16.066103+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T06:13:16.067005+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T06:13:16.067245+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T06:13:16.067460+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T06:13:16.067672+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T06:13:16.073918+00:00 app[web.1]: 
+2016-01-04T06:13:16.066576+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T06:13:16.066791+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T06:13:16.966374+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T06:13:16.952621+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T06:35:01.160103+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T06:35:03.597063+00:00 app[web.1]: 
+2016-01-04T06:35:03.597079+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T06:35:03.597080+00:00 app[web.1]: > node server.js
+2016-01-04T06:35:03.597080+00:00 app[web.1]: 
+2016-01-04T06:35:04.075124+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T06:35:04.084474+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T06:35:04.084741+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T06:35:04.054730+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T06:35:04.054763+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T06:35:04.054774+00:00 app[web.1]:                                       ^
+2016-01-04T06:35:04.054785+00:00 app[web.1]: 
+2016-01-04T06:35:04.054796+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T06:35:04.054797+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T06:35:04.054798+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T06:35:04.054799+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T06:35:04.054800+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T06:35:04.054801+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T06:35:04.054801+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T06:35:04.054802+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T06:35:04.054803+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T06:35:04.054804+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T06:35:04.054813+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T06:35:04.066150+00:00 app[web.1]: 
+2016-01-04T06:35:04.075633+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T06:35:04.076830+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T06:35:04.075883+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T06:35:04.077144+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T06:35:04.077369+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T06:35:04.077769+00:00 app[web.1]: npm ERR! 
+2016-01-04T06:35:04.077559+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T06:35:04.077963+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T06:35:04.078219+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T06:35:04.078418+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T06:35:04.078668+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T06:35:04.078916+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T06:35:04.079118+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T06:35:04.079302+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T06:35:04.079494+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T06:35:04.079678+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T06:35:04.083557+00:00 app[web.1]: 
+2016-01-04T06:35:04.908003+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T06:35:04.928268+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T07:16:09.015098+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T07:16:10.501097+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T07:16:13.173675+00:00 app[web.1]: 
+2016-01-04T07:16:13.173689+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T07:16:13.173691+00:00 app[web.1]: 
+2016-01-04T07:16:13.173690+00:00 app[web.1]: > node server.js
+2016-01-04T07:16:14.165145+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T07:16:14.165151+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T07:16:14.165152+00:00 app[web.1]:                                       ^
+2016-01-04T07:16:14.165154+00:00 app[web.1]: 
+2016-01-04T07:16:14.165154+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T07:16:14.165155+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T07:16:14.165156+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T07:16:14.165157+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T07:16:14.165158+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T07:16:14.165158+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T07:16:14.165159+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T07:16:14.165160+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T07:16:14.165161+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T07:16:14.165162+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T07:16:14.165163+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T07:16:14.184372+00:00 app[web.1]: 
+2016-01-04T07:16:14.198893+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T07:16:14.199152+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T07:16:14.201104+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T07:16:14.201461+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T07:16:14.201774+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T07:16:14.206306+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T07:16:14.206672+00:00 app[web.1]: npm ERR! 
+2016-01-04T07:16:14.206966+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T07:16:14.207239+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T07:16:14.207536+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T07:16:14.208022+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T07:16:14.208277+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T07:16:14.209013+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T07:16:14.208722+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T07:16:14.209481+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T07:16:14.209872+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T07:16:14.223642+00:00 app[web.1]: 
+2016-01-04T07:16:14.197391+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T07:16:14.224170+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T07:16:14.224467+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T07:16:15.249802+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T07:16:15.247599+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T08:40:33.453714+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T08:40:36.289994+00:00 app[web.1]: 
+2016-01-04T08:40:36.290009+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T08:40:36.290011+00:00 app[web.1]: > node server.js
+2016-01-04T08:40:36.290012+00:00 app[web.1]: 
+2016-01-04T08:40:36.822538+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T08:40:36.822896+00:00 app[web.1]: npm ERR! argv "
+/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T08:40:36.823098+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T08:40:36.823635+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T08:40:36.823908+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T08:40:36.824099+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T08:40:36.825036+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T08:40:36.825223+00:00 app[web.1]: npm ERR! 
+2016-01-04T08:40:36.825399+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T08:40:36.825584+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T08:40:36.825761+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T08:40:36.825919+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T08:40:36.826064+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T08:40:36.826214+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T08:40:36.826378+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T08:40:36.826540+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T08:40:36.826691+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T08:40:36.830265+00:00 app[web.1]: 
+2016-01-04T08:40:36.830500+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T08:40:36.830659+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T08:40:36.798071+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T08:40:36.798075+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T08:40:36.798076+00:00 app[web.1]:                                       ^
+2016-01-04T08:40:36.798077+00:00 app[web.1]: 
+2016-01-04T08:40:36.798082+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T08:40:36.798083+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T08:40:36.798083+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T08:40:36.798084+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T08:40:36.798085+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T08:40:36.798087+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T08:40:36.798086+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T08:40:36.798088+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T08:40:36.798089+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T08:40:36.798089+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T08:40:36.798090+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T08:40:36.816751+00:00 app[web.1]: 
+2016-01-04T08:40:37.655828+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T08:40:37.661926+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T08:40:32.173794+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T11:27:49.390999+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T11:27:52.075351+00:00 app[web.1]: 
+2016-01-04T11:27:52.075361+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T11:27:52.075363+00:00 app[web.1]: > node server.js
+2016-01-04T11:27:52.075363+00:00 app[web.1]: 
+2016-01-04T11:27:52.883544+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T11:27:52.850182+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T11:27:52.850186+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T11:27:52.850187+00:00 app[web.1]:                                       ^
+2016-01-04T11:27:52.850188+00:00 app[web.1]: 
+2016-01-04T11:27:52.850191+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T11:27:52.850192+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T11:27:52.850193+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T11:27:52.850194+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T11:27:52.850195+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T11:27:52.850195+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T11:27:52.850196+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T11:27:52.850197+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T11:27:52.850198+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T11:27:52.850199+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T11:27:52.850199+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T11:27:52.878480+00:00 app[web.1]: 
+2016-01-04T11:27:52.883949+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T11:27:52.884172+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T11:27:52.896366+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T11:27:52.896583+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T11:27:52.896761+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T11:27:52.896919+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T11:27:52.897086+00:00 app[web.1]: npm ERR! 
+2016-01-04T11:27:52.897245+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T11:27:52.897410+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T11:27:52.897569+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T11:27:52.897740+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T11:27:52.897893+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T11:27:52.898062+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T11:27:52.898206+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T11:27:52.898371+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T11:27:52.908761+00:00 app[web.1]: 
+2016-01-04T11:27:52.898506+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T11:27:52.908991+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T11:27:52.909130+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T11:27:53.611492+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T11:27:53.615170+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T11:27:48.269704+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T17:23:06.873486+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T17:23:09.638814+00:00 app[web.1]: 
+2016-01-04T17:23:09.638835+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T17:23:09.638836+00:00 app[web.1]: > node server.js
+2016-01-04T17:23:09.638837+00:00 app[web.1]: 
+2016-01-04T17:23:10.221285+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T17:23:10.221289+00:00 app[web.1]:                                       ^
+2016-01-04T17:23:10.221288+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T17:23:10.221290+00:00 app[web.1]: 
+2016-01-04T17:23:10.221295+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T17:23:10.221296+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T17:23:10.221296+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T17:23:10.221297+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T17:23:10.221298+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T17:23:10.221299+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T17:23:10.221301+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T17:23:10.221300+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T17:23:10.221315+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T17:23:10.221314+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T17:23:10.233579+00:00 app[web.1]: 
+2016-01-04T17:23:10.221316+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T17:23:10.240527+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T17:23:10.240955+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T17:23:10.241188+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T17:23:10.242124+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T17:23:10.242305+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T17:23:10.241923+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T17:23:10.242444+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T17:23:10.242614+00:00 app[web.1]: npm ERR! 
+2016-01-04T17:23:10.242771+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T17:23:10.242934+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T17:23:10.243087+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T17:23:10.243240+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T17:23:10.243377+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T17:23:10.243526+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T17:23:10.243672+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T17:23:10.243814+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T17:23:10.243961+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T17:23:10.247718+00:00 app[web.1]: 
+2016-01-04T17:23:10.247990+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T17:23:10.248130+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T17:23:11.097187+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T17:23:05.777778+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T17:23:11.169589+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T22:59:39.762233+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T22:59:42.370966+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T22:59:45.474093+00:00 app[web.1]: 
+2016-01-04T22:59:45.474112+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T22:59:45.474114+00:00 app[web.1]: > node server.js
+2016-01-04T22:59:45.474114+00:00 app[web.1]: 
+2016-01-04T22:59:46.178730+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T22:59:46.194669+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T22:59:46.195017+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T22:59:46.155205+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T22:59:46.155209+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T22:59:46.155210+00:00 app[web.1]:                                       ^
+2016-01-04T22:59:46.155214+00:00 app[web.1]: 
+2016-01-04T22:59:46.155214+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T22:59:46.155215+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T22:59:46.155216+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T22:59:46.155217+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T22:59:46.155217+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T22:59:46.155218+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T22:59:46.155219+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T22:59:46.155220+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T22:59:46.155221+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T22:59:46.155221+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T22:59:46.155222+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T22:59:46.166964+00:00 app[web.1]: 
+2016-01-04T22:59:46.179243+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T22:59:46.179556+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T22:59:46.180286+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T22:59:46.180956+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T22:59:46.181249+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T22:59:46.181453+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T22:59:46.181667+00:00 app[web.1]: npm ERR! 
+2016-01-04T22:59:46.181872+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T22:59:46.182102+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T22:59:46.182325+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T22:59:46.182862+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T22:59:46.183201+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T22:59:46.183458+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T22:59:46.183680+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T22:59:46.184367+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T22:59:46.184647+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T22:59:46.194086+00:00 app[web.1]: 
+2016-01-04T22:59:47.179224+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T22:59:47.174262+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T23:05:08.927504+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=secret-eyrie-8748.herokuapp.com request_id=79d6a2b8-1428-4dd8-953e-e683752a55ee fwd="130.65.109.61" dyno= connect= service= status=503 bytes=
+2016-01-04T23:05:11.462392+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=secret-eyrie-8748.herokuapp.com request_id=a027f1c4-dfdb-4ca4-bdb1-33b3fdda67ab fwd="130.65.109.61" dyno= connect= service= status=503 bytes=
+2016-01-04T23:27:41.353866+00:00 heroku[api]: Set MONGO_URI config vars by taylor.david.ray@gmail.com
+2016-01-04T23:27:41.353866+00:00 heroku[api]: Release v5 created by taylor.david.ray@gmail.com
+2016-01-04T23:27:41.784971+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T23:27:42.831141+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T23:27:44.789253+00:00 app[web.1]: 
+2016-01-04T23:27:44.789279+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T23:27:44.789281+00:00 app[web.1]: > node server.js
+2016-01-04T23:27:44.789281+00:00 app[web.1]: 
+2016-01-04T23:27:45.128432+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T23:27:45.128435+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T23:27:45.128436+00:00 app[web.1]:                                       ^
+2016-01-04T23:27:45.128436+00:00 app[web.1]: 
+2016-01-04T23:27:45.128437+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T23:27:45.128438+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T23:27:45.128438+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T23:27:45.128439+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T23:27:45.128440+00:00 app[web.1]:     at g (events.js:260:16)
+2016
+-01-04T23:27:45.128439+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T23:27:45.128440+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:27:45.128441+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T23:27:45.128442+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T23:27:45.128442+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:27:45.128445+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:27:45.136798+00:00 app[web.1]: 
+2016-01-04T23:27:45.141046+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T23:27:45.150803+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T23:27:45.150988+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T23:27:45.141491+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T23:27:45.141802+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T23:27:45.142281+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T23:27:45.142729+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T23:27:45.142913+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T23:27:45.143119+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T23:27:45.143359+00:00 app[web.1]: npm ERR! 
+2016-01-04T23:27:45.143634+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T23:27:45.143833+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T23:27:45.144049+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T23:27:45.144223+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T23:27:45.144386+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T23:27:45.144554+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T23:27:45.144720+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T23:27:45.144908+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T23:27:45.145080+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T23:27:45.150440+00:00 app[web.1]: 
+2016-01-04T23:27:45.830093+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T23:27:45.831352+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T23:27:45.831744+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T23:27:47.655111+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T23:27:49.438961+00:00 app[web.1]: 
+2016-01-04T23:27:49.438972+00:00 app[web.1]: > node server.js
+2016-01-04T23:27:49.438970+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T23:27:49.438972+00:00 app[web.1]: 
+2016-01-04T23:27:49.855513+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T23:27:49.855804+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T23:27:49.855963+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T23:27:49.856329+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T23:27:49.856678+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T23:27:49.856807+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T23:27:49.857260+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T23:27:49.856913+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T23:27:49.857035+00:00 app[web.1]: npm ERR! 
+2016-01-04T23:27:49.857148+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T23:27:49.857355+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T23:27:49.857554+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T23:27:49.857464+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T23:27:49.857659+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T23:27:49.857760+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T23:27:49.860669+00:00 app[web.1]: 
+2016-01-04T23:27:49.861085+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T23:27:49.857867+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T23:27:49.860884+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T23:27:49.857973+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T23:27:49.843189+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T23:27:49.843186+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T23:27:49.843190+00:00 app[web.1]:                                       ^
+2016-01-04T23:27:49.843191+00:00 app[web.1]: 
+2016-01-04T23:27:49.843192+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T23:27:49.843193+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T23:27:49.843194+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T23:27:49.843194+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T23:27:49.843198+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T23:27:49.843199+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T23:27:49.843196+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T23:27:49.843196+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:27:49.843199+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:27:49.843200+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:27:49.851202+00:00 app[web.1]: 
+2016-01-04T23:27:49.843197+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:27:50.460093+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T23:27:50.448152+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T23:28:20.154519+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T23:28:21.121150+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T23:28:23.868995+00:00 app[web.1]: 
+2016-01-04T23:28:23.869007+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T23:28:23.869010+00:00 app[web.1]: 
+2016-01-04T23:28:23.869009+00:00 app[web.1]: > node server.js
+2016-01-04T23:28:24.412850+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T23:28:24.412855+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T23:28:24.412856+00:00 app[web.1]:                                       ^
+2016-01-04T23:28:24.412857+00:00 app[web.1]: 
+2016-01-04T23:28:24.412859+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T23:28:24.412858+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T23:28:24.412860+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T23:28:24.412860+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T23:28:24.412862+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:28:24.412861+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T23:28:24.412863+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:28:24.412863+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T23:28:24.412864+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T23:28:24.412866+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:28:24.412865+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:28:24.431861+00:00 app[web.1]: 
+2016-01-04T23:28:24.439547+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T23:28:24.439771+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T23:28:24.441204+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T23:28:24.440988+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T23:28:24.441389+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T23:28:24.441731+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T23:28:24.441908+00:00 app[web.1]: npm ERR! 
+2016-01-04T23:28:24.442058+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T23:28:24.442246+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T23:28:24.442405+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T23:28:24.442559+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T23:28:24.442711+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T23:28:24.437781+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T23:28:24.443010+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T23:28:24.442860+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T23:28:24.443170+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T23:28:24.443330+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T23:28:24.447738+00:00 app[web.1]: 
+2016-01-04T23:28:24.448207+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T23:28:24.448045+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T23:28:25.133579+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T23:28:25.118813+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T23:28:19.941113+00:00 heroku[api]: Set GITHUB_KEY config vars by taylor.david.ray@gmail.com
+2016-01-04T23:28:19.941113+00:00 heroku[api]: Release v6 created by taylor.david.ray@gmail.com
+2016-01-04T23:28:38.356073+00:00 heroku[api]: Set GITHUB_SECRET config vars by taylor.david.ray@gmail.com
+2016-01-04T23:28:38.356073+00:00 heroku[api]: Release v7 created by taylor.david.ray@gmail.com
+2016-01-04T23:28:38.512493+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T23:28:39.378591+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T23:28:41.610589+00:00 app[web.1]: 
+2016-01-04T23:28:41.610601+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T23:28:41.610603+00:00 app[web.1]: > node server.js
+2016-01-04T23:28:41.610603+00:00 app[web.1]: 
+2016-01-04T23:28:42.083638+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T23:28:42.083644+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T23:28:42.083646+00:00 app[web.1]: 
+2016-01-04T23:28:42.083645+00:00 app[web.1]:                                       ^
+2016-01-04T23:28:42.083647+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T23:28:42.083648+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T23:28:42.083649+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T23:28:42.083650+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T23:28:42.083651+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T23:28:42.083651+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:28:42.083652+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:28:42.083653+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T23:28:42.083654+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T23:28:42.083655+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:28:42.083655+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:28:42.098975+00:00 app[web.1]: 
+2016-01-04T23:28:42.105284+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T23:28:42.105805+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T23:28:42.106132+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T23:28:42.107079+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T23:28:42.107447+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T23:28:42.107780+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T23:28:42.108082+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T23:28:42.108384+00:00 app[web.1]: npm ERR! 
+2016-01-04T23:28:42.108556+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T23:28:42.108738+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T23:28:42.108914+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T23:28:42.109141+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T23:28:42.109239+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T23:28:42.109627+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T23:28:42.109468+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T23:28:42.109958+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T23:28:42.109793+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T23:28:42.113381+00:00 app[web.1]: 
+2016-01-04T23:28:42.113600+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T23:28:42.113743+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T23:28:42.938098+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T23:28:42.916360+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T23:30:29.608914+00:00 heroku[api]: Set APP_URL config vars by taylor.david.ray@gmail.com
+2016-01-04T23:30:29.608914+00:00 heroku[api]: Release v8 created by taylor.david.ray@gmail.com
+2016-01-04T23:30:29.749852+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T23:30:30.952136+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T23:30:34.254128+00:00 app[web.1]: 
+2016-01-04T23:30:34.254143+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T23:30:34.254144+00:00 app[web.1]: > node server.js
+2016-01-04T23:30:34.254145+00:00 app[web.1]: 
+2016-01-04T23:30:35.401773+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T23:30:35.401819+00:00 app[web.1]:                                       ^
+2016-01-04T23:30:35.401841+00:00 app[web.1]: 
+2016-01-04T23:30:35.401854+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T23:30:35.401856+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T23:30:35.401856+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T23:30:35.401857+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T23:30:35.401858+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T23:30:35.401859+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:30:35.401859+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:30:35.401860+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T23:30:35.401861+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T23:30:35.401862+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:30:35.401888+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:30:35.426082+00:00 app[web.1]: 
+2016-01-04T23:30:35.447131+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T23:30:35.447368+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T23:30:35.447567+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T23:30:35.447717+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T23:30:35.447
+925+00:00 app[web.1]: npm ERR! 
+2016-01-04T23:30:35.448140+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T23:30:35.448338+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T23:30:35.448721+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T23:30:35.448914+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T23:30:35.448519+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T23:30:35.450145+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T23:30:35.449940+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T23:30:35.450337+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T23:30:35.450543+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T23:30:35.456027+00:00 app[web.1]: 
+2016-01-04T23:30:35.394001+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T23:30:35.441640+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T23:30:35.442609+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T23:30:35.445489+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T23:30:35.463313+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T23:30:35.463497+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T23:30:36.355829+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T23:30:36.360597+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T23:32:34.441318+00:00 heroku[api]: Set MONGO_URI config vars by taylor.david.ray@gmail.com
+2016-01-04T23:32:34.441400+00:00 heroku[api]: Release v9 created by taylor.david.ray@gmail.com
+2016-01-04T23:32:34.509337+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T23:32:37.091426+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T23:32:40.198787+00:00 app[web.1]: 
+2016-01-04T23:32:40.198808+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T23:32:40.198811+00:00 app[web.1]: > node server.js
+2016-01-04T23:32:40.198812+00:00 app[web.1]: 
+2016-01-04T23:32:40.706562+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T23:32:40.690235+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T23:32:40.690239+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T23:32:40.690240+00:00 app[web.1]:                                       ^
+2016-01-04T23:32:40.690241+00:00 app[web.1]: 
+2016-01-04T23:32:40.690242+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T23:32:40.690243+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T23:32:40.690243+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T23:32:40.690245+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T23:32:40.690244+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T23:32:40.690246+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:32:40.690246+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:32:40.690247+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T23:32:40.690249+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:32:40.690248+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T23:32:40.690250+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:32:40.699906+00:00 app[web.1]: 
+2016-01-04T23:32:40.706995+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T23:32:40.707247+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T23:32:40.708177+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T23:32:40.708447+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T23:32:40.708671+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T23:32:40.709104+00:00 app[web.1]: npm ERR! 
+2016-01-04T23:32:40.708879+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T23:32:40.709360+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T23:32:40.709617+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T23:32:40.709830+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T23:32:40.710037+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T23:32:40.710261+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T23:32:40.710495+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T23:32:40.710686+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T23:32:40.711089+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T23:32:40.715391+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T23:32:40.715550+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T23:32:40.710894+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T23:32:40.715139+00:00 app[web.1]: 
+2016-01-04T23:32:41.361291+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T23:32:41.365876+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T23:34:45.271943+00:00 heroku[api]: Set MONGO_URI config vars by taylor.david.ray@gmail.com
+2016-01-04T23:34:45.271943+00:00 heroku[api]: Release v10 created by taylor.david.ray@gmail.com
+2016-01-04T23:34:53.976951+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=secret-eyrie-8748.herokuapp.com request_id=4062c5da-654f-43a3-9d9a-366839ed5a10 fwd="130.65.109.61" dyno= connect= service= status=503 bytes=
+2016-01-04T23:34:54.544583+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=secret-eyrie-8748.herokuapp.com request_id=82e6d5cd-6aa9-43ad-b521-6a8658a4ff84 fwd="130.65.109.61" dyno= connect= service= status=503 bytes=
+2016-01-04T23:34:55.895362+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T23:34:56.996248+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T23:34:59.259797+00:00 app[web.1]: 
+2016-01-04T23:34:59.259811+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T23:34:59.259812+00:00 app[web.1]: > node server.js
+2016-01-04T23:34:59.259813+00:00 app[web.1]: 
+2016-01-04T23:34:59.627830+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T23:34:59.628153+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T23:34:59.628321+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T23:34:59.629176+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T23:34:59.629828+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T23:34:59.629701+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T23:34:59.629960+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T23:34:59.630068+00:00 app[web.1]: npm ERR! 
+2016-01-04T23:34:59.630169+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T23:34:59.630275+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T23:34:59.630375+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T23:34:59.630489+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T23:34:59.630616+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T23:34:59.615443+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T23:34:59.630712+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T23:34:59.615447+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T23:34:59.630806+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T23:34:59.615448+00:00 app[web.1]:                                       ^
+2016-01-04T23:34:59.630906+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T23:34:59.615448+00:00 app[web.1]: 
+2016-01-04T23:34:59.615449+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T23:34:59.631002+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T23:34:59.615450+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T23:34:59.633397+00:00 app[web.1]: 
+2016-01-04T23:34:59.615451+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T23:34:59.615451+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T23:34:59.633555+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T23:34:59.633645+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T23:34:59.615452+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T23:34:59.615453+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:34:59.615455+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T23:34:59.615455+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:34:59.615456+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:34:59.623566+00:00 app[web.1]: 
+2016-01-04T23:34:59.615453+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:34:59.615454+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T23:35:00.182603+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T23:35:00.168375+00:00 heroku[web.1]: Process exited with status 1
+2016-01-04T23:35:01.182016+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=secret-eyrie-8748.herokuapp.com request_id=20f060df-38c5-441e-a395-e5d682fac59d fwd="130.65.109.61" dyno= connect= service= status=503 bytes=
+2016-01-04T23:35:01.671036+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=secret-eyrie-8748.herokuapp.com request_id=4df4c03c-0d24-43e6-a645-b4b1ee87e98d fwd="130.65.109.61" dyno= connect= service= status=503 bytes=
+2016-01-04T23:39:54.882513+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-04T23:39:55.728331+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-04T23:39:57.298538+00:00 app[web.1]: 
+2016-01-04T23:39:57.298548+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-04T23:39:57.298549+00:00 app[web.1]: > node server.js
+2016-01-04T23:39:57.298549+00:00 app[web.1]: 
+2016-01-04T23:39:57.664980+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-04T23:39:57.665441+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-04T23:39:57.665701+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-04T23:39:57.648981+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-04T23:39:57.648985+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-04T23:39:57.648986+00:00 app[web.1]:                                       ^
+2016-01-04T23:39:57.648987+00:00 app[web.1]: 
+2016-01-04T23:39:57.648991+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-04T23:39:57.648992+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-04T23:39:57.648993+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-04T23:39:57.648994+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-04T23:39:57.648994+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-04T23:39:57.666913+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-04T23:39:57.648995+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:39:57.667088+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-04T23:39:57.648996+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-04T23:39:57.667487+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-04T23:39:57.648996+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-04T23:39:57.667681+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-04T23:39:57.648997+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:39:57.667867+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-04T23:39:57.648998+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-04T23:39:57.658422+00:00 app[web.1]: 
+2016-01-04T23:39:57.668233+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-04T23:39:57.666396+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-04T23:39:57.668413+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-04T23:39:57.666699+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-04T23:39:57.668585+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-04T23:39:57.648995+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-04T23:39:57.667302+00:00 app[web.1]: npm ERR! 
+2016-01-04T23:39:57.672694+00:00 app[web.1]: 
+2016-01-04T23:39:57.668937+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-04T23:39:57.672966+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-04T23:39:57.673136+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-04T23:39:57.668055+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-04T23:39:57.668758+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-04T23:39:58.239234+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-04T23:39:58.244178+00:00 heroku[web.1]: Process exited with status 1
+2016-01-05T00:10:59.887453+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-05T00:11:00.690743+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-05T00:11:02.350034+00:00 app[web.1]: 
+2016-01-05T00:11:02.350052+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-05T00:11:02.350053+00:00 app[web.1]: > node server.js
+2016-01-05T00:11:02.350054+00:00 app[web.1]: 
+2016-01-05T00:11:02.675181+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-05T00:11:02.675185+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-05T00:11:02.675186+00:00 app[web.1]:                                       ^
+2016-01-05T00:11:02.675187+00:00 app[web.1]: 
+2016-01-05T00:11:02.675188+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-05T00:11:02.675189+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-05T00:11:02.675189+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-05T00:11:02.675190+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-05T00:11:02.675191+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-05T00:11:02.686196+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-05T00:11:02.686493+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-05T00:11:02.675191+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T00:11:02.675192+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T00:11:02.686663+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-05T00:11:02.675192+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-05T00:11:02.686978+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-05T00:11:02.675193+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-05T00:11:02.687204+00:00 app
+[web.1]: npm ERR! code ELIFECYCLE
+2016-01-05T00:11:02.675193+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T00:11:02.675194+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T00:11:02.687543+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-05T00:11:02.681979+00:00 app[web.1]: 
+2016-01-05T00:11:02.687648+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-05T00:11:02.688292+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-05T00:11:02.688411+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-05T00:11:02.687868+00:00 app[web.1]: npm ERR! 
+2016-01-05T00:11:02.688012+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-05T00:11:02.688161+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-05T00:11:02.688617+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-05T00:11:02.688770+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-05T00:11:02.688917+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-05T00:11:02.688513+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-05T00:11:02.691533+00:00 app[web.1]: 
+2016-01-05T00:11:02.691734+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-05T00:11:02.689064+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-05T00:11:02.691884+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-05T00:11:03.273418+00:00 heroku[web.1]: Process exited with status 1
+2016-01-05T01:01:14.276981+00:00 heroku[api]: Set MONGO_URI config vars by taylor.david.ray@gmail.com
+2016-01-05T01:01:14.277039+00:00 heroku[api]: Release v11 created by taylor.david.ray@gmail.com
+2016-01-05T01:01:14.368576+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-05T01:01:15.415804+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-05T01:01:17.630410+00:00 app[web.1]: 
+2016-01-05T01:01:17.630418+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-05T01:01:17.630420+00:00 app[web.1]: > node server.js
+2016-01-05T01:01:17.630420+00:00 app[web.1]: 
+2016-01-05T01:01:18.076795+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-05T01:01:18.076800+00:00 app[web.1]: 
+2016-01-05T01:01:18.076801+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-05T01:01:18.076798+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-05T01:01:18.076800+00:00 app[web.1]:                                       ^
+2016-01-05T01:01:18.076802+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-05T01:01:18.076803+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-05T01:01:18.076804+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-05T01:01:18.076805+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-05T01:01:18.076806+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T01:01:18.076806+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T01:01:18.076807+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-05T01:01:18.076808+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-05T01:01:18.076809+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T01:01:18.076810+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T01:01:18.084538+00:00 app[web.1]: 
+2016-01-05T01:01:18.095922+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-05T01:01:18.095925+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-05T01:01:18.095926+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-05T01:01:18.095927+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-05T01:01:18.095927+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-05T01:01:18.095928+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-05T01:01:18.095929+00:00 app[web.1]: npm ERR! 
+2016-01-05T01:01:18.095930+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-05T01:01:18.095930+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-05T01:01:18.095931+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-05T01:01:18.095932+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-05T01:01:18.095933+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-05T01:01:18.096029+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-05T01:01:18.096257+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-05T01:01:18.096435+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-05T01:01:18.090569+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-05T01:01:18.096607+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-05T01:01:18.099740+00:00 app[web.1]: 
+2016-01-05T01:01:18.099927+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-05T01:01:18.100084+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-05T01:01:18.935580+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-05T01:01:18.935797+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-05T01:01:18.918086+00:00 heroku[web.1]: Process exited with status 1
+2016-01-05T01:01:20.064357+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-05T01:01:23.361967+00:00 app[web.1]: 
+2016-01-05T01:01:23.361977+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-05T01:01:23.361979+00:00 app[web.1]: > node server.js
+2016-01-05T01:01:23.361979+00:00 app[web.1]: 
+2016-01-05T01:01:24.286129+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-05T01:01:24.285663+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-05T01:01:24.309869+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-05T01:01:24.216390+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-05T01:01:24.216395+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-05T01:01:24.216396+00:00 app[web.1]:                                       ^
+2016-01-05T01:01:24.216397+00:00 app[web.1]: 
+2016-01-05T01:01:24.216402+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-05T01:01:24.216403+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-05T01:01:24.310233+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-05T01:01:24.216404+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-05T01:01:24.216404+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-05T01:01:24.216405+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-05T01:01:24.216406+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T01:01:24.216407+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T01:01:24.289877+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-05T01:01:24.216408+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-05T01:01:24.216409+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-05T01:01:24.216410+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T01:01:24.216411+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T01:01:24.264473+00:00 app[web.1]: 
+2016-01-05T01:01:24.291037+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-05T01:01:24.291302+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-05T01:01:24.291547+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-05T01:01:24.291714+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-05T01:01:24.291885+00:00 app[web.1]: npm ERR! 
+2016-01-05T01:01:24.292083+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-05T01:01:24.292267+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-05T01:01:24.292456+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-05T01:01:24.292627+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-05T01:01:24.292808+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-05T01:01:24.293200+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-05T01:01:24.293202+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-05T01:01:24.293251+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-05T01:01:24.293462+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-05T01:01:24.308620+00:00 app[web.1]: 
+2016-01-05T01:01:25.330295+00:00 heroku[web.1]: Process exited with status 1
+2016-01-05T01:01:25.342346+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-05T01:02:42.641291+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=secret-eyrie-8748.herokuapp.com request_id=31378c21-adf8-44ce-a095-89aaa3de2984 fwd="71.6.74.101" dyno= connect= service= status=503 bytes=
+2016-01-05T01:02:43.876658+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=secret-eyrie-8748.herokuapp.com request_id=c3bd10cc-af45-46bf-a12f-c38d8e167001 fwd="71.6.74.101" dyno= connect= service= status=503 bytes=
+2016-01-05T01:11:22.670733+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=secret-eyrie-8748.herokuapp.com request_id=37e8c8b0-7302-46be-8bea-4dfcb34f5ac7 fwd="71.6.74.101" dyno= connect= service= status=503 bytes=
+2016-01-05T01:11:23.293132+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=secret-eyrie-8748.herokuapp.com request_id=0846e0f4-6030-445e-b818-0f123894b1f9 fwd="71.6.74.101" dyno= connect= service= status=503 bytes=
+2016-01-05T01:21:52.405101+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-05T01:21:54.960514+00:00 app[web.1]: 
+2016-01-05T01:21:54.960524+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-05T01:21:54.960526+00:00 app[web.1]: > node server.js
+2016-01-05T01:21:54.960527+00:00 app[web.1]: 
+2016-01-05T01:21:55.409384+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-05T01:21:55.390878+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-05T01:21:55.390881+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-05T01:21:55.390882+00:00 app[web.1]:                                       ^
+2016-01-05T01:21:55.390882+00:00 app[web.1]: 
+2016-01-05T01:21:55.390885+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-05T01:21:55.390886+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-05T01:21:55.390886+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-05T01:21:55.390887+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-05T01:21:55.390887+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-05T01:21:55.390888+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T01:21:55.390888+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T01:21:55.390889+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-05T01:21:55.390889+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-05T01:21:55.390890+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T01:21:55.390891+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T01:21:55.403014+00:00 app[web.1]: 
+2016-01-05T01:21:55.409803+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-05T01:21:55.410020+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-05T01:21:55.410857+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-05T01:21:55.411316+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-05T01:21:55.411105+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-05T01:21:55.411515+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-05T01:21:55.411753+00:00 app[web.1]: npm ERR! 
+2016-01-05T01:21:55.411975+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-05T01:21:55.412228+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-05T01:21:55.412445+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-05T01:21:55.412668+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-05T01:21:55.412880+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-05T01:21:55.413093+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-05T01:21:55.413304+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-05T01:21:55.413519+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-05T01:21:55.413726+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-05T01:21:55.417778+00:00 app[web.1]: 
+2016-01-05T01:21:55.418040+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-05T01:21:55.418229+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-05T01:21:56.117155+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-05T01:21:56.089756+00:00 heroku[web.1]: Process exited with status 1
+2016-01-05T01:21:51.178432+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-05T01:47:15.800527+00:00 heroku[api]: Set DUMMY config vars by taylor.david.ray@gmail.com
+2016-01-05T01:47:15.800527+00:00 heroku[api]: Release v12 created by taylor.david.ray@gmail.com
+2016-01-05T01:47:16.906079+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-05T01:47:19.539281+00:00 app[web.1]: 
+2016-01-05T01:47:19.539291+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-05T01:47:19.539292+00:00 app[web.1]: > node server.js
+2016-01-05T01:47:19.539293+00:00 app[web.1]: 
+2016-01-05T01:47:20.082201+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-05T01:47:20.082659+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-05T01:47:20.082900+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-05T01:47:20.083908+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-05T01:47:20.093465+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-05T01:47:20.093645+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-05T01:47:20.061115+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-05T01:47:20.061118+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-05T01:47:20.061119+00:00 app[web.1]:                                       ^
+2016-01-05T01:47:20.061120+00:00 app[web.1]: 
+2016-01-05T01:47:20.061121+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-05T01:47:20.061122+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-05T01:47:20.061123+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-05T01:47:20.061123+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-05T01:47:20.061124+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-05T01:47:20.061125+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T01:47:20.061126+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T01:47:20.061127+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-05T01:47:20.061128+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:
+269:68)
+2016-01-05T01:47:20.061128+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T01:47:20.061129+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T01:47:20.074665+00:00 app[web.1]: 
+2016-01-05T01:47:20.084622+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-05T01:47:20.085311+00:00 app[web.1]: npm ERR! 
+2016-01-05T01:47:20.085498+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-05T01:47:20.085710+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-05T01:47:20.085927+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-05T01:47:20.086246+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-05T01:47:20.086592+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-05T01:47:20.085114+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-05T01:47:20.088055+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-05T01:47:20.084937+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-05T01:47:20.087664+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-05T01:47:20.093129+00:00 app[web.1]: 
+2016-01-05T01:47:20.086911+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-05T01:47:20.087286+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-05T01:47:20.812027+00:00 heroku[web.1]: Process exited with status 1
+2016-01-05T01:47:22.151290+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-05T01:47:25.707786+00:00 app[web.1]: 
+2016-01-05T01:47:25.707819+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-05T01:47:25.707821+00:00 app[web.1]: > node server.js
+2016-01-05T01:47:25.707822+00:00 app[web.1]: 
+2016-01-05T01:47:26.950257+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-05T01:47:26.950974+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-05T01:47:26.950729+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-05T01:47:26.969247+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-05T01:47:26.969434+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-05T01:47:26.969626+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-05T01:47:26.969771+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-05T01:47:26.969941+00:00 app[web.1]: npm ERR! 
+2016-01-05T01:47:26.970093+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-05T01:47:26.970391+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-05T01:47:26.970240+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-05T01:47:26.970536+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-05T01:47:26.970675+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-05T01:47:26.970813+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-05T01:47:26.970955+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-05T01:47:26.971112+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-05T01:47:26.971249+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-05T01:47:26.984194+00:00 app[web.1]: 
+2016-01-05T01:47:26.877820+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-05T01:47:26.877826+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-05T01:47:26.877827+00:00 app[web.1]:                                       ^
+2016-01-05T01:47:26.877830+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-05T01:47:26.877829+00:00 app[web.1]: 
+2016-01-05T01:47:26.877831+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-05T01:47:26.877831+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-05T01:47:26.877832+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-05T01:47:26.877833+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-05T01:47:26.877834+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T01:47:26.877835+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T01:47:26.877835+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-05T01:47:26.877836+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-05T01:47:26.877837+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T01:47:26.877842+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T01:47:26.930411+00:00 app[web.1]: 
+2016-01-05T01:47:26.984572+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-05T01:47:26.984453+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-05T01:47:28.064214+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-05T01:47:28.047931+00:00 heroku[web.1]: Process exited with status 1
+2016-01-05T01:47:15.917306+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-05T01:48:15.114473+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=secret-eyrie-8748.herokuapp.com request_id=5c605223-c74f-4ddf-9ac3-614e653d35ea fwd="71.6.74.101" dyno= connect= service= status=503 bytes=
+2016-01-05T01:48:16.269739+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=secret-eyrie-8748.herokuapp.com request_id=f64cd12c-69a0-496a-9e3c-8cd21e268635 fwd="71.6.74.101" dyno= connect= service= status=503 bytes=
+2016-01-05T02:10:53.387971+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-05T02:10:54.480922+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-05T02:10:57.037083+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-05T02:10:57.037072+00:00 app[web.1]: 
+2016-01-05T02:10:57.037085+00:00 app[web.1]: > node server.js
+2016-01-05T02:10:57.037085+00:00 app[web.1]: 
+2016-01-05T02:10:57.498836+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-05T02:10:57.499197+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-05T02:10:57.499371+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-05T02:10:57.500220+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-05T02:10:57.500439+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-05T02:10:57.500586+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-05T02:10:57.500705+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-05T02:10:57.500879+00:00 app[web.1]: npm ERR! 
+2016-01-05T02:10:57.501014+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-05T02:10:57.501145+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-05T02:10:57.501263+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-05T02:10:57.501385+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-05T02:10:57.501505+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-05T02:10:57.501607+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-05T02:10:57.501735+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-05T02:10:57.501861+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-05T02:10:57.501967+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-05T02:10:57.505730+00:00 app[web.1]: 
+2016-01-05T02:10:57.505903+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-05T02:10:57.506015+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-05T02:10:57.480445+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-05T02:10:57.480449+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-05T02:10:57.480450+00:00 app[web.1]:                                       ^
+2016-01-05T02:10:57.480451+00:00 app[web.1]: 
+2016-01-05T02:10:57.480452+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-05T02:10:57.480453+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-05T02:10:57.480454+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-05T02:10:57.480455+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-05T02:10:57.480456+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-05T02:10:57.480457+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T02:10:57.480456+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T02:10:57.480458+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-05T02:10:57.480459+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-05T02:10:57.480459+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T02:10:57.480460+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T02:10:57.493034+00:00 app[web.1]: 
+2016-01-05T02:10:58.254122+00:00 heroku[web.1]: Process exited with status 1
+2016-01-05T02:10:58.267541+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-05T03:00:03.303646+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-05T03:00:07.640484+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-05T03:00:07.640457+00:00 app[web.1]: 
+2016-01-05T03:00:07.640486+00:00 app[web.1]: > node server.js
+2016-01-05T03:00:07.640487+00:00 app[web.1]: 
+2016-01-05T03:00:08.542179+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-05T03:00:08.544413+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-05T03:00:08.554204+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-05T03:00:08.554420+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-05T03:00:08.509322+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-05T03:00:08.509364+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-05T03:00:08.509377+00:00 app[web.1]:                                       ^
+2016-01-05T03:00:08.509389+00:00 app[web.1]: 
+2016-01-05T03:00:08.509402+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-05T03:00:08.509404+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-05T03:00:08.509404+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-05T03:00:08.509405+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-05T03:00:08.509406+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-05T03:00:08.509407+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T03:00:08.509408+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T03:00:08.509408+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-05T03:00:08.509409+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-05T03:00:08.509410+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T03:00:08.509421+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T03:00:08.528827+00:00 app[web.1]: 
+2016-01-05T03:00:08.542846+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-05T03:00:08.545521+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-05T03:00:08.545900+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-05T03:00:08.546216+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-05T03:00:08.546485+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-05T03:00:08.546744+00:00 app[web.1]: npm ERR! 
+2016-01-05T03:00:08.547016+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-05T03:00:08.547416+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-05T03:00:08.547939+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-05T03:00:08.547708+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-05T03:00:08.548205+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-05T03:00:08.548444+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-05T03:00:08.548923+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-05T03:00:08.548711+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-05T03:00:08.549167+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-05T03:00:08.553656+00:00 app[web.1]: 
+2016-01-05T03:00:09.457052+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-05T03:00:09.440339+00:00 heroku[web.1]: Process exited with status 1
+2016-01-05T04:20:37.289809+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-05T04:20:38.213432+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-05T04:20:40.083201+00:00 app[web.1]: 
+2016-01-05T04:20:40.083209+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-05T04:20:40.083210+00:00 app[web.1]: > node server.js
+2016-01-05T04:20:40.083210+00:00 app[web.1]: 
+2016-01-05T04:20:40.468652+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-05T04:20:40.468657+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-05T04:20:40.468658+00:00 app[web.1]:                                       ^
+2016-01-05T04:20:40.468659+00:00 app[web.1]: 
+2016-01-05T04:20:40.468660+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-05T04:20:40.468661+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-05T04:20:40.468661+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-05T04:20:40.468662+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-05T04:20:40.468663+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-05T04:20:40.468664+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T04:20:40.468664+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T04:20:40.468665+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-05T04:20:40.468665+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-05T04:20:40.468666+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T04:20:40.480368+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-05T04:20:40.468671+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T04:20:40.480656+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-05T04:20:40.476229+00:00 app[web.1]: 
+2016-01-05T04:20:40.481103+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-05T04:20:40.480813+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-05T04:20:40.481314+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-05T04:20:40.481438+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-05T04:20:40.481532+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-05T04:20:40.481649+00:00 app[web.1]: npm ERR! 
+2016-01-05T04:20:40.481748+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-05T04:20:40.481857+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-05T04:20:40.481953+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-05T04:20:40.482046+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-05T04:20:40.482151+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-05T04:20:40.482268+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-05T04:20:40.482366+00:
+00 app[web.1]: npm ERR! You can get their info via:
+2016-01-05T04:20:40.482458+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-05T04:20:40.482547+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-05T04:20:40.485024+00:00 app[web.1]: 
+2016-01-05T04:20:40.485181+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-05T04:20:40.485280+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-05T04:20:41.184313+00:00 heroku[web.1]: Process exited with status 1
+2016-01-05T06:49:53.990817+00:00 heroku[api]: Set MONGO_URI config vars by taylor.david.ray@gmail.com
+2016-01-05T06:49:53.990817+00:00 heroku[api]: Release v13 created by taylor.david.ray@gmail.com
+2016-01-05T06:49:54.094137+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-05T06:49:54.827601+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-05T06:49:56.744471+00:00 app[web.1]: 
+2016-01-05T06:49:56.744490+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-05T06:49:56.744491+00:00 app[web.1]: > node server.js
+2016-01-05T06:49:56.744492+00:00 app[web.1]: 
+2016-01-05T06:49:57.083040+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-05T06:49:57.083314+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-05T06:49:57.083458+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-05T06:49:57.083816+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-05T06:49:57.084590+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-05T06:49:57.084712+00:00 app[web.1]: npm ERR! 
+2016-01-05T06:49:57.084814+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-05T06:49:57.084063+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-05T06:49:57.084921+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-05T06:49:57.084429+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-05T06:49:57.085022+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-05T06:49:57.085291+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-05T06:49:57.085115+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-05T06:49:57.085202+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-05T06:49:57.085478+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-05T06:49:57.088388+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-05T06:49:57.088129+00:00 app[web.1]: 
+2016-01-05T06:49:57.088296+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-05T06:49:57.085579+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-05T06:49:57.085377+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-05T06:49:57.071300+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-05T06:49:57.071310+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T06:49:57.071304+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-05T06:49:57.071310+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-05T06:49:57.071305+00:00 app[web.1]:                                       ^
+2016-01-05T06:49:57.071311+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-05T06:49:57.071305+00:00 app[web.1]: 
+2016-01-05T06:49:57.071311+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T06:49:57.071306+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-05T06:49:57.071312+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T06:49:57.071307+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-05T06:49:57.078807+00:00 app[web.1]: 
+2016-01-05T06:49:57.071307+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-05T06:49:57.071308+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-05T06:49:57.071309+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-05T06:49:57.071309+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T06:49:57.632666+00:00 heroku[web.1]: Process exited with status 1
+2016-01-05T06:49:57.665289+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-05T06:49:57.667144+00:00 heroku[web.1]: State changed from crashed to starting
+2016-01-05T06:49:58.540896+00:00 heroku[web.1]: Starting process with command `npm start`
+2016-01-05T06:50:00.778944+00:00 app[web.1]: 
+2016-01-05T06:50:00.778957+00:00 app[web.1]: > clementine_beginner@1.0.0 start /app
+2016-01-05T06:50:00.778959+00:00 app[web.1]: > node server.js
+2016-01-05T06:50:00.778960+00:00 app[web.1]: 
+2016-01-05T06:50:01.266319+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:236
+2016-01-05T06:50:01.266324+00:00 app[web.1]:         process.nextTick(function() { throw err; })
+2016-01-05T06:50:01.266326+00:00 app[web.1]:                                       ^
+2016-01-05T06:50:01.266327+00:00 app[web.1]: 
+2016-01-05T06:50:01.266328+00:00 app[web.1]: Error: Database failed to connect!
+2016-01-05T06:50:01.266329+00:00 app[web.1]:     at /app/server.js:12:15
+2016-01-05T06:50:01.266330+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/mongo_client.js:276:20
+2016-01-05T06:50:01.283774+00:00 app[web.1]: npm ERR! Linux 3.13.0-71-generic
+2016-01-05T06:50:01.284163+00:00 app[web.1]: npm ERR! argv "/app/.heroku/node/bin/node" "/app/.heroku/node/bin/npm" "start"
+2016-01-05T06:50:01.266330+00:00 app[web.1]:     at /app/node_modules/mongodb/lib/db.js:224:14
+2016-01-05T06:50:01.266332+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb/lib/server.js:234:9)
+2016-01-05T06:50:01.266332+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T06:50:01.284379+00:00 app[web.1]: npm ERR! node v5.1.1
+2016-01-05T06:50:01.285177+00:00 app[web.1]: npm ERR! npm  v3.3.12
+2016-01-05T06:50:01.285381+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2016-01-05T06:50:01.266336+00:00 app[web.1]:     at g (events.js:260:16)
+2016-01-05T06:50:01.266337+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T06:50:01.277201+00:00 app[web.1]: 
+2016-01-05T06:50:01.286394+00:00 app[web.1]: npm ERR! If you do, this is most likely a problem with the clementine_beginner package,
+2016-01-05T06:50:01.286567+00:00 app[web.1]: npm ERR! not with npm itself.
+2016-01-05T06:50:01.286712+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2016-01-05T06:50:01.266333+00:00 app[web.1]:     at emitTwo (events.js:87:13)
+2016-01-05T06:50:01.285560+00:00 app[web.1]: npm ERR! clementine_beginner@1.0.0 start: `node server.js`
+2016-01-05T06:50:01.266334+00:00 app[web.1]:     at emit (events.js:172:7)
+2016-01-05T06:50:01.285716+00:00 app[web.1]: npm ERR! Exit status 1
+2016-01-05T06:50:01.285892+00:00 app[web.1]: npm ERR! 
+2016-01-05T06:50:01.266335+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:269:68)
+2016-01-05T06:50:01.286058+00:00 app[web.1]: npm ERR! Failed at the clementine_beginner@1.0.0 start script 'node server.js'.
+2016-01-05T06:50:01.286217+00:00 app[web.1]: npm ERR! Make sure you have the latest version of node.js and npm installed.
+2016-01-05T06:50:01.286853+00:00 app[web.1]: npm ERR!     node server.js
+2016-01-05T06:50:01.286989+00:00 app[web.1]: npm ERR! You can get their info via:
+2016-01-05T06:50:01.287133+00:00 app[web.1]: npm ERR!     npm owner ls clementine_beginner
+2016-01-05T06:50:01.287279+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2016-01-05T06:50:01.292096+00:00 app[web.1]: 
+2016-01-05T06:50:01.292371+00:00 app[web.1]: npm ERR! Please include the following file with any support request:
+2016-01-05T06:50:01.292544+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2016-01-05T06:50:02.157974+00:00 heroku[web.1]: State changed from starting to crashed
+2016-01-05T06:50:02.076648+00:00 heroku[web.1]: Process exited with status 1
+2016-01-05T06:50:10.108158+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=secret-eyrie-8748.herokuapp.com request_id=8ec5a663-a4d6-4e36-8661-fce754c3735b fwd="64.134.222.89" dyno= connect= service= status=503 bytes=
+2016-01-05T06:50:10.834181+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=secret-eyrie-8748.herokuapp.com request_id=0e6772c9-ac3c-488d-a025-fc7c2f2b4fe3 fwd="64.134.222.89" dyno= connect= service= status=503 bytes=
