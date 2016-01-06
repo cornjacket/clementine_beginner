@@ -11,7 +11,9 @@ module.exports = function (app, passport) {
         if (req.isAuthenticated()) {
             return next();
         } else {
-            res.redirect('/');
+            res.redirect('/'); // isLoggedIn is middleware that passes the req to the next stage, but now I dont
+                               // want to simply redirect, I want to return the ip address for users that are not
+                               // logged in.
         }
     }    
     
@@ -89,10 +91,17 @@ module.exports = function (app, passport) {
 
     // gets accessed from userController.client
     app.route('/api/user')
-      .get(isLoggedIn, function (req, res) {
+      //.get(isLoggedIn, function (req, res) {
+      .get(function (req, res) {
         console.log("GET /api/user is being routed ***************************")
-        
-        res.json(req.user.github);
+        if (req.isAuthenticated()) {
+          res.json(req.user.github);
+        } else {
+          var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+          console.log("Requestor's IP Address is "+ip)
+          res.json({ip: ip})
+        }
+
     });
     
     // a separate path just for listing all the users

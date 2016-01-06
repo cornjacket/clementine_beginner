@@ -194,7 +194,7 @@
   }
 
 
-  
+  console.log("mainController has started")
   getUsers() // user_lookup/score_board
 
   User.get().then(function(user) { // needed if index.html loginController is not on body

@@ -21,9 +21,14 @@
        
        
       if (cached_user === null || user_id !== prev_user_id) { // !== is necessary so no type conversion for null to undefined
-       
-        cached_user = UserResource.get({ id: id }).$promise  // dont believe the actual value of id has meaning
+        cached_user = UserResource.get({ id: id }).$promise  // dont believe the actual value of id is being used
          .then(function(results) {
+           console.log("User.get() id followed by ip")
+           //id will return undefined if not authenticated, but ip will be defined
+           //if authenticated, then id will return non-undefined, but ip will be undefined
+           //need to have additional check if whether a user can vote on a poll. polls that are open to everyone
+           console.log(results.id)
+           console.log(results.ip)
            var user = {}             
            user.name = (results.displayName !== null) ? results.displayName : results.username
            user.displayName = (results.displayName !== null) ? results.displayName : "none"
