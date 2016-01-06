@@ -50,7 +50,8 @@ function UserHandler () {
   };
 
   this.addToVoteCount = function (req, res) {
-        Users
+        if (req.user) {
+          Users
             .findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'polls.num_voted': 1 } })
             .exec(function (err, result) {
                     if (err) { throw err; }
@@ -60,6 +61,9 @@ function UserHandler () {
                     //res.json(result.polls.num_created); -- return vote_count instead
                 }
             );
+        } else {
+            res.json("anonymous user")
+        }
   };
 
 

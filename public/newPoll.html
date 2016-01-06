@@ -22,6 +22,7 @@
           <br>
           <input type="text" ng-model="newPoll.tags" class="form-control" placeholder="Enter tags separated by commas." aria-describedby="basic-addon2" required>
           <br>
+          <label>Allow anonymous voting: <input type="checkbox" ng-model="newPoll.isOpen"></label><br/>
           <div ng-click="submitPoll()" class="btn btn-default newpoll-button" role="button">Create Poll</div>
           <div ng-click="addOption()" class="btn btn-default newpoll-button" role="button">Add Option</div>
         </div>

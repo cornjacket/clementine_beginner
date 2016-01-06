@@ -30,12 +30,17 @@
               $scope.removing = false
             }
             
-            $scope.vote = function(poll, option_number) {
-              console.log("mainController: vote() invoked, using id = "+$scope.id) // id on the parameter list
-              Poll.vote(poll, option_number, $scope.user.id)
+            $scope.vote = function(poll, option_number) {       
+              console.log("mainController: vote() invoked, using id = "+$scope.user.id) // id on the parameter list
+              console.log("user.isLoggedIn = "+$scope.user.isLoggedIn)
+              var id = ($scope.user.isLoggedIn) ? $scope.user.id : $scope.user.ip
+              Poll.vote(poll, option_number, id)
                 .then(function() {
-                  User.incrementPollsVoted($scope.user.username) // update score_board/user_lookup
-                  console.log("INVOKE VOTE")
+                  if ($scope.user.isLoggedIn) {
+                    User.incrementPollsVoted($scope.user.username) // update score_board/user_lookup
+                    console.log("INVOKE VOTE")
+                    //if ($scope.postVote) $scope.postVote()
+                  } 
                   if ($scope.postVote) $scope.postVote()
                 })
               }
@@ -89,6 +94,7 @@
                $scope.new_poll_indices = [ 0, 1 ] // couldnt i just use $index
                $scope.next_poll_option = 2
                $scope.newPoll = {}
+               $scope.newPoll.isOpen = false
                $scope.newPoll.option = []
             }
 
@@ -103,7 +109,7 @@
             $scope.submitPoll = function() {
               console.log("submitPoll() invoked")
               console.log($scope.newPoll)
-    
+              console.log("pollIsOpen = "+$scope.newPoll.isOpen)
               
               console.log($scope.newPoll.question)
               console.log($scope.newPoll.option)

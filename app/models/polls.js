@@ -22,7 +22,8 @@ var Poll = new Schema({
       vote_count: Number, // make searching easier for highest votes
       isFlagged: Boolean,
       flagger_id: [], // id's of users that flagged this poll
-      tags: [String] // list of tags
+      tags: [String], // list of tags
+      isOpen: Boolean
    },
    created_at: Date,
    updated_at: Date

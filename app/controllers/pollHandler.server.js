@@ -19,24 +19,25 @@ function PollHandler () {
     var newPoll = new Polls();
 
     newPoll.author.github_id = req.user.github.id; // just simpler to use github_id
-    newPoll.author.name = (req.user.github.displayName !== null) ? req.user.github.displayName : req.user.github.username;
-    newPoll.author.username = req.user.github.username; // useful when wanting to look up poll by username
-    newPoll.poll.question = req.body.data.question;
-    newPoll.poll.options = []
-    newPoll.poll.options = req.body.data.option 
-    newPoll.poll.votes = []
-    newPoll.poll.tags = req.body.data.tags.toLowerCase().split(',')
+    newPoll.author.name      = (req.user.github.displayName !== null) ? req.user.github.displayName : req.user.github.username;
+    newPoll.author.username  = req.user.github.username; // useful when wanting to look up poll by username
+    newPoll.poll.question    = req.body.data.question;
+    newPoll.poll.options     = []
+    newPoll.poll.options     = req.body.data.option 
+    newPoll.poll.votes       = []
+    newPoll.poll.tags        = req.body.data.tags.toLowerCase().split(',')
     // each subarray in votes contains the user_id's for the respective options subarray
     //console.log(newPoll.poll.options)
     //console.log(newPoll.poll.options.length)
     newPoll.poll.options.forEach(function() {
         newPoll.poll.votes.push([]) // add an empty array inside votes array for each option,
     })
-    newPoll.poll.upVotes = 100 //bias the upvote by +100 and dec by 100 prior for display
-    newPoll.poll.upVoter_id = [] //whoever up or down voted
-    newPoll.poll.vote_count = 0 // vote_count for easier search (otherwise we have to count)
-    newPoll.poll.isFlagged = false; 
-    newPoll.poll.flagger_id = [] // use this to make a count
+    newPoll.poll.upVotes     = 100 //bias the upvote by +100 and dec by 100 prior for display
+    newPoll.poll.upVoter_id  = [] //whoever up or down voted
+    newPoll.poll.vote_count  = 0 // vote_count for easier search (otherwise we have to count)
+    newPoll.poll.isFlagged   = false; 
+    newPoll.poll.flagger_id  = [] // use this to make a count
+    newPoll.poll.isOpen      = req.body.data.isOpen
     
     console.log("Tags")
     console.log(newPoll.poll)
@@ -93,7 +94,7 @@ function PollHandler () {
                     Polls
                         .findOneAndUpdate({ '_id': req.body._id}, { $inc: { 'poll.vote_count': 1 } })
                         .exec(function (err, poll_result) {
-                                console.log("PollHandler: just inc'd vote_cote hopefully")
+                                console.log("PollHandler: just inc'd vote_count hopefully")
                                 if (err) { throw err; }
                                 console.log(req.user)
                                 userHandler.addToVoteCount(req, res)

@@ -87,6 +87,7 @@
           console.log("GETTING POLLS FROM THE SERVER")
           // need to make one array of objects that has all the info
           var polls = results.data.map(function(item) {
+            //item.isOpen = true // not needed, since it's in the database -for testing purposes all polls will be open meaning anonymous(ip) users may vote
             return {
               item:                 item,  // contains info grabbed from server
               has_voted_for_option: [],    // order is important in this list, eventually
@@ -99,7 +100,8 @@
           })      
           info.num_polls = polls.length
           polls.forEach(function(poll) {
-            updateHasAlreadyVoted(poll,user.id)
+            var id = (user.isLoggedIn) ? user.id : user.ip
+            updateHasAlreadyVoted(poll,id) //user.id)
             setGithubUserImage(poll) // parameters can be merged
             countVotes(poll)
             determinePollAuthoredByUser(poll,user.id)

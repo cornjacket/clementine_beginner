@@ -29,17 +29,26 @@
            //need to have additional check if whether a user can vote on a poll. polls that are open to everyone
            console.log(results.id)
            console.log(results.ip)
-           var user = {}             
-           user.name = (results.displayName !== null) ? results.displayName : results.username
-           user.displayName = (results.displayName !== null) ? results.displayName : "none"
-           user.id = results.id
-           user_id = results.id
-           console.log("************ USER ID = "+user_id+" ******************")
-           user.username = results.username
-           user.publicRepos = results.publicRepos
-           user.isLoggedIn = results.username !== undefined // testing - why is a html page being sent to client
-           prev_user_id = user_id
+           var user = {}          
+           if (results.id !== undefined) {
+             
+             user.isLoggedIn = true
+             user.name = (results.displayName !== null) ? results.displayName : results.username
+             user.displayName = (results.displayName !== null) ? results.displayName : "none"
+             user.id = results.id
+             user_id = results.id
+             console.log("************ USER ID = "+user_id+" ******************")
+             user.username = results.username
+             user.publicRepos = results.publicRepos
+             //user.isLoggedIn = results.username !== undefined
+             prev_user_id = user_id
+           } else {
+             user.isLoggedIn = false
+             user.ip = results.ip
+             console.log("************ Anonymouse user at ip = "+user.ip+" ******************")
+           }
            return user
+             
          })
          console.log("********** Retrieving USER FROM SERVER ******************")
          return cached_user

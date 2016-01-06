@@ -24,6 +24,7 @@
                       <button class="pull-right btn btn-danger btn-xs" ng-click="cancel()">Cancel</button>
                       <button class="pull-right btn btn-success btn-xs" ng-click="deletePoll(poll)">Delete</button>
                     </span>
+                    <i class="pull-right fa fa-times fa-lg"></i>
                   </div>
                 </div>
               </div>
@@ -35,7 +36,7 @@
             <div ng-repeat="option in poll.item.poll.options track by $index">
               <div class="row"> 
                 <div class="col-md-2">
-                  <a ng-hide="poll.hasVotedForPoll" ng-click="vote(poll, $index)" class="btn btn-default btn-xs panel-button panel-row" ng-class="{ 'disabled': !user.isLoggedIn }" role="button">Vote</a>
+                  <a ng-hide="poll.hasVotedForPoll" ng-click="vote(poll, $index)" class="btn btn-default btn-xs panel-button panel-row" ng-class="{ 'disabled': !user.isLoggedIn && !poll.item.poll.isOpen }" role="button">Vote</a>
                   <p class="poll-option text-center panel-row" ng-show="poll.hasVotedForPoll" ng-class="{ 'user_voted': poll.has_voted_for_option[$index] }">
                      <ng-pluralize count="poll.aggregate_votes[$index]" when="{ 
                        '1': '1 vote', 
@@ -47,9 +48,15 @@
                   <p class="poll-option panel-row" ng-class="{ 'user_voted': poll.has_voted_for_option[$index] }">{{ option }}</p>
                 </div>      
               </div>                  
-            </div>            
+            </div>
             <div class="row bottom-poll-group">
-                <div class="col-md-offset-2 col-md-4">
+                <div class="col-md-1">
+                  <a ng-show="poll.item.poll.isOpen" title='Anonymous voters may vote on this poll'>
+                    <i class="fa fa-unlock-alt fa-lg"></i>
+                  </a>
+                </div>
+              
+                <div class="col-md-offset-1 col-md-4">
                   <div ng-repeat="tag in poll.item.poll.tags" class="tag small-text">
                     <span >{{tag}}</span>
                   </div>

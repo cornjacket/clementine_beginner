@@ -198,3 +198,10 @@ font-weight: bold;}
 .ng-cloak {
   display: none !important;
 }
+
+.fa-unlock-alt {
+  display: inline-block;
+  color:  #006dcc; /*#000099; /*blue;*/
+  margin-top: 6px;
+  margin-left: 20px;
+}
