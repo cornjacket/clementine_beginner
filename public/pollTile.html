@@ -7,15 +7,15 @@
             <div class="panel-heading">
              <div class="row">
               <div ng-hide="deletable" class="col-md-12"> <!-- show just the question, maybe up/down but no X button -->
-                <a class="h4 poll-question-white" href="/#/poll/{{poll.item._id}}">{{poll.item.poll.question}}</a>
+                <a class="h5 poll-question-white" href="/#/poll/{{poll.item._id}}">{{poll.item.poll.question}}</a>
               </div>
               <div ng-show="deletable"> <!-- show question and the X button, maybe show the up/down -->
                 <div ng-hide="user.isLoggedIn && poll.isPollAuthoredByUser" class="col-md-12">
-                  <a class="h4 poll-question-white" href="/#/poll/{{poll.item._id}}">{{poll.item.poll.question}}</a>
+                  <a class="h5 poll-question-white" href="/#/poll/{{poll.item._id}}">{{poll.item.poll.question}}</a>
                 </div>
                 <div ng-show="user.isLoggedIn && poll.isPollAuthoredByUser">
                   <div class="col-md-9">
-                    <a class="h4 poll-question-white" href="/#/poll/{{poll.item._id}}">{{poll.item.poll.question}}</a>
+                    <a class="h5 poll-question-white" href="/#/poll/{{poll.item._id}}">{{poll.item.poll.question}}</a>
                   </div>
                   <div class="col-md-3">
                   <!--<a ng-click="deletePoll(poll)" class="pull-right btn btn-default btn-xs" ng-show="user.isLoggedIn && poll.isPollAuthoredByUser" role="button">X</a>-->
@@ -82,9 +82,6 @@
                 </div>
                 </div>
              </div>
-            
-            
-            
             
         </div>
       </div>    

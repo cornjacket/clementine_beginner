@@ -2,11 +2,15 @@
   <div class="panel panel-primary">
     <div class="panel-heading">
       <div class="row">    
-        <h4 class="text-center">{{mytitle}}</h4><div class="col-md-9">
-          <h4>Create a new poll</h4>
+        <!--<h4 class="text-center">{{mytitle}}</h4>-->
+        <div class="col-md-9">
+          <h5>Create a new poll</h5>
         </div>
-        <div class="col-md-offset-1 col-md-1">
-          <a ng-click="cancelNewPoll()" class="btn btn-default btn-xs" role="button">X</a>
+        <div class="col-md-offset-2 col-md-1">
+          <!--<a ng-click="cancelNewPoll()" class="btn btn-default btn-xs" role="button">X</a>-->
+          <a ng-click="cancelNewPoll()" class="pull-right" role="button">
+            <i class="pull-right fa fa-times fa-lg"></i>
+          </a>
         </div>
       </div>
     </div>    
@@ -22,7 +26,7 @@
           <br>
           <input type="text" ng-model="newPoll.tags" class="form-control" placeholder="Enter tags separated by commas." aria-describedby="basic-addon2" required>
           <br>
-          <label>Allow anonymous voting: <input type="checkbox" ng-model="newPoll.isOpen"></label><br/>
+          Allow anonymous voting: <input type="checkbox" ng-model="newPoll.isOpen"><br/>
           <div ng-click="submitPoll()" class="btn btn-default newpoll-button" role="button">Create Poll</div>
           <div ng-click="addOption()" class="btn btn-default newpoll-button" role="button">Add Option</div>
         </div>
