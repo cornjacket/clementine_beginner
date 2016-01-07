@@ -85,7 +85,7 @@
         Poll.getPolls(user).then(function(_polls){
           console.log("POLL CALLED IN CONTROLLER")
           polls = _polls
-          $scope.num_polls = polls.length // this will need to be updated periodically
+          $scope.num_polls = Poll.info.num_polls // this will need to be updated periodically
           setCurrentPoll()
           $scope.initGraph()
         })
