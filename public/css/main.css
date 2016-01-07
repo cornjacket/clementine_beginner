@@ -199,9 +199,13 @@ font-weight: bold;}
   display: none !important;
 }
 
+.fa-times {
+  color: #006dcc; 
+}
+
 .fa-unlock-alt {
   display: inline-block;
-  color:  #006dcc; /*#000099; /*blue;*/
+  color:  #006dcc; 
   margin-top: 6px;
   margin-left: 20px;
 }

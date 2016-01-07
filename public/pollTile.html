@@ -19,12 +19,18 @@
                   </div>
                   <div class="col-md-3">
                   <!--<a ng-click="deletePoll(poll)" class="pull-right btn btn-default btn-xs" ng-show="user.isLoggedIn && poll.isPollAuthoredByUser" role="button">X</a>-->
-                    <a ng-click="startRemoving(poll)" class="pull-right btn btn-default btn-xs" ng-show="!removing" role="button">X</a>
+                    <a ng-click="startRemoving(poll)" class="pull-right" ng-show="!removing" role="button">
+                      <i class="pull-right fa fa-times fa-lg"></i>
+                    </a>
+                    
+                    <!--<a ng-click="startRemoving(poll)" class="pull-right btn btn-default btn-xs" ng-show="!removing" role="button">X</a>-->
+                    
+                    
                     <span ng-show="removing" class="ng-cloak">
                       <button class="pull-right btn btn-danger btn-xs" ng-click="cancel()">Cancel</button>
                       <button class="pull-right btn btn-success btn-xs" ng-click="deletePoll(poll)">Delete</button>
                     </span>
-                    <i class="pull-right fa fa-times fa-lg"></i>
+                
                   </div>
                 </div>
               </div>
