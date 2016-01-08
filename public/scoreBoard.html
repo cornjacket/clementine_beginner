@@ -21,11 +21,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="user in users.score_board | orderBy:-myfield | limitTo:5">
+              <tr ng-repeat="user in users.score_board | orderBy:-user.myfield"> <!-- | limitTo:5"> <!--myfield-->
                 <td>{{$index+1}}</td>
                 <td>{{user.username}}</td>
                 <td>{{user.displayName}}</td>
-                <td class="text-center">{{user[myfield]}}</td>
+                <td class="text-center">{{user[myfield]}}</td> <!-- myfield -->
               </tr>
             </tbody>
           </table>
