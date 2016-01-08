@@ -36,7 +36,7 @@
       </div>
     </div>
     <div ng-repeat ="poll in polls">
-        <dt-poll-tile poll="poll" user="user" users="users" display-all-polls="displayAllPolls" post-vote="redirectToPollShow(poll._id)" deletable="false"></dt-poll-tile>
+        <dt-poll-tile poll="poll" user="user" users="users" display-all-polls="displayAllPolls" post-vote="redirectToPollShow(poll.item._id)" deletable="false"></dt-poll-tile>
     </div>
   </div>
   
