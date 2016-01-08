@@ -124,8 +124,8 @@
               })
               console.log($scope.newPoll.tags)
               
-              
-              if ($scope.newPoll.question !== undefined && $scope.newPoll.option.length !== 0 && $scope.newPoll.tags !== undefined) {
+              // note that tags are optional now
+              if ($scope.newPoll.question !== undefined && $scope.newPoll.option.length !== 0) {
                 $scope.isCollapsed = true
                 // update User's lookup and scoreboard
                 User.incrementPollsCreated($scope.user.username)
