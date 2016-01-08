@@ -165,6 +165,12 @@
         }
 
 
+        $scope.redirectToPollShow = function(poll_id) {
+          console.log("redirectToPollShow")
+          console.log(poll_id)
+          $location.path('/poll/'+poll_id)
+        }
+
 /////////////////////////////
 
   $scope.items = ['Item 1', 'Item 2', 'Item 3']; // this can be removed
