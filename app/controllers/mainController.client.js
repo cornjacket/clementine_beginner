@@ -75,7 +75,7 @@
             users: '=', // should i pass this in or have the directive use the users service
             mytitle: '@mytitle',
             myheading: '@myheading',
-            myfield: '=myfield'
+            myfield: '@myfield'
           }
           
         }
