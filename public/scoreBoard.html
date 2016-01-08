@@ -21,7 +21,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="user in users.score_board | orderBy:-myfield | limitTo:5">
+              <tr ng-repeat="user in users.score_board | orderBy:myfield | limitTo:5">
                 <td>{{$index+1}}</td>
                 <td>{{user.username}}</td>
                 <td>{{user.displayName}}</td>
