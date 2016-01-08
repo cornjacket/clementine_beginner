@@ -30,6 +30,13 @@
        $scope.pie_data = []
      }
      
+     var shortenString = function(str, length) {
+       if (str.length > length)
+         return str.slice(0,length-1)+"..."
+       else
+         return str
+     }
+     
      $scope.initGraph = function() {
      
         clear_graph()
@@ -38,8 +45,8 @@
         console.log("pollController: init_graph() invoked")
         console.log($scope.poll)
         $scope.poll.item.poll.options.forEach(function(option) {
-          $scope.series.push(option)
-          $scope.pie_labels.push(option)
+          $scope.series.push(shortenString(option,40))
+          $scope.pie_labels.push(shortenString(option,40))
         })
         $scope.poll.aggregate_votes.forEach(function(votes) {
           $scope.data.push([ votes ])
