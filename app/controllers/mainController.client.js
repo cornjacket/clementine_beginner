@@ -65,6 +65,12 @@
         return {
           templateUrl: "public/scoreBoard.html",
           restrict:    "E",
+          controller:  function($scope) {
+            
+            console.log("Inside dtScoreBoard controller")
+            console.log($scope.myfield)
+          
+          },
           scope:       { 
             users: '=', // should i pass this in or have the directive use the users service
             mytitle: '@mytitle',
