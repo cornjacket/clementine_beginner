@@ -80,6 +80,56 @@
           
         }
       })
+      
+   angular
+      .module('pollOverflow')
+      .directive('dtTopUsers', function() {
+        return {
+          templateUrl: "public/topUsers.html",
+          restrict:    "E",
+          controller:  function($scope) {
+            /*
+            function compare(a,b) {
+              if (a.last_nom < b.last_nom)
+                return -1;
+              else if (a.last_nom > b.last_nom)
+                return 1;
+              else 
+                return 0;
+            }
+            */
+            function reverseSortNumber(a,b) {
+              console.log("reverseSortNumber: a = "+a[$scope.myfield]+", b = "+b[$scope.myfield])
+              console.log(parseInt(b[$scope.myfield]) - parseInt(a[$scope.myfield]))
+              return parseInt(b[$scope.myfield]) - parseInt(a[$scope.myfield]);
+            }
+            
+            console.log("Inside dtTopVoter controller")
+            //console.log($scope.myfield)
+            $scope.voters = []
+            $scope.voters = $scope.users.score_board.map(function(user) {
+              var obj = {}
+              obj.username = user.username
+              obj.displayName = user.displayName
+              obj[$scope.myfield] = user[$scope.myfield]
+              return obj
+            })
+            
+            //$scope.voters = $scope.users.score_board
+            $scope.voters.sort(reverseSortNumber);
+            console.log("Here are the voters")
+            console.log($scope.voters)
+          },
+          scope:       { 
+            users: '=', // should i pass this in or have the directive use the users service
+            mytitle: '@mytitle',
+            myheading: '@myheading',
+            myfield: '@myfield'
+          }
+          
+        }
+      })      
+      
 
    angular
       .module('pollOverflow')
