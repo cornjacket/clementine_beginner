@@ -54,10 +54,12 @@ module.exports = function (app, passport) {
     app.route('/api/polls/:id')
       .put( function (req, res) {
         console.log("index.js: put /api/polls/:"+req.body._id+" received")
-        console.log(req.body)
-        console.log(req.body.poll.votes[0])
-        console.log(req.body.poll.votes[1])
-        console.log(req.body.tags)
+       // console.log(req.body)
+        
+       
+        console.log(req.body.poll_update) // DRT
+        //console.log(req.body.poll.votes[0])
+        //console.log(req.body.poll.votes[1])
         //console.log(req)
         pollHandler.updateVotes(req, res)
         //res.json("ok") //req.user.github); // -- This is not being used. Can remove later

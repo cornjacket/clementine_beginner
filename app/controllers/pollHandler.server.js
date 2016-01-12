@@ -75,36 +75,45 @@ function PollHandler () {
   this.updateVotes = function (req, res) {
         console.log("pollHandler.updateVotes() invoked")
         console.log(req.body._id)
-        console.log("req.body.poll")
-        console.log(req.body.poll)
-        Polls
-            .findOneAndUpdate({ '_id': req.body._id}, 
-              { $set: 
-                { 
-                  'poll.votes': req.body.poll.votes 
-                }
-              },
-              { new: true }
-             ) 
-            .exec(function (err, result) {
+        //console.log("req.body.poll")
+        //console.log(req.body.poll)
+        console.log("req.body")
+        console.log(req.body)
+        
+        Polls.findOne({ '_id': req.body._id}, function(err, item) {
+          if (err) throw err;
+          // The only way I could get this to work was to deep copy the entire item.poll.votes
+          // array including its subarrays followed by adding on the new user_id into the appropriate
+          // subarray. And then replacing the old votes array inside the document.
+          var replace_votes = item.poll.votes.map(function(subarray) {
+            return subarray.map(function(id) { return id })
+          })
+          replace_votes[req.body.option_number].push(req.body.user_id)
+          item.poll.votes = replace_votes 
+          item.poll.vote_count+=1
+          //console.log(item.poll.votes)
+          item.save(function(err) {
+            if (err) throw err;
+            console.log("Poll successfully updated!");
+            userHandler.addToVoteCount(req, res)
+/*            
+            // Calling Polls below is kinda of ugly. Maybe just increment it up above
+            Polls
+            .findOneAndUpdate({ '_id': req.body._id}, { $inc: { 'poll.vote_count': 1 } })
+            .exec(function (err, poll_result) {
+                    console.log("PollHandler: just inc'd vote_count hopefully")
                     if (err) { throw err; }
-                    console.log("pollHander.updateVotes()")
-                    console.log(result)
-                    
-                    // This is a poor way to implement but the quickest to code.
-                    // This needs to change at some point.
-                    Polls
-                        .findOneAndUpdate({ '_id': req.body._id}, { $inc: { 'poll.vote_count': 1 } })
-                        .exec(function (err, poll_result) {
-                                console.log("PollHandler: just inc'd vote_count hopefully")
-                                if (err) { throw err; }
-                                console.log(req.user)
-                                userHandler.addToVoteCount(req, res)
-                            }
-                        );                    
-                    
+                    console.log(req.user)
+                    userHandler.addToVoteCount(req, res)
                 }
-            );
+            );  
+  */          
+          })
+        
+        });
+        
+
+            
   };
 
   this.deletePoll = function(req, res) {

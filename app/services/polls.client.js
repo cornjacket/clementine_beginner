@@ -132,7 +132,16 @@
           poll.aggregate_votes[option_number]++ 
           // Now call update passing in the ID first then the object you are updating
           // implementing update in this manner is dangerous. there is a contention between 2 different users
-          return Poll.update({ id:poll.item._id }, poll.item).$promise // update_user_lookup);          
+          
+          // previously i was sending the whole poll after the votes array has been updated,
+          // but now I am going to only send the option_number and the id to the server
+          var poll_update = {
+            _id:           poll.item._id, // it looks like the second parameter to Poll.update requires the _id field 
+            option_number: option_number,
+            user_id:       id
+          }
+          //return Poll.update({ id:poll.item._id }, poll.item*/).$promise // update_user_lookup);
+          return Poll.update({ id:poll.item._id }, poll_update).$promise // update_user_lookup);  
         } else {
             console.log("ERROR: vote(): trying to vote when votes array already contains user.id")
             console.log("ERROR: "+poll.item.poll.votes[option_number]+" "+id)
